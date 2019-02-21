@@ -1,0 +1,157 @@
+
+[root@ora1a config]# /opt/VRTS/install/installsfha61 -fencing
+
+                                       Symantec Storage Foundation and High Availability 6.1 Install Program                                        
+
+Copyright (c) 2013 Symantec Corporation. All rights reserved.  Symantec, the Symantec Logo are trademarks or registered trademarks of Symantec 
+Corporation or its affiliates in the U.S. and other countries. Other names may be trademarks of their respective owners.
+
+The Licensed Software and Documentation are deemed to be "commercial computer software" and "commercial computer software documentation" as defined 
+in FAR Sections 12.212 and DFARS Section 227.7202.
+
+Logs are being written to /var/tmp/installsfha61-201412031624rAH while installsfha61 is in progress.
+
+Enter the name of one system in the VCS cluster for which you would like to configure I/O fencing: ora1a
+
+    Checking communication on ora1a ....................................................................................................... Done
+    Checking release compatibility on ora1a ............................................................................................... Done
+    Checking VCS installation on ora1a ....................................................................................... Version 6.1.0.000
+
+                                      Symantec Storage Foundation and High Availability 6.1 Configure Program                                       
+
+Cluster information verification:
+
+        Cluster Name: tacap_cluster
+
+        Cluster ID Number: 29436
+
+        Systems: ora1a ora1b
+
+Would you like to configure I/O fencing on the cluster? [y,n,q] (y) y
+
+    Checking communication on ora1a ....................................................................................................... Done
+    Checking release compatibility on ora1a ............................................................................................... Done
+    Checking VCS installation on ora1a ....................................................................................... Version 6.1.0.000
+    Checking communication on ora1b ....................................................................................................... Done
+    Checking release compatibility on ora1b ............................................................................................... Done
+    Checking VCS installation on ora1b ....................................................................................... Version 6.1.0.000
+
+                                      Symantec Storage Foundation and High Availability 6.1 Configure Program                                       
+
+Fencing configuration
+     1)  Configure Coordination Point client based fencing
+     2)  Configure disk based fencing
+     3)  Configure fencing in disabled mode
+     4)  Replace/Add/Remove coordination points
+     5)  Refresh keys/registrations on the existing coordination points
+     6)  Set the order of existing coordination points
+
+Select the fencing mechanism to be configured in this Application Cluster: [1-6,q,?] 2
+
+This I/O fencing configuration option requires a restart of VCS. Installer will stop VCS at a later stage in this run. Note that the service groups 
+will be online only on the systems that are in the 'AutoStartList' after restarting VCS. Do you want to continue? [y,n,q,b,?] y
+
+Do you have SCSI3 PR enabled disks? [y,n,q,b,?] (y) 
+
+Since you have selected to configure disk based fencing, you need to provide the existing disk group to be used as coordinator or create a new disk 
+group for it.
+
+Select one of the options below for fencing disk group:
+     1)  Create a new disk group
+     2)  Using an existing disk group
+     b)  Back to previous menu
+
+Enter the choice for a disk group: [1-2,b,q] 1
+
+List of available disks to create a new disk group
+A new disk group cannot be created as the number of available free VxVM CDS disks is 0 which is less than three. If there are disks available which 
+are not under VxVM control, use the command vxdisksetup or use the installer to initialize them as VxVM disks.
+
+Do you want to initialize more disks as VxVM disks? [y,n,q,b] (y) 
+
+List of disks which can be initialized as VxVM disks:
+     1)  emcpowerb
+     2)  emcpowerc
+     3)  emcpowerd
+     b)  Back to previous menu
+
+Enter the disk options, separated by spaces: [1-3,b,q] 1 2 3
+    Intializing disk emcpowerb on ora1a ................................................................................................... Done
+    Intializing disk emcpowerc on ora1a ................................................................................................... Done
+    Intializing disk emcpowerd on ora1a ................................................................................................... Done
+
+     1)  emcpowerb
+     2)  emcpowerc
+     3)  emcpowerd
+     b)  Back to previous menu
+
+Select odd number of disks and at least three disks to form a disk group. Enter the disk options, separated by spaces: [1-3,b,q] 1 2 3
+
+Enter the new disk group name: [b] iofence_DG
+Created disk group iofence_DG
+
+Before you continue with configuration, Symantec recommends that you run the vxfentsthdw utility (I/O fencing test hardware utility), in a separate 
+console, to test whether the shared storage supports I/O fencing.  You can access the utility at '/opt/VRTSvcs/vxfen/bin/vxfentsthdw'.
+As per the 'vxfentsthdw' run you performed, do you want to continue with this disk group? [y,n,q] (y) 
+
+Using disk group iofence_DG
+
+Enter disk policy for the disk(s) (raw/dmp): [b,q,?] dmp
+
+                                      Symantec Storage Foundation and High Availability 6.1 Configure Program                                       
+
+I/O fencing configuration verification
+
+        Disk Group: iofence_DG
+
+        Fencing disk policy: dmp
+
+Is this information correct? [y,n,q] (y) y
+
+Installer will stop VCS before applying fencing configuration. To make sure VCS shuts down successfully, unfreeze any frozen service group and 
+unmount the mounted file systems in the cluster.
+
+Are you ready to stop VCS and apply fencing configuration on all nodes at this time? [y,n,q] (y) y
+
+    Stopping VCS on ora1a ................................................................................................................. Done
+    Stopping VCS on ora1b ................................................................................................................. Done
+    Starting Fencing on ora1a ............................................................................................................. Done
+    Starting Fencing on ora1b ............................................................................................................. Done
+    Updating main.cf with fencing ......................................................................................................... Done
+    Starting VCS on ora1a ................................................................................................................. Done
+    Starting VCS on ora1b ................................................................................................................. Done
+
+The Coordination Point Agent monitors the registrations on the coordination points.
+Do you want to configure Coordination Point Agent on the client cluster? [y,n,q] (y) 
+Enter a non-existing name for the service group for Coordination Point Agent: [b] (vxfen) 
+
+Additionally the Coordination Point Agent can also monitor changes to the Coordinator Disk Group constitution such as a disk being accidently 
+deleted from the Coordinator Disk Group. The frequency of this detailed monitoring can be tuned with the LevelTwoMonitorFreq attribute. For example,
+if you set this attribute to 5, the agent will monitor the Coordinator Disk Group constitution every five monitor cycles. If LevelTwoMonitorFreq 
+attribute is not set, the agent will not monitor any changes to the Coordinator Disk Group.
+
+Do you want to set LevelTwoMonitorFreq? [y,n,q] (y) 
+Enter the value of the LevelTwoMonitorFreq attribute(0 to 65535): [b,q,?] (5) 
+
+    Adding Coordination Point Agent via ora1a ............................................................................................. Done
+
+    I/O Fencing configuration ............................................................................................................. Done
+
+I/O Fencing configuration completed successfully
+
+After configuring the cluster, you can configure application monitoring using Veritas Operations Manager (VOM).
+To launch the Symantec High Availability Configuration Wizard:
+1. Log on to the VOM Management Server domain.
+2. In the VOM home page, click the Availability icon from the list of perspectives.
+3. Locate the cluster and then right-click on the cluster or on one of the systems under the cluster.
+4. Click Configure Application.
+
+Installation procedures and diagnostic information were saved in the log files under directory /var/tmp/installsfha61-201412031624rAH. Analyzing 
+this information helps Symantec discover and fix failed operations performed by the installer. Would you like to send the information about this 
+installation to Symantec to help improve installation in the future? [y,n,q,?] (y) n
+
+installsfha61 log files, summary file, and response file are saved at:
+
+        /opt/VRTS/install/logs/installsfha61-201412031624rAH
+
+Would you like to view the summary file? [y,n,q] (n) n

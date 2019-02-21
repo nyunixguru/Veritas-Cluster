@@ -1,0 +1,13 @@
+Shared Disk
+
+Create shared disks in Vmware
+Verify can see in fdisk
+vxdisk list  should see disk (online invalid)
+Make mount point   mkdir -p /tibco
+/etc/vx/bin/vxdisksetup -i vmdk0_3
+vxdg init tibco_DG tibco01=vmdk0_3
+vxassist -g tibco_DG make tibco_vol 7GB
+ls /dev/vx/dsk/tibco_DG
+mkfs -t vxfs /dev/vx/dsk/tibco_DG/tibco_vol
+vxdg deport tibco_DG  on node A
+vxdg import tibco_DG  on node B

@@ -1,0 +1,167 @@
+Veritas Cluster Server - VCS
+
+Versions:  1.0.1, 1.0.2, 1.1, 1.1.1, 1.1.2, 1.3.0  (The difference between 1.1.1 og 1.1.2 is just VRTSgab)
+ 
+
+HEARTBEAT:
+1)  heartbeat is on layer 2, with  LLT /GAB (Low Latency Transport/Group Atomic Broadcast)
+
+Script-setup NFS           Script-setup ORACLE          S_delete group          tuning-script v.01
+ 
+
+Home MADE Agents  Diverse info/setup
+
+Simple Setup(before 1.3.0) (I've never tried this):
+cd /opt/VRTSvcs/wizards/config
+./quick_start
+ 
+
+Simple Setup(from 1.3.0) (even install the packages for you, but NOT the clusterManager(gui))
+cd /cdrom/cdrom0
+./VCSinstall
+ 
+
+manuel setup:
+
+make  /etc/llttab  and  /etc/llthosts /etc/gabtab
+
+#cat /etc/llttab:(before 1.3.0)
+set-node VXcluster1
+link  qfe0  /dev/qfe:0
+link  qfe1  /dev/qfe:1
+start
+
+#cat /etc/llttab:(from 1.3.0)
+set-node VXcluster1
+set-cluster 0
+link  link1  /dev/qfe:0 - ether - -
+link  link2  /dev/qfe:1 - ether - -
+start
+
+# cat /etc/llthosts
+0 VXcluster1
+1 VXcluster2
+
+Will be started from /etc/rc2.d/S68llt
+
+#cat /etc/gabtab
+/sbin/gabconfig -c -n 2
+ 
+
+GAB is started from /etc/rc.d/S92gab
+
+test av LLT/GAB:
+On  system A:
+#/opt/VRTSllt/llttest -p <port>
+>receive -c <count>
+
+On  system B:
+#/opt/VRTSllt/llttest -p <port>
+>transmit -n <dest-node-ID> -c <count>
+>exit
+
+DISKHEARTBEAT:  This can be done in 2 ways:
+1)  global, by  GAB
+2)  pr. hagrp, its own resource , DiskGroupHB
+
+1: needs 128blocks (64kb) of a  disk
+#hahpsetup c1t3d0   (reinitialize)  Can still be used by  VxVM
+heartbeat slice 7, private slice 3, public slice 4
+
+Settes i /etc/rc2.d/S92gab:
+/sbin/gabdisk -a  /dev/rdsk/c1t3d0s7  -s  16  -p a
+/sbin/gabdisk -a  /dev/rdsk/c1t3d0s7  -s  144  -p h
+
+blocks 0-15: partition-table
+blocks 16-143: Seed port a
+blocks 144-271: VCS port h
+
+/etc/VRTSvcs/conf/sysname  holds "the name of the node" this does not need to be the same as 'nodename' but why not?
+
+#cat /etc/VRTSvcs/conf/config/main.cf
+include "types.cf"   (Has to be copied from /etc/VRTSvcs/conf
+cluster <clustername>
+snmp <clustername>
+system VXcluster1
+system VXcluster2
+ 
+
+Example of a  CONFIG:
+Making a servicegroup, imports a diskgroup, starts a volume, mounts it and share it
+
+Machines: VXcluster1, VXcluster2
+cluster: VXcluster (193.216.23.205)
+Volume: Vol01, dg= DataDG
+Mountpoint: /export
+ha(service)-group:  hanfs
+
+VXcluster1#  haconf -makerw
+# hagrp -add hanfs
+group added; populating SystemList and setting the Parallel attribute recommended
+ before adding resources
+# hagrp -modify hanfs SystemList VXcluster1 1 VXcluster2 2
+# hagrp -autoenable hanfs -sys VXcluster1
+# #---------------------------------------------------------
+# hares -add   nfsNIC NIC hanfs
+resource added
+NameRule and Enabled attributes must be set before agent monitors
+# hares -modify nfsNIC Enabled 1
+# hares -modify nfsNIC Device hme0
+##-----------------------------------------------------------
+# hares -add nfsIP IP hanfs
+resource added
+NameRule and Enabled attributes must be set before agent monitors
+# hares -modify nfsIP Enabled 1
+# hares -modify nfsIP Device hme0
+# hares -modify nfsIP Address 193.216.23.205
+# hares -modify nfsIP IfconfigTwice 1
+#  #---------------------------------------------------------
+# hares -add nfsDG DiskGroup hanfs
+resource added
+NameRule and Enabled attributes must be set before agent monitors
+# hares -modify nfsDG Enabled 1
+# hares -modify nfsDG DiskGroup DataDG
+# hares -modify nfsDG StartVolumes 0
+#  #---------------------------------------------------------
+#
+# hares -add nfsVOL Volume hanfs
+resource added
+NameRule and Enabled attributes must be set before agent monitors
+# hares -modify nfsVOL Enabled 1
+# hares -modify nfsVOL Volume Vol01
+# hares -modify nfsVOL DiskGroup DataDG
+# #---------------------------------------------------------
+# hares -add nfsMOUNT Mount hanfs
+resource added
+NameRule and Enabled attributes must be set before agent monitors
+# hares -modify nfsMOUNT Enabled 1
+# hares -modify nfsMOUNT MountPoint /export
+# hares -modify nfsMOUNT BlockDevice /dev/vx/dsk/DataDG/vol01
+# hares -modify nfsMOUNT Type vxfs
+# #---------------------------------------------------------
+# hares -add nfsNFS NFS hanfs
+resource added
+NameRule and Enabled attributes must be set before agent monitors
+# hares -modify nfsNFS Enabled 1
+# hares -modify nfsNFS Nservers 24
+# #----------------------------------------------------------
+# hares -add nfsSHARE Share hanfs
+resource added
+NameRule and Enabled attributes must be set before agent monitors
+# hares -modify nfsSHARE Enabled 1
+# hares -modify nfsSHARE PathName /export
+# hares -modify nfsSHARE OnlineNFSRestart 1
+# hares -modify nfsSHARE Options " -o rw,root=VxConsole"
+
+# Finnished with config, make links and mountpoints:
+# mkdir /export
+# hares -link nfsIP nfsnic
+# hares -link nfsVOL nfsDG
+# hares -link nfsMOUNT nfsVOL
+# hares -link nfsSHARE nfsIP
+# hares -link nfsSHARE nfsMOUNT
+# hares -link nfsSHARE nfsNFS
+
+#haconf -dump -makero
+
+- Resource MultiNIC will do network-failover (like nafo in SunCLuster) 

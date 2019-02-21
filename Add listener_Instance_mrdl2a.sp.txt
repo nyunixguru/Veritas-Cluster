@@ -1,0 +1,56 @@
+133  cd /etc/VRTSvcs/conf/config/
+  134  more main.cf
+  135  pwd
+  136  hostname
+  137  haconf -makerw
+  138  hares -add Oracle_cvjungo  Oracle ora_SG
+  139  hares -modify Oracle_cvjungo  Sid  cvjungo
+  140  haconf -dump -makero
+  141  locate dbhome_1
+  142  haconf -makerw
+  143  hares -modify Oracle_cvjungo  Home /u01/app/oracle/product/11.2.0/dbhome_1
+  144  hares -modify Oracle_cvjungo
+  145  hares -modify Oracle_cvjungo Enabled  1
+  146  haconf -dump -makero
+  147  haconf -makerw
+  148  hares -add Netlsnr_cvjungo  Netlsnr  
+  149  hares -add Netlsnr_cvjungo  Netlsnr  ora_SG
+  150  hares -modify Netlsnr_cvjungo  Listener  listener
+  151  hares -modify Netlsnr_cvjungo  Owner  oracle
+  152  hares -modify Netlsnr_cvjungo  Home /u01/app/oracle/product/11.2.0/dbhome_1
+  153  hares -modify Netlsnr_cvjungo  Enabled  1
+  154  haconf -dump -makero
+  155  more main.cf
+  156  history
+  157  more main.cf
+  158  haconf -makerw
+  159  hares -link Netlsnr_cvjungo  Oracle_cvjungo 
+  160  hares -link Netlsnr_cvjungo  IP_ora
+  161  hares -link Oracle_cvjungo Mount_archivelog
+  162  hares -link Oracle_cvjungo Mount_export
+  163  hares -link Oracle_cvjungo Mount_oradata
+  164  hares -link Oracle_cvjungo Mount_redoctrl_01
+  165  hares -link Oracle_cvjungo Mount_redoctrl_02
+  166  hares -link Oracle_cvjungo Mount_redoctrl_03
+  167  hares -link Oracle_cvjungo Mount_redoctrl_04
+  168  haconf -dump -makero
+  169  more main.cf
+  170   hastatus -sum
+  171   hastatus 
+  172  haconf -makerw
+  173  hares -modify Oracle_cvjungo  Enabled  1
+  174  haconf -dump -makero
+  175   hastatus 
+  176  ps -ef | grep oracle
+  177  hares -online Oracle_cvjungo mrdl2a
+  178  haconf -makerw
+  179  hares -online Oracle_cvjungo mrdl2a
+  180  hastatus -sum
+  181  more main,cf
+  182  more main.cf
+  183  haconf -makerw
+  184  hares -modify Oracle_cvjungo  Owner  oracle
+  185  haconf -dump -makero
+  186  more main.cf
+  187  hastatus
+  188  history

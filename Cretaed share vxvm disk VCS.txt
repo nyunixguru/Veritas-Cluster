@@ -1,0 +1,123 @@
+Shared Disk
+
+Create shared disks in Vmware
+Verify can see in fdisk
+vxdisk list  should see disk (online invalid)
+Make mount point   mkdir -p /tibco
+/etc/vx/bin/vxdisksetup -i vmdk0_3
+vxdg init tibco_DG tibco01=vmdk0_3
+ vxassist -g tibco_DG  maxsize
+Maximum volume size: 104787968 (51166Mb)
+
+  tibco_DG make tibco_vol 51166Mb
+ls /dev/vx/dsk/tibco_DG
+mkfs -t vxfs /dev/vx/dsk/tibco_DG/tibco_vol
+vxdg deport tibco_DG  on node A
+vxdg import tibco_DG  on node B
+Install vxfs patch verify lsmod | grep vxfs
+mount -t vxfs /dev/vx/dsk/tibco_DG/tibco_vol /tibco
+
+
+
+cfsmountadm add tibcodg tibco_VOL /tibco all=cluster
+
+
+
+325  /etc/vx/bin/vxdisksetup -i emcpowera
+  326  vxdisksetup
+  327  vxdisk list
+  328  /etc/vx/bin/vxdisksetup -i emcpowerb
+  329  /etc/vx/bin/vxdisksetup -i emcpowerc
+  330  /etc/vx/bin/vxdisksetup -i emcpowerd
+  331  /etc/vx/bin/vxdisksetup -i emcpowere
+  332  /etc/vx/bin/vxdisksetup -i emcpowerf
+  333  /etc/vx/bin/vxdisksetup -i emcpowerg
+  334  /etc/vx/bin/vxdisksetup -i emcpowerh
+  335  /etc/vx/bin/vxdisksetup -i emcpoweri
+  336  /etc/vx/bin/vxdisksetup -i emcpowerj
+  337  vxdg init ora_DG ora01=emcpowera
+  338  vxdg 
+  339  vxdg  -H
+  340  vxdg -g ora_DG adddisk ora02=emcpowera
+  341  vxdg -g ora_DG adddisk ora02=emcpowerb
+  342  vxdisk list
+  343  vxdg -g ora_DG adddisk ora03=emcpowerc
+  344  vxdg -g ora_DG adddisk ora04=emcpowerd
+  345  vxdg -g ora_DG adddisk ora05=emcpowere
+  346  vxdg -g ora_DG adddisk ora06=emcpowerf
+  347  vxdg -g ora_DG adddisk ora07=emcpowerg
+  348  vxdg -g ora_DG adddisk ora08=emcpowerh
+  349  vxdg -g ora_DG adddisk ora09=emcpoweri
+  350  vxdg -g ora_DG adddisk ora10=emcpowerj
+  351  vxdisk list
+  352  vxdisk -o alldgs list
+  353  powermt display dev=all
+  354  vxassist
+  355  vxassist -H
+  356  vxassist -g ora_DG make 
+  357  vxprint -th
+  358  powermt display dev=all
+  359  vxassist -g ora_DG make oradata_vol maxsize ora01
+  360  vxprint -th
+  361  vxassist -g ora_DG make redoctl04 maxsize ora05
+  362  vxprint -th
+  363  vxassist -g ora_DG make redoctl03 maxsize ora06
+  364  vxassist -g ora_DG make redoctl02 maxsize ora07
+  365  vxassist -g ora_DG make redoctl01 maxsize ora08
+  366  vxassist -g ora_DG make archivelog maxsize ora10
+  367  vxassist -g ora_DG make export maxsize ora09
+  368  vxprint -th
+  369  vxassist -H
+  370  vxassist -g ora_DG remove oradata-vol
+  371  vxassist -g ora_DG stop oradata-vol
+  372  vxassist -g ora_DG stop oradata_vol
+  373  vxprint -th
+  374  vxassist -g ora_DG stop oradata_vol
+  375  vxassist -g ora_DG remove oradata_vol
+  376  vxinfo -g ora_DG
+  377  vxassist -g ora_DG remove volume oradata_vol
+  378  vxinfo -g ora_DG
+  379  vxassist -g ora_DG make oradata maxsize ora01
+  380  vxinfo -g ora_DG
+  381  mkfs -t vxfs -o largefiles,bsize=8192 /dev/vx/rdsk/ora_DG/oradata 
+  382  mkfs -t vxfs -o largefiles,bsize=8192 /dev/vx/rdsk/ora_DG/archivelog 
+  383  mkfs -t vxfs -o largefiles,bsize=8192 /dev/vx/rdsk/ora_DG/export 
+  384  mkfs -t vxfs -o largefiles,bsize=8192 /dev/vx/rdsk/ora_DG/redoctl01
+  385  mkfs -t vxfs -o largefiles,bsize=8192 /dev/vx/rdsk/ora_DG/redoctl02
+  386  mkfs -t vxfs -o largefiles,bsize=8192 /dev/vx/rdsk/ora_DG/redoctl03
+  387  mkfs -t vxfs -o largefiles,bsize=8192 /dev/vx/rdsk/ora_DG/redoctl04
+
+390  vxdg deport ora_DG
+  391  vxdisk -o alldgs list
+  392  vxdg import ora_DG
+  393  vxdisk -o alldgs list
+  394  mount -F vxfs /dev/vx/rdsk/ora_DG/oradata /u01/oradata
+  395  mount -t vxfs /dev/vx/rdsk/ora_DG/oradata /u01/oradata
+  396  mount -t vxfs /dev/vx/dsk/ora_DG/oradata /u01/oradata
+  397  mount -t vxfs /dev/vx/dsk/ora_DG/archivelog /u01/archivelog/
+  398  cd /u01
+  399  ls
+  400  cd oradata/
+  401  ls
+  402  df -h
+  403  cd /u01/oradata/
+  404  mkdir export
+  405  ls
+  406  mkdir redoctl01
+  407  mkdir redoctl02
+  408  mkdir redoctl03
+  409  mkdir redoctl04
+  410  ls
+  411  cd /
+  412  umount /u01/oradata
+  413  df -h
+  414  mount -t vxfs /dev/vx/dsk/ora_DG/oradata /u01/oradata
+  415  ls /u01/oradata
+  416  mount -t vxfs /dev/vx/dsk/ora_DG/export /u01/oradata/export
+  417  mount -t vxfs /dev/vx/dsk/ora_DG/redoctl01 /u01/oradata/redoctl01
+  418  mount -t vxfs /dev/vx/dsk/ora_DG/redoctl02 /u01/oradata/redoctl02
+  419  mount -t vxfs /dev/vx/dsk/ora_DG/redoctl03 /u01/oradata/redoctl03
+  420  mount -t vxfs /dev/vx/dsk/ora_DG/redoctl04 /u01/oradata/redoctl04
+  421  df -h
+  422  history
+[root@mr-dl1 /]# 

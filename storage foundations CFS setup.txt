@@ -1,0 +1,733 @@
+Teamed interfaces of vnic 2/VLAN 55 QNS
+from david dilworth to All Participants:
+do you want to poke around
+from Curt Vandetta to All Participants:
+I can look, but I'm not supposed to drive.
+from david dilworth to All Participants:
+u wanted to poke around
+from david dilworth to All Participants:
+to et the right config
+from Curt Vandetta to All Participants:
+Yes. 
+from david dilworth to All Participants:
+here is the first node
+from david dilworth to All Participants:
+ems2a
+from Curt Vandetta to All Participants:
+If you could cd to /etc/VRTSvcs/conf/config
+from Curt Vandetta to All Participants:
+I would like to look at main.cf
+from Curt Vandetta to All Participants:
+Ok, so you have the basics configured.
+from david dilworth to All Participants:
+yes
+from david dilworth to All Participants:
+fence
+from Curt Vandetta to All Participants:
+You have a CFS mount that you want to add?
+from david dilworth to All Participants:
+I habe a /tibco mount point
+from david dilworth to All Participants:
+and able to mount the vol on /tibco
+from david dilworth to All Participants:
+just did it 
+from Curt Vandetta to All Participants:
+Ok, but that is not a CFS, that is just a local filesystem.  Do you want it to be CFS?
+from david dilworth to All Participants:
+yes want cfs
+from david dilworth to All Participants:
+just unmounted
+from Curt Vandetta to All Participants:
+So you understand that CFS is mounted at the same time on all nodes?
+from david dilworth to All Participants:
+on the same mount point /tibco ?
+from Curt Vandetta to All Participants:
+Yes.
+from david dilworth to All Participants:
+oK
+from david dilworth to All Participants:
+new to CFS
+from Curt Vandetta to All Participants:
+NP.
+from david dilworth to All Participants:
+kind of stupid
+from Curt Vandetta to All Participants:
+Lets use this cfs command to do the work for us.
+from david dilworth to All Participants:
+what next
+from david dilworth to All Participants:
+ok
+from david dilworth to All Participants:
+shoot
+from Curt Vandetta to All Participants:
+cfsmountadm add tibcodg tibco_VOL /tibco all=cluster
+from david dilworth to All Participants:
+just gave vxdisk output
+from Curt Vandetta to All Participants:
+lets look for it in /opt/VRTS/bin
+from Curt Vandetta to All Participants:
+Oops.
+from Curt Vandetta to All Participants:
+I spelled it wrong.
+from Curt Vandetta to All Participants:
+cfsmntadm 
+from Curt Vandetta to All Participants:
+cd /opt
+from david dilworth to All Participants:
+no cigar still
+from Curt Vandetta to All Participants:
+ls
+from david dilworth to All Participants:
+ls
+from david dilworth to All Participants:
+I dont think its on the system
+from david dilworth to All Participants:
+locate didnt find it
+from david dilworth to All Participants:
+what next
+from Curt Vandetta to All Participants:
+cd VRTS/install
+from david dilworth to All Participants:
+ok
+from Curt Vandetta to All Participants:
+Hmm, it doesn't appear that you installed sfhacfs6.1
+from david dilworth to All Participants:
+Ok
+from david dilworth to All Participants:
+should we install it now?
+from Curt Vandetta to All Participants:
+do you still have the media?
+from Curt Vandetta to All Participants:
+yes.
+from david dilworth to All Participants:
+i s it under here
+from Curt Vandetta to All Participants:
+Yes.
+from david dilworth to All Participants:
+run installer?
+from Curt Vandetta to All Participants:
+It didn't appear that you had to much configured, running the installer will pretty much start over, are you good with that?
+from david dilworth to All Participants:
+rather not cant we just the cfs piec
+from Curt Vandetta to All Participants:
+We can see.
+from Curt Vandetta to All Participants:
+It's the last one that is not installed.
+from david dilworth to All Participants:
+We arent doing RAC ?
+from Curt Vandetta to All Participants:
+Give me a second here.
+from david dilworth to All Participants:
+it s not oracle
+from Curt Vandetta to All Participants:
+Ok, good.
+from david dilworth to All Participants:
+its second from last
+from david dilworth to All Participants:
+right
+from david dilworth to All Participants:
+?
+from Curt Vandetta to All Participants:
+Ok, pick I
+from Curt Vandetta to All Participants:
+5
+from Curt Vandetta to All Participants:
+Yes.
+from david dilworth to All Participants:
+ok
+from Curt Vandetta to All Participants:
+2
+from david dilworth to All Participants:
+ok
+from Curt Vandetta to All Participants:
+Looks like it's going to do what we need.
+from david dilworth to All Participants:
+ok beats reinstalling
+from Curt Vandetta to All Participants:
+Hit enter
+from Curt Vandetta to All Participants:
+n
+from david dilworth to All Participants:
+?
+from Curt Vandetta to All Participants:
+Are you installing this in multiple locations?
+from david dilworth to All Participants:
+no
+from Curt Vandetta to All Participants:
+Or just the 2 nodes?
+from Curt Vandetta to All Participants:
+then say no
+from david dilworth to All Participants:
+just 2 nodes
+from Curt Vandetta to All Participants:
+Then no is what you want here
+from david dilworth to All Participants:
+yes here?
+from Curt Vandetta to All Participants:
+It depends, I usually don't but it depends on your site.
+from Curt Vandetta to All Participants:
+wait
+from Curt Vandetta to All Participants:
+I read that wrong.
+from Curt Vandetta to All Participants:
+Yes you want to configure this now.
+from david dilworth to All Participants:
+we can configure later
+from david dilworth to All Participants:
+?
+from Curt Vandetta to All Participants:
+If you want to be safe here
+from Curt Vandetta to All Participants:
+we can copy the main.cf 
+from david dilworth to All Participants:
+do a no
+from david dilworth to All Participants:
+u dont want to do a -configure?
+from Curt Vandetta to All Participants:
+Well, we need to, but we should copy the main.cf file before we do.
+from david dilworth to All Participants:
+so know what
+from Curt Vandetta to All Participants:
+Then we can add back anything you might have changed.
+from Curt Vandetta to All Participants:
+cd /etc/VRTSvcs/conf/config
+from Curt Vandetta to All Participants:
+cp main.cf main.cf.curt
+from david dilworth to All Participants:
+done
+from Curt Vandetta to All Participants:
+Now you can run /opt/VRTS/intall/installcfssha.6.1 -configure
+from Curt Vandetta to All Participants:
+I'm sorry, I typed that from memory...
+from Curt Vandetta to All Participants:
+cd ../install
+from Curt Vandetta to All Participants:
+yes.
+from Curt Vandetta to All Participants:
+you had this installed before correct?
+from david dilworth to All Participants:
+but isnt fencin configured already
+from Curt Vandetta to All Participants:
+We are re doing the configuration.
+from david dilworth to All Participants:
+ok
+from Curt Vandetta to All Participants:
+We can use all the same disks and stuff.
+from david dilworth to All Participants:
+say yes?
+from Curt Vandetta to All Participants:
+Yes, I want to make sure all the CFS stuff is loaded properly.
+from Curt Vandetta to All Participants:
+you can get all these from the main.cf we saved.
+from david dilworth to All Participants:
+going now
+from Curt Vandetta to All Participants:
+Looks good so far.
+from david dilworth to All Participants:
+ok
+from david dilworth to All Participants:
+configure fencing now?
+from Curt Vandetta to All Participants:
+Yes we should run the fencing 
+from Curt Vandetta to All Participants:
+installer.
+from david dilworth to All Participants:
+2 here?
+from Curt Vandetta to All Participants:
+Do you have disks for fencing?
+from david dilworth to All Participants:
+yes
+from david dilworth to All Participants:
+three
+from Curt Vandetta to All Participants:
+Then yes, 2 here
+from Curt Vandetta to All Participants:
+yes
+from Curt Vandetta to All Participants:
+do a vxdisk -o alldgs list
+from Curt Vandetta to All Participants:
+Go back to the prompt on the host
+from Curt Vandetta to All Participants:
+dmp
+from Curt Vandetta to All Participants:
+Then we will need to reboot both nodes.
+from Curt Vandetta to All Participants:
+Like the installer asked us to before.
+from david dilworth to All Participants:
+yes
+from david dilworth to All Participants:
+always
+from Curt Vandetta to All Participants:
+no
+from david dilworth to All Participants:
+y here
+from david dilworth to All Participants:
+?
+from Curt Vandetta to All Participants:
+You are not using cordination point server.
+from Curt Vandetta to All Participants:
+servers so you don't 
+from Curt Vandetta to All Participants:
+Wait.
+from Curt Vandetta to All Participants:
+you are running in VMware?
+from david dilworth to All Participants:
+yes
+from Curt Vandetta to All Participants:
+Give me a second here.
+from david dilworth to All Participants:
+did u mess up
+from Curt Vandetta to All Participants:
+You can't do fencing disks in VMware in certian situations.
+from david dilworth to All Participants:
+last time i said yes
+from Curt Vandetta to All Participants:
+Let me ask a co worked a question or two.
+from david dilworth to All Participants:
+for coord point
+from david dilworth to All Participants:
+Ok
+from david dilworth to All Participants:
+we have been doing it all along
+from david dilworth to All Participants:
+its not going to hurt is it
+from Curt Vandetta to All Participants:
+Ok.
+from Curt Vandetta to All Participants:
+According to my expert here
+from Curt Vandetta to All Participants:
+you can only do disk based fencing in a VMware environment
+from david dilworth to All Participants:
+thats what we did right
+from Curt Vandetta to All Participants:
+if each node in your cluster runs on a seperate ESX host.
+from Curt Vandetta to All Participants:
+Otherwise you have to use Coordination Point servers.
+from Curt Vandetta to All Participants:
+It all stems from the systems sharing HBA controllers.
+from david dilworth to All Participants:
+do we have CP servers? 
+from david dilworth to All Participants:
+so we cant do disk based fncing?
+from Curt Vandetta to All Participants:
+No, not if the 2 virtual hosts are on the same VMware server.
+from david dilworth to All Participants:
+we can but the vms on different esci hosts
+from david dilworth to All Participants:
+right
+from david dilworth to All Participants:
+they are on different esxi hosts
+from david dilworth to All Participants:
+now
+from Curt Vandetta to All Participants:
+Yes, if you can keep the virtual hosts on different VMware hosts it will work.  If they share the same VMware ESX server it won't work.
+from david dilworth to All Participants:
+different blades/esxi hosts
+from david dilworth to All Participants:
+so u think we are good
+from Curt Vandetta to All Participants:
+Ok, they won't vmotion onto the same host?
+from david dilworth to All Participants:
+no CP ?
+from Curt Vandetta to All Participants:
+Not unless you set them up.
+from david dilworth to All Participants:
+we can setup an antiaffinity rule
+from Curt Vandetta to All Participants:
+OK, just so you realize that.
+from Curt Vandetta to All Participants:
+We are ok.
+from david dilworth to All Participants:
+to keep thevms separate
+from david dilworth to All Participants:
+Ok
+from Curt Vandetta to All Participants:
+yes.
+from david dilworth to All Participants:
+reboot now?
+from Curt Vandetta to All Participants:
+eyes.
+from Curt Vandetta to All Participants:
+yes.
+from david dilworth to All Participants:
+youre in Milpitas?
+from david dilworth to All Participants:
+CA
+from Curt Vandetta to All Participants:
+Same timezone, I"m in Springfield Oregon.
+from david dilworth to All Participants:
+Oh
+from david dilworth to All Participants:
+ok
+from Curt Vandetta to All Participants:
+lets take a look at your main.cf file.
+from david dilworth to All Participants:
+oh i see it added a lot by default
+from Curt Vandetta to All Participants:
+Yes.  I wanted to make sure that was all there.
+from david dilworth to All Participants:
+just installing the cfs
+from Curt Vandetta to All Participants:
+Ok, so what we want to do now, is make our own group and add your mounts to there.
+from david dilworth to All Participants:
+group vrts_vea_cfs_int_cfsmount1 ?
+from david dilworth to All Participants:
+we need to add mount?
+from Curt Vandetta to All Participants:
+Ok, just lel me make sure I understand you.  
+from david dilworth to All Participants:
+here is the config from the old system
+from Curt Vandetta to All Participants:
+You want a group called vrts_vea_cfs_int_cfsmount1 
+from david dilworth to All Participants:
+group vrts_vea_cfs_int_cfsmount1 (        SystemList = { ems3 = 0, ems4 = 1 }        AutoFailOver = 0        Parallel = 1        AutoStartList = { ems3, ems4 }        )        CFSMount cfsmount1 (                Critical = 0                MountPoint = "/tibco"                BlockDevice = "/dev/vx/dsk/tibcodg/tibco_VOL"                MountOpt @ems3 = "cluster"                MountOpt @ems4 = "cluster"                NodeList = { ems3, ems4 }                )        CVMVolDg cvmvoldg1 (                Critical = 0                CVMDiskGroup = tibcodg                CVMVolume = { tibco_VOL }                CVMActivation @ems3 = sw                CVMActivation @ems4 = sw                )        requires group cvm online local firm        cfsmount1 requires cvmvoldg1
+from david dilworth to All Participants:
+we can call it anything
+from david dilworth to All Participants:
+something more friendly
+from david dilworth to All Participants:
+but the same concept?
+from Curt Vandetta to All Participants:
+Ok, we just need to make the group, then use the cfsmntadm command I tried earlier
+from david dilworth to All Participants:
+OK
+from Curt Vandetta to All Participants:
+You asked me before how you generate all the commands for building from the command line, so I wanted to show you this little trick.
+from david dilworth to All Participants:
+u have a one liner ?
+from Curt Vandetta to All Participants:
+not exactly.
+from david dilworth to All Participants:
+can we just cut/paste into the main.cf
+from Curt Vandetta to All Participants:
+We could.
+from Curt Vandetta to All Participants:
+You have to stop VCS for that to work.
+from david dilworth to All Participants:
+ok whatever is best?
+from david dilworth to All Participants:
+what do u have?
+from Curt Vandetta to All Participants:
+the system you sent me the main.cf from just now, ems3
+from david dilworth to All Participants:
+yes
+from Curt Vandetta to All Participants:
+Let's create an empty directory over there on that host.
+from david dilworth to All Participants:
+we can use that?
+from david dilworth to All Participants:
+made tmp
+from Curt Vandetta to All Participants:
+now copy *.cf into that empty directory.
+from Curt Vandetta to All Participants:
+cd into tmp
+from david dilworth to All Participants:
+done
+from Curt Vandetta to All Participants:
+hacf -cftocmd .
+from Curt Vandetta to All Participants:
+give me one minute.
+from Curt Vandetta to All Participants:
+ls
+from Curt Vandetta to All Participants:
+look at the main.cmd file
+from david dilworth to All Participants:
+more main.cmd
+from Curt Vandetta to All Participants:
+so that is every command to make everything in main.cf
+from david dilworth to All Participants:
+ok but there is so many
+from Curt Vandetta to All Participants:
+If you go find the command that make the group
+from Curt Vandetta to All Participants:
+Wait
+from Curt Vandetta to All Participants:
+Wait
+from Curt Vandetta to All Participants:
+We just need to make the group now.
+from Curt Vandetta to All Participants:
+hagrp -add groupname
+from Curt Vandetta to All Participants:
+Wait
+from Curt Vandetta to All Participants:
+You are scaring me.
+from david dilworth to All Participants:
+I got the hagrp command to the end of the file
+from Curt Vandetta to All Participants:
+Yes, but we can do all that
+from david dilworth to All Participants:
+I am a guru
+from Curt Vandetta to All Participants:
+:-)
+from david dilworth to All Participants:
+hagrp -add vrts_vea_cfs_int_cfsmount1hagrp -modify vrts_vea_cfs_int_cfsmount1 SystemList  ems2a 0 ems2b 1hagrp -modify vrts_vea_cfs_int_cfsmount1 AutoFailOver 0hagrp -modify vrts_vea_cfs_int_cfsmount1 Parallel 1hagrp -modify vrts_vea_cfs_int_cfsmount1 AutoStartList  ems2a ems2bhagrp -modify vrts_vea_cfs_int_cfsmount1 SourceFile "./main.cf"hares -add cfsmount1 CFSMount vrts_vea_cfs_int_cfsmount1hares -modify cfsmount1 Critical 0hares -modify cfsmount1 MountPoint "/tibco"hares -modify cfsmount1 BlockDevice "/dev/vx/dsk/tibcodg/tibco_VOL"hares -local cfsmount1 MountOpthares -modify cfsmount1 MountOpt "cluster" -sys ems2ahares -modify cfsmount1 MountOpt "cluster" -sys ems2bhares -modify cfsmount1 NodeList  ems2a ems2bhares -modify cfsmount1 Enabled 1hares -add cvmvoldg1 CVMVolDg vrts_vea_cfs_int_cfsmount1hares -modify cvmvoldg1 Critical 0hares -modify cvmvoldg1 CVMDiskGroup tibcodghares -modify cvmvoldg1 CVMVolume  tibco_VOLhares -local cvmvoldg1 CVMAc
+from david dilworth to All Participants:
+?
+from Curt Vandetta to All Participants:
+We can do all the mount specifc stuff 
+from Curt Vandetta to All Participants:
+with the cfsmntadm command
+from Curt Vandetta to All Participants:
+we just need the group 
+from Curt Vandetta to All Participants:
+hagrp -add group_name
+from Curt Vandetta to All Participants:
+The other stuff will be done automatically with the cfsmntadm 
+from david dilworth to All Participants:
+what should I name the group?
+from Curt Vandetta to All Participants:
+I just wanted to show you how you can figure out what commands are needed to build stuff already built on another server.
+from david dilworth to All Participants:
+CVM_Mount?
+from Curt Vandetta to All Participants:
+It's a big time saver for most stuff.
+from Curt Vandetta to All Participants:
+No 
+from Curt Vandetta to All Participants:
+Make your own
+from david dilworth to All Participants:
+cfsmount ?
+from Curt Vandetta to All Participants:
+Make you group.
+from david dilworth to All Participants:
+This is a mount group?
+from Curt Vandetta to All Participants:
+The ones that were created by the installer 
+from Curt Vandetta to All Participants:
+shouldn't have anything else added to them.
+from Curt Vandetta to All Participants:
+They are for internal VCS use.
+from david dilworth to All Participants:
+so what do I do here
+from david dilworth to All Participants:
+haconf -makerw
+from Curt Vandetta to All Participants:
+Yes,
+from Curt Vandetta to All Participants:
+Then hagrp -add group_name
+from david dilworth to All Participants:
+hagrp -add cfsmount1
+from Curt Vandetta to All Participants:
+sure.
+from Curt Vandetta to All Participants:
+now we should run the cfsmntadm command 
+from david dilworth to All Participants:
+youre sure
+from david dilworth to All Participants:
+that will set all the attributes?
+from Curt Vandetta to All Participants:
+cfsmountadm add tibcodg tibco_VOL /tibco all=cluster
+from Curt Vandetta to All Participants:
+yes. most of them.
+from david dilworth to All Participants:
+will it set
+from david dilworth to All Participants:
+all of this?
+from david dilworth to All Participants:
+hagrp -modify vrts_vea_cfs_int_cfsmount1 SystemList  ems3 0 ems4 1hagrp -modify vrts_vea_cfs_int_cfsmount1 AutoFailOver 0hagrp -modify vrts_vea_cfs_int_cfsmount1 Parallel 1hagrp -modify vrts_vea_cfs_int_cfsmount1 AutoStartList  ems3 ems4hagrp -modify vrts_vea_cfs_int_cfsmount1 SourceFile "./main.cf"hares -add cfsmount1 CFSMount vrts_vea_cfs_int_cfsmount1hares -modify cfsmount1 Critical 0hares -modify cfsmount1 MountPoint "/tibco"hares -modify cfsmount1 BlockDevice "/dev/vx/dsk/tibcodg/tibco_VOL"hares -local cfsmount1 MountOpthares -modify cfsmount1 MountOpt "cluster" -sys ems3hares -modify cfsmount1 MountOpt "cluster" -sys ems4hares -modify cfsmount1 NodeList  ems3 ems4hares -modify cfsmount1 Enabled 1hares -add cvmvoldg1 CVMVolDg vrts_vea_cfs_int_cfsmount1hares -modify cvmvoldg1 Critical 0hares -modify cvmvoldg1 CVMDiskGroup tibcodghares -modify cvmvoldg1 CVMVolume  tibco_VOLhares -local cvmvoldg1 CVMActivationhares -modify cvmvoldg1 CVMActivation
+from david dilworth to All Participants:
+??
+from Curt Vandetta to All Participants:
+It might do the critical
+from Curt Vandetta to All Participants:
+not do the critical
+from Curt Vandetta to All Participants:
+You can run those commands if you want to
+from Curt Vandetta to All Participants:
+My bad/
+from Curt Vandetta to All Participants:
+cfsmntadm
+from Curt Vandetta to All Participants:
+cfsmntadm add tibcodg tibco_VOL /tibco all=cluster
+from Curt Vandetta to All Participants:
+ok,
+from Curt Vandetta to All Participants:
+that diskgroup 
+from Curt Vandetta to All Participants:
+has not been imported as shared yet
+from Curt Vandetta to All Participants:
+so do this
+from Curt Vandetta to All Participants:
+vxdg -s import tibcodg
+from Curt Vandetta to All Participants:
+Now you have
+from Curt Vandetta to All Participants:
+to deport it first.
+from Curt Vandetta to All Participants:
+it should now be imported on both nodes.
+from david dilworth to All Participants:
+ok
+from Curt Vandetta to All Participants:
+the vxdg -s  only on one node
+from david dilworth to All Participants:
+ok
+from Curt Vandetta to All Participants:
+Now that it's been imported as shared
+from Curt Vandetta to All Participants:
+It's shared you only have to do the command on one node.
+from david dilworth to All Participants:
+ok its good now?
+from Curt Vandetta to All Participants:
+I think so,
+from Curt Vandetta to All Participants:
+Now we
+from Curt Vandetta to All Participants:
+can do the cfscmdadm command
+from Curt Vandetta to All Participants:
+cfsmntadm
+from Curt Vandetta to All Participants:
+I can't type today...
+from david dilworth to All Participants:
+ok
+from david dilworth to All Participants:
+done?
+from Curt Vandetta to All Participants:
+now the main.cf should have that in it.
+from david dilworth to All Participants:
+ok
+from david dilworth to All Participants:
+so we are all good u think?
+from Curt Vandetta to All Participants:
+Yep.
+from david dilworth to All Participants:
+how to manage this
+from Curt Vandetta to All Participants:
+If you online the group it should mount
+from david dilworth to All Participants:
+is it self managing?
+from david dilworth to All Participants:
+online what group?
+from Curt Vandetta to All Participants:
+do an hastatus -sum
+from david dilworth to All Participants:
+do u have command
+from Curt Vandetta to All Participants:
+See the group you make vrts_vea
+from Curt Vandetta to All Participants:
+...
+from david dilworth to All Participants:
+hagrp -online?
+from david dilworth to All Participants:
+yes online that 2 mount
+from Curt Vandetta to All Participants:
+hagrp -online vrts_ves_cfs_int_cfsmount1 
+from david dilworth to All Participants:
+?
+from Curt Vandetta to All Participants:
+I spelled it wrong
+from Curt Vandetta to All Participants:
+you might have to a -any
+from Curt Vandetta to All Participants:
+at the end
+from Curt Vandetta to All Participants:
+hagrp -online vfaf -any
+from Curt Vandetta to All Participants:
+No
+from Curt Vandetta to All Participants:
+no
+from david dilworth to All Participants:
+is it good now?
+from Curt Vandetta to All Participants:
+That was just to get -any on the end
+from Curt Vandetta to All Participants:
+Yes
+from Curt Vandetta to All Participants:
+I think it's mounted
+from Curt Vandetta to All Participants:
+we should chekck
+from david dilworth to All Participants:
+greta
+from david dilworth to All Participants:
+great
+from david dilworth to All Participants:
+its mounted on both nodes
+from Curt Vandetta to All Participants:
+Yes.
+from Curt Vandetta to All Participants:
+You should
+from Curt Vandetta to All Participants:
+do an 
+from Curt Vandetta to All Participants:
+haconf -dump -makero
+from Curt Vandetta to All Participants:
+to close the config 
+from Curt Vandetta to All Participants:
+That is cool.
+from david dilworth to All Participants:
+did it fail?
+from david dilworth to All Participants:
+exit 1
+from Curt Vandetta to All Participants:
+No 
+from david dilworth to All Participants:
+ok u sure its good
+from Curt Vandetta to All Participants:
+we opened the config, the cfsmntadm must have closed it.
+from david dilworth to All Participants:
+oh ok
+from Curt Vandetta to All Participants:
+Just wanted to make sure.
+from Curt Vandetta to All Participants:
+So that is it for CFS mounts.
+from david dilworth to All Participants:
+sothats the majority
+from Curt Vandetta to All Participants:
+I don't know to much about the other application you wanted to add.
+from Curt Vandetta to All Participants:
+But you can use the trick I showed you to get all the commands to do that.
+from david dilworth to All Participants:
+according to them the app doesnt need an agent
+from Curt Vandetta to All Participants:
+Ok.
+from david dilworth to All Participants:
+let me compare right quick
+from Curt Vandetta to All Participants:
+I can leave this case open for a couple of days so if you have any futher questions you can hit me up.
+from david dilworth to All Participants:
+ok thanks a lot
+from david dilworth to All Participants:
+these configs are always drwan out and painful
+from Curt Vandetta to All Participants:
+Yes, but once done very useful.
+
+
+
+
+105  hastatus
+  106  cd /etc/VRTSvcs/conf/config/
+  107  more main.cf
+  108  cat > cmd
+  109  vi cmd
+  110  :q!
+  111  haconf -makerw
+  112  hagrp -add cfsmount1
+  113  cfsmountadm add tibcodg tibco_VOL /tibco all=cluster
+  114  locate cfsmountadm
+  115  ls /opt/VRTS/bin/cfsmntadm  add tibcodg tibco_VOL /tibco all=cluster
+  116  cd /opt/VRTS/bin
+  117  ls
+  118  ./cfsmntadm add tibcodg tibco_VOL /tibco all=cluster
+  119  vxdg lsit
+  120  vxdg list
+  121  vxdsik -o alldgs list
+  122  vxdisk -o alldgs list
+  123  vxdg import tibcodg
+  124  vxdg deport  tibcodg
+  125  vxdg -s import tibcodg
+  126  vxdg deport  tibcodg
+  127  vxdisk -o alldgs list
+  128  vxdg -s import tibcodg
+  129  ./cfsmntadm add tibcodg tibco_VOL /tibco all=cluster
+  130  cd /etc/VRTSvcs/conf/config/
+  131  more main.cf
+  132  hastatus
+  133  hagrp -online vrts_ves_cfs_int_cfsmount1 
+  134  hagrp -online vrts_vea_cfs_int_cfsmount1 
+  135  hagrp -online vrts_vea_cfs_int_cfsmount1
+  136  hagrp -online vrts_vea_cfs_int_cfsmount1 -any
+  137  hastatus
+  138  mount
+  139  haconf -dump -makero
+  140  echo $?
+  141  more main.cf
+  142  history

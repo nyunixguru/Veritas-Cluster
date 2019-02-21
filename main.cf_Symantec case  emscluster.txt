@@ -1,0 +1,109 @@
+include "OracleASMTypes.cf"
+include "types.cf"
+include "Db2udbTypes.cf"
+include "OracleTypes.cf"
+include "SybaseTypes.cf"
+
+cluster ems2cluster (
+	UserNames = { admin = eLMeLGlIMhMMkUMgLJ, david = JqqWnkQmqPnnQprM }
+	ClusterAddress = "10.248.114.243"
+	Administrators = { admin, david }
+	UseFence = SCSI3
+	)
+
+system ems2a (
+	)
+
+system ems2b (
+	)
+
+group ClusterService (
+	SystemList = { ems2a = 0, ems2b = 1 }
+	AutoStartList = { ems2a, ems2b }
+	OnlineRetryLimit = 3
+	OnlineRetryInterval = 120
+	)
+
+	IP webip (
+		Device = eth0
+		Address = "10.248.114.243"
+		NetMask = "255.255.255.224"
+		)
+
+	NIC csgnic (
+		Device = eth0
+		)
+
+	webip requires csgnic
+
+
+	// resource dependency tree
+	//
+	//	group ClusterService
+	//	{
+	//	IP webip
+	//	    {
+	//	    NIC csgnic
+	//	    }
+	//	}
+
+
+group vxfen (
+	SystemList = { ems2a = 0, ems2b = 1 }
+	AutoFailOver = 0
+	Parallel = 1
+	)
+
+	CoordPoint coordpoint (
+		LevelTwoMonitorFreq = 5
+		)
+
+	Phantom RES_phantom_vxfen (
+		)
+
+
+
+	// resource dependency tree
+	//
+	//	group vxfen
+	//	{
+	//	Phantom RES_phantom_vxfen
+	//	CoordPoint coordpoint
+	//	}
+
+group tibco_SG ( 
+	SystemList = { ems2a = 0, ems2b = 1 } 
+	AutoStartList = { ems2a, ems2b } 
+	FailOverPolicy = Load 
+) 
+
+	Application App_iProcess ( 
+		Critical = 0
+		User = swpro 
+		StartProgram = "/tibco/iProcess/IPEPROD1/tools/swstartdr.sh -d /tibco/iProcess/IPEPROD1/tools/dbuser.dat" 
+		StopProgram = "/tibco/iProcess/IPEPROD1/tools/swstopdr.sh" 
+		CleanProgram = "/usr/bin/pkill -9 iProcess" 
+		MonitorProgram = "/opt/VRTSvcs/scripts/iProcessMon.sh" 
+		) 
+
+	DiskGroup DG_tibcodg ( 
+		DiskGroup = tibco_DG 
+		) 
+
+	IP IP_tibco ( 
+		Device = eth0 
+		Address = "10.248.91.15" 
+		NetMask = "255.255.255.192" 
+		) 
+
+	Mount Mt_tibco ( 
+		MountPoint = "/tibco" 
+		BlockDevice = "/dev/vx/dsk/tibco_DG/tibco_vol" 
+		FSType = vxfs 
+		FsckOpt = "-y" 
+		) 
+
+	App_iProcess requires IP_tibco 
+	App_iProcess requires Mt_tibco 
+	Mt_tibco requires DG_tibcodg
+

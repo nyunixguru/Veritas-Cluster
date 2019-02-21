@@ -1,0 +1,174 @@
+[root@mrdl1a log]# grep -i fired engine_A.log 
+2012/07/20 12:31:35 VCS INFO V-16-1-50135 User root fired command: hagrp -switch ClusterService  mrdl1b  from localhost
+2012/07/20 12:32:23 VCS INFO V-16-1-50135 User root fired command: hagrp -switch ClusterService  mrdl1a  from localhost
+2012/07/20 12:40:03 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2012/07/20 12:45:27 VCS INFO V-16-1-50135 User root fired command: hagrp -add mrdl1_SG  from localhost
+2012/07/20 12:46:06 VCS INFO V-16-1-50135 User root fired command: hagrp -modify mrdl1_SG  SystemList  mrdl1a  1  mrdl1b  2  from localhost
+2012/07/20 12:50:12 VCS INFO V-16-1-50135 User root fired command: hagrp -modify mrdl1_SG  AutoStartList  mrdl1a  mrdl1b  from localhost
+2012/07/20 12:51:22 VCS INFO V-16-1-50135 User root fired command: hares -add DiskGroup_ora_DG  DiskGroup  mrdl1_SG  from localhost
+2012/07/20 12:52:23 VCS INFO V-16-1-50135 User root fired command: hares -modify DiskGroup_ora_DG  Enabled  1  from localhost
+2012/07/20 12:52:25 VCS INFO V-16-1-50135 User root fired command: hares -modify DiskGroup_ora_DG  tempUseFence  NONE  from localhost
+2012/07/20 12:52:41 VCS INFO V-16-1-50135 User root fired command: hares -modify DiskGroup_ora_DG  DiskGroup  ora_DG  from localhost
+2012/07/20 12:53:01 VCS INFO V-16-1-50135 User root fired command: hares -modify DiskGroup_ora_DG  StartVolumes  1  from localhost
+2012/07/20 12:54:03 VCS INFO V-16-1-50135 User root fired command: MSG_RES_PROBE DiskGroup_ora_DG  mrdl1a  from localhost
+2012/07/20 12:54:05 VCS INFO V-16-1-50135 User root fired command: MSG_RES_PROBE DiskGroup_ora_DG  mrdl1b  from localhost
+2012/07/20 12:54:41 VCS INFO V-16-1-50135 User root fired command: hagrp -switch mrdl1_SG  mrdl1b  from localhost
+2012/07/20 12:54:56 VCS INFO V-16-1-50135 User root fired command: hagrp -switch mrdl1_SG  mrdl1a  from localhost
+2012/07/20 15:03:51 VCS INFO V-16-1-50135 User root fired command: haconf -dump from localhost
+2012/07/20 15:05:14 VCS INFO V-16-1-50135 User root fired command: hares -add Mount_archivelog  Mount  mrdl1_SG  from localhost
+2012/07/20 15:07:58 VCS INFO V-16-1-50135 User root fired command: hares -modify Mount_archivelog  BlockDevice  /dev/vx/dsk/ora_DG/archivelog_VOL  from localhost
+2012/07/20 15:08:12 VCS INFO V-16-1-50135 User root fired command: hares -modify Mount_archivelog  FSType  vxfs  from localhost
+2012/07/20 15:08:28 VCS INFO V-16-1-50135 User root fired command: hares -modify Mount_archivelog  FsckOpt  -y  from localhost
+2012/07/20 15:08:51 VCS INFO V-16-1-50135 User root fired command: hares -modify Mount_archivelog  MountPoint  /u01/archivelog  from localhost
+2012/07/20 15:09:41 VCS INFO V-16-1-50135 User root fired command: haconf -dump from localhost
+2012/07/20 15:11:36 VCS INFO V-16-1-50135 User root fired command: hares -modify Mount_archivelog  Enabled  1  from localhost
+2012/07/20 15:11:38 VCS INFO V-16-1-50135 User root fired command: haconf -dump from localhost
+2012/07/20 15:11:54 VCS INFO V-16-1-50135 User root fired command: haconf -dump from localhost
+2012/07/20 15:14:47 VCS INFO V-16-1-50135 User root fired command: hares -link Mount_archivelog  DiskGroup_ora_DG  0  0  from localhost
+2012/07/20 15:15:12 VCS INFO V-16-1-50135 User root fired command: haconf -dump from localhost
+2012/07/20 15:15:41 VCS INFO V-16-1-50135 User root fired command: hagrp -switch mrdl1_SG  mrdl1b  from localhost
+2012/07/20 15:16:22 VCS INFO V-16-1-50135 User root fired command: hagrp -switch mrdl1_SG  mrdl1a  from localhost
+2012/07/20 15:25:14 VCS INFO V-16-1-50135 User root fired command: hares -add Mount_oradata  Mount  mrdl1_SG  from localhost
+2012/07/20 15:25:34 VCS INFO V-16-1-50135 User root fired command: hares -modify Mount_oradata  BlockDevice  /dev/vx/dsk/ora_DG/oradata_VOL  from localhost
+2012/07/20 15:25:44 VCS INFO V-16-1-50135 User root fired command: hares -modify Mount_oradata  FSType  vxfs  from localhost
+2012/07/20 15:26:24 VCS INFO V-16-1-50135 User root fired command: hares -modify Mount_oradata  FsckOpt  -y  from localhost
+2012/07/20 15:26:33 VCS INFO V-16-1-50135 User root fired command: hares -modify Mount_oradata  MountPoint  /u01/oradata  from localhost
+2012/07/20 15:26:40 VCS INFO V-16-1-50135 User root fired command: hares -modify Mount_oradata  Enabled  1  from localhost
+2012/07/20 15:26:48 VCS INFO V-16-1-50135 User root fired command: hares -link Mount_oradata  DiskGroup_ora_DG  0  0  from localhost
+2012/07/20 15:26:51 VCS INFO V-16-1-50135 User root fired command: haconf -dump from localhost
+2012/07/20 15:27:04 VCS INFO V-16-1-50135 User root fired command: hares -online Mount_oradata  mrdl1a  from localhost
+2012/07/20 15:28:52 VCS INFO V-16-1-50135 User root fired command: hagrp -switch mrdl1_SG  mrdl1b  from localhost
+2012/07/20 15:30:12 VCS INFO V-16-1-50135 User root fired command: hares -add IP_mrdl1  IP  mrdl1_SG  from localhost
+2012/07/20 15:30:29 VCS INFO V-16-1-50135 User root fired command: hares -modify IP_mrdl1  Device  bond0  from localhost
+2012/07/20 15:30:54 VCS INFO V-16-1-50135 User root fired command: hares -modify IP_mrdl1  Address  10.248.107.78  from localhost
+2012/07/20 15:31:12 VCS INFO V-16-1-50135 User root fired command: hares -modify IP_mrdl1  NetMask  255.255.255.224  from localhost
+2012/07/20 15:31:18 VCS INFO V-16-1-50135 User root fired command: hares -modify IP_mrdl1  Enabled  1  from localhost
+2012/07/20 15:31:23 VCS INFO V-16-1-50135 User root fired command: haconf -dump from localhost
+2012/07/20 15:31:39 VCS INFO V-16-1-50135 User root fired command: hares -online IP_mrdl1  mrdl1a  from localhost
+2012/07/20 15:31:55 VCS INFO V-16-1-50135 User root fired command: hares -online IP_mrdl1  mrdl1b  from localhost
+2012/07/20 15:35:10 VCS INFO V-16-1-50135 User root fired command: hares -add Proxy_bond0  Proxy  mrdl1_SG  from localhost
+2012/07/20 15:56:00 VCS INFO V-16-1-50135 User root fired command: hares -modify Proxy_bond0  TargetResName  csgnic  from localhost
+2012/07/20 15:56:58 VCS INFO V-16-1-50135 User root fired command: hares -link IP_mrdl1  Proxy_bond0  0  0  from localhost
+2012/07/20 15:57:02 VCS INFO V-16-1-50135 User root fired command: haconf -dump from localhost
+2012/07/20 15:57:53 VCS INFO V-16-1-50135 User root fired command: hagrp -switch mrdl1_SG  mrdl1a  from localhost
+2012/07/20 15:58:40 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2012/07/24 16:39:16 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2012/07/24 16:39:20 VCS INFO V-16-1-50135 User root fired command: hares -add Oracle_cvjungo  Oracle  mrdl1_SG  from localhost
+2012/07/24 16:39:49 VCS INFO V-16-1-50135 User root fired command: hares -modify Oracle_cvjungo  Sid  cvjungo  from localhost
+2012/07/24 16:40:07 VCS INFO V-16-1-50135 User root fired command: hares -modify Oracle_cvjungo  Home  /u01/app/oracle/product/11.2.0.3/dbhome_1  from localhost
+2012/07/24 16:40:47 VCS INFO V-16-1-50135 User root fired command: hares -link Oracle_cvjungo  Mount_archivelog  0  0  from localhost
+2012/07/24 16:40:53 VCS INFO V-16-1-50135 User root fired command: hares -link Oracle_cvjungo  Mount_oradata  0  0  from localhost
+2012/07/24 16:41:02 VCS INFO V-16-1-50135 User root fired command: haconf -dump from localhost
+2012/07/24 16:41:28 VCS INFO V-16-1-50135 User root fired command: hares -modify Oracle_cvjungo  Enabled  1  from localhost
+2012/07/24 16:41:30 VCS INFO V-16-1-50135 User root fired command: haconf -dump from localhost
+2012/07/24 16:42:25 VCS INFO V-16-1-50135 User root fired command: MSG_RES_PROBE Proxy_bond0  mrdl1a  from localhost
+2012/07/24 16:42:40 VCS INFO V-16-1-50135 User root fired command: hares -modify Proxy_bond0  Enabled  1  from localhost
+2012/07/24 16:42:45 VCS INFO V-16-1-50135 User root fired command: haconf -dump from localhost
+2012/07/24 16:42:46 VCS INFO V-16-1-50135 User root fired command: MSG_RES_PROBE Proxy_bond0  mrdl1a  from localhost
+2012/07/24 16:42:48 VCS INFO V-16-1-50135 User root fired command: MSG_RES_PROBE Proxy_bond0  mrdl1b  from localhost
+2012/07/24 16:43:04 VCS INFO V-16-1-50135 User root fired command: MSG_RES_PROBE Oracle_cvjungo  mrdl1a  from localhost
+2012/07/24 16:43:05 VCS INFO V-16-1-50135 User root fired command: MSG_RES_PROBE Oracle_cvjungo  mrdl1b  from localhost
+2012/07/24 16:43:21 VCS INFO V-16-1-50135 User root fired command: hares -online Oracle_cvjungo  mrdl1a  from localhost
+2012/07/24 16:47:39 VCS INFO V-16-1-50135 User root fired command: MSG_RES_PROBE Oracle_cvjungo  mrdl1b  from localhost
+2012/07/24 16:47:40 VCS INFO V-16-1-50135 User root fired command: MSG_RES_PROBE Oracle_cvjungo  mrdl1a  from localhost
+2012/07/24 16:47:58 VCS INFO V-16-1-50135 User root fired command: hares -online Oracle_cvjungo  mrdl1a  from localhost
+2012/07/24 16:54:11 VCS INFO V-16-1-50135 User root fired command: hares -modify Oracle_cvjungo  Owner  oracle  from localhost
+2012/07/24 16:54:17 VCS INFO V-16-1-50135 User root fired command: haconf -dump from localhost
+2012/07/24 16:54:23 VCS INFO V-16-1-50135 User root fired command: MSG_RES_PROBE Oracle_cvjungo  mrdl1a  from localhost
+2012/07/24 16:54:27 VCS INFO V-16-1-50135 User root fired command: MSG_RES_PROBE Oracle_cvjungo  mrdl1b  from localhost
+2012/07/24 16:56:52 VCS INFO V-16-1-50135 User root fired command: hares -offline Oracle_cvjungo  mrdl1a  from localhost
+2012/07/24 17:00:13 VCS INFO V-16-1-50135 User root fired command: hares -online Oracle_cvjungo  mrdl1a  from localhost
+2012/07/24 17:01:14 VCS INFO V-16-1-50135 User root fired command: hagrp -switch mrdl1_SG  mrdl1b  from localhost
+2012/07/24 17:04:51 VCS INFO V-16-1-50135 User root fired command: hares -offline Oracle_cvjungo  mrdl1b  from localhost
+2012/07/24 17:06:44 VCS INFO V-16-1-50135 User root fired command: hares -online Oracle_cvjungo  mrdl1b  from localhost
+2012/07/24 17:07:14 VCS INFO V-16-1-50135 User root fired command: hares -offline Oracle_cvjungo  mrdl1b  from localhost
+2012/07/24 17:07:59 VCS INFO V-16-1-50135 User root fired command: hares -online Oracle_cvjungo  mrdl1b  from localhost
+2012/07/24 17:09:52 VCS INFO V-16-1-50135 User root fired command: hagrp -switch mrdl1_SG  mrdl1a  from localhost
+2012/07/24 17:11:51 VCS INFO V-16-1-50135 User root fired command: hares -add Netlsnr_cvjungo  Netlsnr  mrdl1_SG  from localhost
+2012/07/24 17:12:42 VCS INFO V-16-1-50135 User root fired command: hares -modify Netlsnr_cvjungo  Listener  listener  from localhost
+2012/07/24 17:12:59 VCS INFO V-16-1-50135 User root fired command: hares -modify Netlsnr_cvjungo  Owner  oracle  from localhost
+2012/07/24 17:13:12 VCS INFO V-16-1-50135 User root fired command: hares -modify Netlsnr_cvjungo  Home  /u01/app/oracle/product/11.2.0.3/dbhome_1  from localhost
+2012/07/24 17:13:32 VCS INFO V-16-1-50135 User root fired command: hares -modify Netlsnr_cvjungo  Enabled  1  from localhost
+2012/07/24 17:13:57 VCS INFO V-16-1-50135 User root fired command: hares -link Netlsnr_cvjungo  Oracle_cvjungo  0  0  from localhost
+2012/07/24 17:14:16 VCS INFO V-16-1-50135 User root fired command: hares -link Netlsnr_cvjungo  IP_mrdl1  0  0  from localhost
+2012/07/24 17:14:20 VCS INFO V-16-1-50135 User root fired command: haconf -dump from localhost
+2012/07/24 17:14:59 VCS INFO V-16-1-50135 User root fired command: hares -online Netlsnr_cvjungo  mrdl1a  from localhost
+2012/07/24 17:15:15 VCS INFO V-16-1-50135 User root fired command: hares -offline Netlsnr_cvjungo  mrdl1a  from localhost
+2012/07/24 17:15:59 VCS INFO V-16-1-50135 User root fired command: hagrp -switch mrdl1_SG  mrdl1b  from localhost
+2012/07/24 17:21:01 VCS INFO V-16-1-50135 User root fired command: MSG_RES_PROBE Netlsnr_cvjungo  mrdl1a  from localhost
+2012/07/24 17:21:02 VCS INFO V-16-1-50135 User root fired command: MSG_RES_PROBE Netlsnr_cvjungo  mrdl1b  from localhost
+2012/07/24 17:21:19 VCS INFO V-16-1-50135 User root fired command: hares -online Netlsnr_cvjungo  mrdl1b  from localhost
+2012/07/24 17:21:53 VCS INFO V-16-1-50135 User root fired command: hagrp -offline mrdl1_SG  mrdl1b  from localhost
+2012/07/24 17:22:30 VCS INFO V-16-1-50135 User root fired command: hagrp -online mrdl1_SG  mrdl1b  from localhost
+2012/07/24 17:23:10 VCS INFO V-16-1-50135 User root fired command: hagrp -switch mrdl1_SG  mrdl1a  from localhost
+2012/07/24 17:25:54 VCS INFO V-16-1-50135 User root fired command: hagrp -clear mrdl1_SG  mrdl1a  from localhost
+2012/07/24 17:26:51 VCS INFO V-16-1-50135 User root fired command: hagrp -switch mrdl1_SG  mrdl1a  from localhost
+2012/08/09 15:35:18 VCS INFO V-16-1-50135 User root fired command: hatype -modify IP  MonitorInterval  15  from localhost
+2012/08/09 15:36:15 VCS INFO V-16-1-50135 User root fired command: hatype -modify NIC  MonitorInterval  45  from localhost
+2012/08/09 15:36:41 VCS INFO V-16-1-50135 User root fired command: hatype -modify NIC  MonitorInterval  15  from localhost
+2012/08/09 15:36:53 VCS INFO V-16-1-50135 User root fired command: hatype -modify NIC  OfflineMonitorInterval  45  from localhost
+2012/08/17 09:21:39 VCS INFO V-16-1-50135 User admin fired command: hares -add NotifierMngr_mrdl1  NotifierMngr  ClusterService  from 10.254.249.7
+2012/08/17 09:21:39 VCS INFO V-16-1-50135 User admin fired command: hares -modify NotifierMngr_mrdl1  Critical  0  from 10.254.249.7
+2012/08/17 09:21:39 VCS INFO V-16-1-50135 User admin fired command: hares -modify NotifierMngr_mrdl1  EngineListeningPort  14141  from 10.254.249.7
+2012/08/17 09:21:40 VCS INFO V-16-1-50135 User admin fired command: hares -modify NotifierMngr_mrdl1  MessagesQueue  30  from 10.254.249.7
+2012/08/17 09:21:40 VCS INFO V-16-1-50135 User admin fired command: hares -modify NotifierMngr_mrdl1  NotifierListeningPort  14144  from 10.254.249.7
+2012/08/17 09:21:40 VCS INFO V-16-1-50135 User admin fired command: hares -modify NotifierMngr_mrdl1  SnmpdTrapPort  162  from 10.254.249.7
+2012/08/17 09:21:40 VCS INFO V-16-1-50135 User admin fired command: hares -modify NotifierMngr_mrdl1  SnmpCommunity  public  from 10.254.249.7
+2012/08/17 09:21:40 VCS INFO V-16-1-50135 User admin fired command: hares -modify NotifierMngr_mrdl1  SmtpServerVrfyOff  0  from 10.254.249.7
+2012/08/17 09:21:41 VCS INFO V-16-1-50135 User admin fired command: hares -modify NotifierMngr_mrdl1  SmtpServerTimeout  10  from 10.254.249.7
+2012/08/17 09:21:41 VCS INFO V-16-1-50135 User admin fired command: hares -modify NotifierMngr_mrdl1  NotifierSourceIP    from 10.254.249.7
+2012/08/17 09:21:41 VCS INFO V-16-1-50135 User admin fired command: hares -modify ... -delete -keys NotifierMngr_mrdl1  SnmpConsoles  from 10.254.249.7
+2012/08/17 09:21:41 VCS INFO V-16-1-50135 User admin fired command: hares -modify NotifierMngr_mrdl1  SmtpServer    from 10.254.249.7
+2012/08/17 09:21:41 VCS INFO V-16-1-50135 User admin fired command: hares -modify NotifierMngr_mrdl1  SmtpReturnPath    from 10.254.249.7
+2012/08/17 09:21:42 VCS INFO V-16-1-50135 User admin fired command: hares -modify NotifierMngr_mrdl1  SmtpFromPath    from 10.254.249.7
+2012/08/17 09:21:42 VCS INFO V-16-1-50135 User admin fired command: hares -modify ... -delete -keys NotifierMngr_mrdl1  SmtpRecipients  from 10.254.249.7
+2012/08/17 09:21:42 VCS INFO V-16-1-50135 User admin fired command: hares -modify NotifierMngr_mrdl1  Enabled  1  from 10.254.249.7
+2012/08/17 09:22:23 VCS INFO V-16-1-50135 User admin fired command: hares -modify NotifierMngr_mrdl1  SmtpServer  biscmail.cv.net  from 10.254.249.7
+2012/08/17 09:22:40 VCS INFO V-16-1-50135 User admin fired command: hares -modify ... -add NotifierMngr_mrdl1  SmtpRecipients  sanadmin@cv.net    from 10.254.249.7
+2012/08/17 09:22:56 VCS INFO V-16-1-50135 User admin fired command: hares -modify ... -update NotifierMngr_mrdl1  SmtpRecipients  sanadmin@cv.net  Information  from 10.254.249.7
+2012/08/17 09:23:08 VCS INFO V-16-1-50135 User admin fired command: haconf -dump -makero from 10.254.249.7
+2012/08/17 09:23:23 VCS INFO V-16-1-50135 User admin fired command: hares -online NotifierMngr_mrdl1  mrdl1a  from 10.254.249.7
+2012/08/17 09:23:30 VCS INFO V-16-1-50135 User admin fired command: MSG_RES_PROBE NotifierMngr_mrdl1  mrdl1a  from 10.254.249.7
+2012/08/17 09:23:33 VCS INFO V-16-1-50135 User admin fired command: MSG_RES_PROBE NotifierMngr_mrdl1  mrdl1b  from 10.254.249.7
+2012/08/17 09:23:37 VCS INFO V-16-1-50135 User admin fired command: hares -online NotifierMngr_mrdl1  mrdl1a  from 10.254.249.7
+2012/08/17 09:24:00 VCS INFO V-16-1-50135 User admin fired command: haconf -makerw from 10.254.249.7
+2012/08/17 09:24:00 VCS INFO V-16-1-50135 User admin fired command: hares -link NotifierMngr_mrdl1  csgnic   0   0  from 10.254.249.7
+2012/08/17 09:24:01 VCS INFO V-16-1-50135 User admin fired command: haconf -dump -makero from 10.254.249.7
+2012/08/17 10:18:15 VCS INFO V-16-1-50135 User admin fired command: haconf -makerw from 10.254.249.138
+2012/08/17 11:24:17 VCS INFO V-16-1-50135 User admin fired command: hares -modify NotifierMngr_mrdl1  Critical  1  from 10.254.249.138
+2012/08/17 11:24:23 VCS INFO V-16-1-50135 User admin fired command: haconf -dump from 10.254.249.138
+2012/08/17 11:24:25 VCS INFO V-16-1-50135 User admin fired command: haconf -dump -makero from 10.254.249.138
+2012/08/21 16:58:01 VCS INFO V-16-1-50135 User admin fired command: haconf -makerw from 10.254.249.7
+2012/08/22 13:41:10 VCS INFO V-16-1-50135 User root fired command: hagrp -unfreeze -persistent mrdl1_SG  from localhost
+2012/08/22 13:56:35 VCS INFO V-16-1-50135 User root fired command: hagrp -freeze -persistent mrdl1_SG  from localhost
+2012/08/22 14:03:37 VCS INFO V-16-1-50135 User root fired command: MSG_CLUSTER_STOP_SYS from localhost
+2012/08/22 14:12:41 VCS INFO V-16-1-50135 User root fired command: MSG_CLUSTER_STOP_SYS from localhost
+2012/08/22 14:17:35 VCS INFO V-16-1-50135 User root fired command: hagrp -unfreeze -persistent mrdl1_SG  from localhost
+2012/09/12 16:41:11 VCS INFO V-16-1-50135 User root fired command: hagrp -freeze mrdl1_SG  from localhost
+2012/09/12 16:47:07 VCS INFO V-16-1-50135 User root fired command: hagrp -unfreeze mrdl1_SG  from localhost
+2012/09/12 16:47:23 VCS INFO V-16-1-50135 User root fired command: hagrp -clear mrdl1_SG  from localhost
+2012/09/12 16:48:08 VCS INFO V-16-1-50135 User root fired command: hagrp -switch mrdl1_SG  mrdl1b  from localhost
+2012/09/12 17:03:37 VCS INFO V-16-1-50135 User root fired command: hagrp -freeze mrdl1_SG  from localhost
+2012/09/12 17:04:30 VCS INFO V-16-1-50135 User root fired command: hagrp -unfreeze mrdl1_SG  from localhost
+2012/09/12 17:06:59 VCS INFO V-16-1-50135 User root fired command: hagrp -freeze mrdl1_SG  from localhost
+2012/09/12 17:07:48 VCS INFO V-16-1-50135 User root fired command: hagrp -unfreeze mrdl1_SG  from localhost
+2012/09/12 17:07:58 VCS INFO V-16-1-50135 User root fired command: hagrp -clear mrdl1_SG  from localhost
+2012/09/12 17:08:13 VCS INFO V-16-1-50135 User root fired command: hagrp -switch mrdl1_SG  mrdl1b  from localhost
+2012/10/10 16:18:43 VCS INFO V-16-1-50135 User admin fired command: hagrp -modify mrdl1_SG  AutoStart  0  from 10.254.249.7
+2012/10/10 16:18:55 VCS INFO V-16-1-50135 User admin fired command: hagrp -modify mrdl1_SG  AutoStart  1  from 10.254.249.7
+2012/10/24 13:28:38 VCS INFO V-16-1-50135 User admin fired command: hares -clear Oracle_cvjungo  mrdl1b  from 10.254.249.130
+2012/11/01 11:48:06 VCS INFO V-16-1-50135 User admin fired command: hagrp -freeze -persistent mrdl1_SG  from 10.254.249.12
+2012/11/01 11:48:09 VCS INFO V-16-1-50135 User admin fired command: haconf -dump from 10.254.249.12
+2014/03/11 22:02:48 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2014/03/11 22:03:09 VCS INFO V-16-1-50135 User root fired command: hagrp -freeze -persistent mrdl1_SG  from localhost
+2014/03/11 23:00:43 VCS INFO V-16-1-50135 User root fired command: hagrp -unfreeze -persistent mrdl1_SG  from localhost
+2014/03/11 23:01:12 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2014/03/11 23:05:05 VCS INFO V-16-1-50135 User root fired command: hagrp -switch mrdl1_SG  mrdl1b  from localhost
+2014/03/12 00:13:56 VCS INFO V-16-1-50135 User root fired command: MSG_CLUSTER_STOP_SYS from localhost
+2014/03/12 00:59:04 VCS INFO V-16-1-50135 User admin fired command: hares -clear Oracle_cvjungo  mrdl1a  from 10.254.249.46
+2014/03/12 01:00:56 VCS INFO V-16-1-50135 User admin fired command: hagrp -switch mrdl1_SG  mrdl1a  localclus  from 10.254.249.46
+2014/03/12 01:06:25 VCS INFO V-16-1-50135 User admin fired command: haconf -makerw from 10.254.249.46
+2014/03/12 01:06:25 VCS INFO V-16-1-50135 User admin fired command: hagrp -freeze -persistent mrdl1_SG  from 10.254.249.46
+2014/03/12 01:22:05 VCS INFO V-16-1-50135 User admin fired command: haconf -dump from 10.254.249.46
+2014/03/12 01:22:12 VCS INFO V-16-1-50135 User admin fired command: haconf -dump -makero from 10.254.249.46
+[root@mrdl1a log]# 

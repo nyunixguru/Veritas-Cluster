@@ -1,0 +1,56 @@
+[root@ipew1aprov log]# 
+[root@ipew1aprov log]# grep fired engine_A.log 
+2014/06/02 15:39:50 VCS INFO V-16-1-50135 User root fired command: MSG_CLUSTER_STOP_SYS_FORCE from localhost
+2014/06/02 15:50:39 VCS INFO V-16-1-50135 User root fired command: MSG_CLUSTER_STOP_ALL_FORCE from localhost
+2014/06/02 17:07:16 VCS INFO V-16-1-50135 User root fired command: MSG_CLUSTER_STOP_SYS from localhost
+2014/06/03 09:25:14 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2014/06/03 09:25:37 VCS INFO V-16-1-50135 User root fired command: haclus -modify ... -update UserNames  from localhost
+2014/06/03 09:25:51 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2014/06/03 11:58:49 VCS INFO V-16-1-50135 User root fired command: MSG_CLUSTER_STOP_SYS from localhost
+2014/06/03 15:03:27 VCS INFO V-16-1-50135 User root fired command: MSG_CLUSTER_STOP_SYS ipew1aprov  from localhost
+2014/06/03 15:08:50 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2014/06/03 15:08:50 VCS INFO V-16-1-50135 User root fired command: hagrp -add vxfen  from localhost
+2014/06/03 15:08:50 VCS INFO V-16-1-50135 User root fired command: hagrp -modify vxfen  SystemList  ipew1aprov  0  ipew1bprov  1  from localhost
+2014/06/03 15:08:51 VCS INFO V-16-1-50135 User root fired command: hagrp -modify vxfen  AutoFailOver  0  from localhost
+2014/06/03 15:08:51 VCS INFO V-16-1-50135 User root fired command: hagrp -modify vxfen  Parallel  1  from localhost
+2014/06/03 15:08:51 VCS INFO V-16-1-50135 User root fired command: hares -add coordpoint  CoordPoint  vxfen  from localhost
+2014/06/03 15:08:51 VCS INFO V-16-1-50135 User root fired command: hares -override coordpoint  LevelTwoMonitorFreq  from localhost
+2014/06/03 15:08:51 VCS INFO V-16-1-50135 User root fired command: hares -modify coordpoint  LevelTwoMonitorFreq  5  from localhost
+2014/06/03 15:08:51 VCS INFO V-16-1-50135 User root fired command: hares -modify coordpoint  Enabled  1  from localhost
+2014/06/03 15:08:51 VCS INFO V-16-1-50135 User root fired command: hares -add RES_phantom_vxfen  Phantom  vxfen  from localhost
+2014/06/03 15:08:51 VCS INFO V-16-1-50135 User root fired command: hares -modify RES_phantom_vxfen  Enabled  1  from localhost
+2014/06/03 15:08:51 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2014/06/03 15:42:36 VCS INFO V-16-1-50135 User root fired command: haconf -dump from localhost
+2014/06/04 11:13:41 VCS INFO V-16-1-50135 User admin fired command: haconf -makerw from ::ffff:167.206.113.130
+2014/06/05 10:04:58 VCS INFO V-16-1-50135 User root fired command: MSG_CLUSTER_STOP_SYS from localhost
+2014/06/11 14:24:35 VCS INFO V-16-1-50135 User root fired command: MSG_CLUSTER_STOP_SYS_FORCE from localhost
+2014/06/11 14:45:43 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2014/06/11 14:45:56 VCS INFO V-16-1-50135 User root fired command: hagrp -add tibco_SG  from localhost
+2014/06/11 14:46:26 VCS INFO V-16-1-50135 User root fired command: hagrp -modify tibco_SG  SystemList  ipew1aprov  ipew1bprov  from localhost
+2014/06/11 14:46:50 VCS INFO V-16-1-50135 User root fired command: hagrp -modify tibco_SG  SystemList  ipew1aprov  0  ipew1bprov  1  from localhost
+2014/06/11 14:47:35 VCS INFO V-16-1-50135 User root fired command: hagrp -modify tibco_SG  FailOverPolicy  Load  from localhost
+2014/06/11 14:49:03 VCS INFO V-16-1-50135 User root fired command: hares -add DG_tibcodg  DiskGroup  tibco_SG  from localhost
+2014/06/11 14:49:33 VCS INFO V-16-1-50135 User root fired command: hares -modify DG_tibcodg  Critical  0  from localhost
+2014/06/11 14:49:46 VCS INFO V-16-1-50135 User root fired command: hares -modify DG_tibcodg  Enabled  1  from localhost
+2014/06/11 14:49:47 VCS INFO V-16-1-50135 User root fired command: hares -modify DG_tibcodg  tempUseFence  SCSI3  from localhost
+2014/06/11 14:50:03 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2014/06/11 14:51:39 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2014/06/11 14:51:58 VCS INFO V-16-1-50135 User root fired command: hares -add Mt_tibco  Mount  tibco_SG  from localhost
+2014/06/11 14:52:12 VCS INFO V-16-1-50135 User root fired command: hares -modify Mt_tibco  MountPoint  /tibco  from localhost
+2014/06/11 14:52:24 VCS INFO V-16-1-50135 User root fired command: hares -modify Mt_tibco  BlockDevice  /dev/vx/dsk/tibco_DG/tibco_vol  from localhost
+2014/06/11 14:52:35 VCS INFO V-16-1-50135 User root fired command: hares -modify Mt_tibco  FSType  vxfs  from localhost
+2014/06/11 14:52:50 VCS INFO V-16-1-50135 User root fired command: hares -modify Mt_tibco  FsckOpt  -y  from localhost
+2014/06/11 14:53:02 VCS INFO V-16-1-50135 User root fired command: hares -modify Mt_tibco  Critical  0  from localhost
+2014/06/11 14:53:16 VCS INFO V-16-1-50135 User root fired command: hares -modify Mt_tibco  Enabled  1  from localhost
+2014/06/11 14:53:31 VCS INFO V-16-1-50135 User root fired command: hares -add IP_tibco  IP  tibco_SG  from localhost
+2014/06/11 14:53:41 VCS INFO V-16-1-50135 User root fired command: hares -modify IP_tibco  Device  eth0  from localhost
+2014/06/11 14:54:09 VCS INFO V-16-1-50135 User root fired command: hares -modify IP_tibco  Address  10.248.114.236  from localhost
+2014/06/11 14:54:31 VCS INFO V-16-1-50135 User root fired command: hares -modify IP_tibco  Netmask  255.255.255.224  from localhost
+2014/06/11 14:56:56 VCS INFO V-16-1-50135 User root fired command: hares -modify IP_tibco  Enabled  1  from localhost
+2014/06/11 14:57:12 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2014/06/11 15:45:02 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2014/06/11 15:45:08 VCS INFO V-16-1-50135 User root fired command: hares -modify IP_tibco  NetMask  255.255.255.224  from localhost
+2014/06/11 15:48:38 VCS INFO V-16-1-50135 User root fired command: hares -modify DG_tibcodg  DiskGroup  tibco_DG  from localhost
+2014/06/11 15:48:53 VCS INFO V-16-1-50135 User root fired command: hares -link Mt_tibco  DG_tibcodg  0  0  from localhost
+2014/06/11 15:49:30 VCS INFO V-16-1-50135 User root fired command: hagrp -modify tibco_SG  AutoStartList  ipew1aprov  ipew1bprov  from localhost
+2014/06/11 15:49:50 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost

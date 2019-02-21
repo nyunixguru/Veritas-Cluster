@@ -1,0 +1,81 @@
+[root@ipew1a log]# grep -i fired engine_A.log | grep -i app | more
+2009/05/01 11:10:24 VCS INFO V-16-1-50135 User admin fired command: hares -add App_tomcat  Application  tibco_SG  from 167.206.113.179
+2009/05/01 11:10:24 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_tomcat  Critical  0  from 167.206.113.179
+2009/05/01 11:10:24 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_tomcat  User  swpro  from 167.206.113.179
+2009/05/01 11:10:25 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_tomcat  StartProgram  /opt/tibco/tomcat/bin/startup.sh  from 1
+67.206.113.179
+2009/05/01 11:10:25 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_tomcat  StopProgram  /opt/tibco/tomcat/bin/shutdown.sh  from 1
+67.206.113.179
+2009/05/01 11:10:25 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_tomcat  CleanProgram    from 167.206.113.179
+2009/05/01 11:10:25 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_tomcat  MonitorProgram    from 167.206.113.179
+2009/05/01 11:10:26 VCS INFO V-16-1-50135 User admin fired command: hares -modify ... -delete -keys App_tomcat  PidFiles  from 167.206.113.179
+2009/05/01 11:10:26 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_tomcat  MonitorProcesses  /usr/jre1.5.0_18/bin/java -Djava.uti
+l.logging.config.file=/opt/tibco/tomcat/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djava.library.pat
+h=/opt/tibco/tomcat/shared/lib -Djava.endorsed.dirs=/opt/tibco/tomcat/common/endorsed -classpath :/opt/tibco/tomcat/bin/bootstrap.jar:/opt/tibco/tom
+cat/bin/commons-logging-api.jar -Dcatalina.base=/opt/tibco/tomcat -Dcatalina.home=/opt/tibco/tomcat -Djava.io.tmpdir=/opt/tibco/tomcat/temp org.apac
+he.catalina.startup.Bootstrap start  from 167.206.113.179
+2009/05/01 11:10:26 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_tomcat  Enabled  1  from 167.206.113.179
+2009/05/01 11:10:44 VCS INFO V-16-1-50135 User admin fired command: hares -link App_tomcat  Mt_tibco   0   0  from 167.206.113.179
+2009/05/01 11:11:14 VCS INFO V-16-1-50135 User admin fired command: hares -link App_tomcat  IP_tibco   0   0  from 167.206.113.179
+2009/05/01 11:11:25 VCS INFO V-16-1-50135 User admin fired command: hares -unlink App_tomcat  IP_tibco  from 167.206.113.179
+2009/05/01 11:11:52 VCS INFO V-16-1-50135 User admin fired command: hares -offline App_tomcat  ipew1a  from 167.206.113.179
+2009/05/01 11:12:14 VCS INFO V-16-1-50135 User admin fired command: hares -online App_tomcat  ipew1a  from 167.206.113.179
+2009/05/01 11:16:29 VCS INFO V-16-1-50135 User admin fired command: hares -add App_iProcess  Application  tibco_SG  from 167.206.113.179
+2009/05/01 11:16:29 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_iProcess  Critical  0  from 167.206.113.179
+2009/05/01 11:16:30 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_iProcess  User  swpro  from 167.206.113.179
+2009/05/01 11:16:30 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_iProcess  StartProgram  /tibco/iProcess/IPEPROD1/tools/swstart
+dr.sh -d /tibco/iProcess/IPEPROD1/tools/dbuser.dat  from 167.206.113.179
+2009/05/01 11:16:30 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_iProcess  StopProgram  /tibco/iProcess/IPEPROD1/tools/swstopdr
+.sh -d /tibco/iProcess/IPEPROD1/tools/dbuser.dat  from 167.206.113.179
+2009/05/01 11:16:30 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_iProcess  CleanProgram    from 167.206.113.179
+2009/05/01 11:16:30 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_iProcess  MonitorProgram    from 167.206.113.179
+2009/05/01 11:16:31 VCS INFO V-16-1-50135 User admin fired command: hares -modify ... -delete -keys App_iProcess  PidFiles  from 167.206.113.179
+2009/05/01 11:16:31 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_iProcess  MonitorProcesses  /tibco/iProcess/IPEPROD1/etc/swrpc
+svr -- -m 1 -p RPC_POOL -i 1 -w 1 ++  from 167.206.113.179
+2009/05/01 11:16:31 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_iProcess  Enabled  1  from 167.206.113.179
+2009/05/01 11:16:42 VCS INFO V-16-1-50135 User admin fired command: hares -link App_iProcess  IP_tibco   0   0  from 167.206.113.179
+2009/05/01 11:16:52 VCS INFO V-16-1-50135 User admin fired command: hares -link App_iProcess  Mt_tibco   0   0  from 167.206.113.179
+2009/05/01 11:17:04 VCS INFO V-16-1-50135 User admin fired command: hares -offline App_iProcess  ipew1a  from 167.206.113.179
+2009/05/01 11:18:01 VCS INFO V-16-1-50135 User admin fired command: hares -online App_iProcess  ipew1a  from 167.206.113.179
+2009/05/01 11:22:29 VCS INFO V-16-1-50135 User admin fired command: hares -clear App_iProcess  ipew1a  from 167.206.113.179
+2009/05/01 11:33:10 VCS INFO V-16-1-50135 User admin fired command: hares -delete App_tomcat  from 167.206.113.179
+2009/05/01 11:35:46 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_iProcess  StopProgram  /tibco/iProcess/IPEPROD1/tools/swstopdr
+.sh  from 167.206.113.179
+2009/05/01 11:36:48 VCS INFO V-16-1-50135 User admin fired command: hares -online App_iProcess  ipew1a  from 167.206.113.179
+2009/05/01 11:40:29 VCS INFO V-16-1-50135 User admin fired command: hares -clear App_iProcess  ipew1a  from 167.206.113.179
+2009/05/01 11:44:25 VCS INFO V-16-1-50135 User admin fired command: hares -modify ... -delete -keys App_iProcess  MonitorProcesses  from 167.206.113
+.179
+2009/06/08 13:59:33 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_iProcess  CleanProgram  /usr/bin/pkill -9 iProcess  from 167.2
+06.113.179
+2009/06/08 14:00:16 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_iProcess  MonitorProgram    from 167.206.113.179
+2009/06/08 14:47:23 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_iProcess  MonitorProgram  /tibco/vcs_scripts/iProcessMon.sh  f
+rom 167.206.113.179
+2009/06/08 14:47:33 VCS INFO V-16-1-50135 User admin fired command: MSG_RES_PROBE App_iProcess  ipew1a  from 167.206.113.179
+2009/06/08 14:47:38 VCS INFO V-16-1-50135 User admin fired command: MSG_RES_PROBE App_iProcess  ipew1b  from 167.206.113.179
+2009/06/08 14:50:04 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_iProcess  MonitorProgram  /opt/VRTSvcs/scripts/iProcessMon.sh 
+ from 167.206.113.179
+2009/06/08 14:51:26 VCS INFO V-16-1-50135 User admin fired command: MSG_RES_PROBE App_iProcess  ipew1a  from 167.206.113.179
+2009/06/08 14:51:29 VCS INFO V-16-1-50135 User admin fired command: MSG_RES_PROBE App_iProcess  ipew1b  from 167.206.113.179
+2009/06/08 15:00:19 VCS INFO V-16-1-50135 User admin fired command: hatype -modify Application  ToleranceLimit  3  from 167.206.113.179
+2009/06/08 16:33:16 VCS INFO V-16-1-50135 User admin fired command: MSG_RES_PROBE App_iProcess  ipew1a  from 167.206.113.179
+2009/06/08 16:33:20 VCS INFO V-16-1-50135 User admin fired command: MSG_RES_PROBE App_iProcess  ipew1b  from 167.206.113.179
+2009/06/10 15:26:18 VCS INFO V-16-1-50135 User admin fired command: hares -offline App_iProcess  ipew1a  from 167.206.113.179
+2009/06/10 15:27:43 VCS INFO V-16-1-50135 User admin fired command: hares -online App_iProcess  ipew1a  from 167.206.113.179
+2009/06/10 15:34:47 VCS INFO V-16-1-50135 User admin fired command: hares -clear App_iProcess  ipew1b  from 167.206.113.179
+2009/06/10 16:06:39 VCS INFO V-16-1-50135 User admin fired command: hares -online App_iProcess  ipew1b  from 167.206.113.179
+2009/06/10 16:16:00 VCS INFO V-16-1-50135 User admin fired command: hares -clear App_iProcess  ipew1b  from 167.206.113.179
+2009/06/10 16:16:52 VCS INFO V-16-1-50135 User admin fired command: hatype -modify Application  ToleranceLimit  2  from 167.206.113.179
+2009/06/10 16:20:42 VCS INFO V-16-1-50135 User admin fired command: hares -online App_iProcess  ipew1b  from 167.206.113.179
+2009/06/10 16:27:15 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_iProcess  Critical  1  from 167.206.113.179
+2009/06/10 16:50:14 VCS INFO V-16-1-50135 User admin fired command: MSG_RES_PROBE App_iProcess  ipew1b  from 167.206.113.179
+2009/06/10 16:55:41 VCS INFO V-16-1-50135 User admin fired command: MSG_RES_PROBE App_iProcess  ipew1a  from 167.206.113.179
+2009/06/10 16:56:04 VCS INFO V-16-1-50135 User admin fired command: MSG_RES_PROBE App_iProcess  ipew1b  from 167.206.113.179
+2010/03/09 11:09:55 VCS INFO V-16-1-50135 User root fired command: hares -clear App_iProcess  from localhost
+2010/03/09 11:09:56 VCS INFO V-16-1-50135 User root fired command: hares -clear App_iProcess  from localhost
+2010/08/11 11:32:24 VCS INFO V-16-1-50135 User admin fired command: hares -clear App_iProcess  ipew1a  from 167.206.113.130
+2011/07/19 00:28:00 VCS INFO V-16-1-50135 User root fired command: hares -clear App_iProcess  ipew1a  from localhost
+2011/07/19 00:28:30 VCS INFO V-16-1-50135 User root fired command: hares -online App_iProcess  ipew1a  from localhost
+2011/07/19 00:29:27 VCS INFO V-16-1-50135 User root fired command: hares -clear App_iProcess  ipew1b  from localhost
+2011/10/26 18:19:35 VCS INFO V-16-1-50135 User root fired command: hares -clear App_iProcess  ipew1a  from localhost
+2011/10/26 18:24:39 VCS INFO V-16-1-50135 User root fired command: hares -clear App_iProcess  ipew1b  from localhost
+2011/11/15 18:03:32 VCS INFO V-16-1-50135 User root fired command: hares -clear App_iProcess  ipew1a  from localhost

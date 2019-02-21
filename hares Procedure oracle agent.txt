@@ -1,0 +1,318 @@
+--Open the config file:
+# haconf –makerw
+
+--Add a new service group sg_shrpprd02
+# hagrp –add sg_shrpprd02
+
+--Modify a service group & add SystemList & AutoStartList attributes.
+# hagrp –modify sg_shrpprd02 SystemList –add dbentp02 0 dbentp03 1
+# hagrp –modify sg_shrpprd02 AutoStartList dbentp02
+
+
+--Add DiskGroup ora9idg_DG resource.
+# hares –add dg_orashrprd02 DiskGroup sg_shrpprd02
+# hares –modify dg_orashrprd02 DiskGroup dg_orashrprd02
+
+
+--Add volume resources:
+# hares –add Vol_oraSHRPRD02 Volume sg_shrpprd02
+# hares –modify Vol_oraSHRPRD02 DiskGroup dg_orashrprd02
+# hares –modify Vol_oraSHRPRD02 Volume oraSHRPRD02
+
+
+# hares –add Vol_oraarch Volume sg_shrpprd02
+# hares –modify Vol_oraarch DiskGroup dg_orashrprd02
+# hares –modify Vol_oraarch Volume oraarch
+
+
+# hares –add Vol_redoA Volume sg_shrpprd02
+# hares –modify Vol_redoA DiskGroup dg_orashrprd02
+# hares –modify Vol_redoA Volume redoA
+
+
+# hares –add Vol_product Volume sg_shrpprd02
+# hares –modify Vol_product DiskGroup dg_orashrprd02
+# hares –modify Vol_product Volume product
+
+
+# hares –add Vol_redoB Volume sg_shrpprd02
+# hares –modify Vol_redoB DiskGroup dg_orashrprd02
+# hares –modify Vol_redoB Volume redoB
+
+
+# hares –add Vol_oradata01 Volume sg_shrpprd02
+# hares –modify Vol_oradata01 DiskGroup dg_orashrprd02
+# hares –modify Vol_oradata01 Volume oradata01
+
+
+# hares –add Vol_oradata02 Volume sg_shrpprd02
+# hares –modify Vol_oradata02 DiskGroup dg_orashrprd02
+# hares –modify Vol_oradata02 Volume oradata02
+
+
+# hares –add Vol_oradata03 Volume sg_shrpprd02
+# hares –modify Vol_oradata03 DiskGroup dg_orashrprd02
+# hares –modify Vol_oradata03 Volume oradata03
+
+
+# hares –add Vol_oradata04 Volume sg_shrpprd02
+# hares –modify Vol_oradata04 DiskGroup dg_orashrprd02
+# hares –modify Vol_oradata04 Volume oradata04
+
+
+--Add resource MultiNICB:
+# hares -add nic_shrpprd02 MultiNICB sg_shrpprd02
+# hares -modify nic_shrpprd02 Device ce0 "" ce1 ""
+# hares -modify nic_shrpprd02 DefaultRouter "10.8.60.1"
+# hares -modify nic_shrpprd02 Failback 1
+# hares -modify nic_shrpprd02 GroupName ipmpgroup
+
+
+--Add resource IPMultiNICB:
+# hares -add ip_shrpprd02 IPMultiNICB sg_shrpprd02
+# hares -modify ip_shrpprd02 BaseResName nic_shrpprd02
+# hares -modify ip_shrpprd02 Address "10.8.62.77"
+# hares -modify ip_shrpprd02 NetMask "255.255.252.0"
+
+
+--Add Mount resources.
+# hares -add mnt_SHRPRD02 Mount sg_shrpprd02
+# hares -modify mnt_SHRPRD02 MountPoint "/oracle/SHRPRD02"
+# hares -modify mnt_SHRPRD02 BlockDevice "/dev/vx/dsk/dg_orashrprd02/oraSHRPRD02"
+# hares -modify mnt_SHRPRD02 FSType vxfs
+# hares -modify mnt_SHRPRD02 FsckOpt %-y     ( %-n for no )
+
+
+# hares -add mnt_oraarch Mount sg_shrpprd02
+# hares -modify mnt_oraarch MountPoint "/oracle/SHRPRD02/oraarch"
+# hares -modify mnt_oraarch BlockDevice "/dev/vx/dsk/dg_orashrprd02/oraarch"
+# hares -modify mnt_oraarch FSType vxfs
+# hares -modify mnt_oraarch FsckOpt %-y     ( %-n for no )
+
+
+# hares -add mnt_redoA Mount sg_shrpprd02
+# hares -modify mnt_redoA MountPoint "/oracle/SHRPRD02/redoA"
+# hares -modify mnt_redoA BlockDevice "/dev/vx/dsk/dg_orashrprd02/redoA"
+# hares -modify mnt_redoA FSType vxfs
+# hares -modify mnt_redoA FsckOpt %-y     ( %-n for no )
+
+
+# hares -add mnt_redoB Mount sg_shrpprd02
+# hares -modify mnt_redoB MountPoint "/oracle/SHRPRD02/redoB"
+# hares -modify mnt_redoB BlockDevice "/dev/vx/dsk/dg_orashrprd02/redoB"
+# hares -modify mnt_redoB FSType vxfs
+# hares -modify mnt_redoB FsckOpt %-y     ( %-n for no )
+
+
+# hares -add mnt_product Mount sg_shrpprd02
+# hares -modify mnt_product MountPoint "/oracle/SHRPRD02/product"
+# hares -modify mnt_product BlockDevice "/dev/vx/dsk/dg_orashrprd02/product"
+# hares -modify mnt_product FSType vxfs
+# hares -modify mnt_product FsckOpt %-y     ( %-n for no )
+
+
+# hares -add mnt_oradata01 Mount sg_shrpprd02
+# hares -modify mnt_oradata01 MountPoint "/oracle/SHRPRD02/oradata01"
+# hares -modify mnt_oradata01 BlockDevice "/dev/vx/dsk/dg_orashrprd02/oradata01"
+# hares -modify mnt_oradata01 FSType vxfs
+# hares -modify mnt_oradata01 FsckOpt %-y     ( %-n for no )
+
+
+# hares -add mnt_oradata02 Mount sg_shrpprd02
+# hares -modify mnt_oradata02 MountPoint "/oracle/SHRPRD02/oradata02"
+# hares -modify mnt_oradata02 BlockDevice "/dev/vx/dsk/dg_orashrprd02/oradata02"
+# hares -modify mnt_oradata02 FSType vxfs
+# hares -modify mnt_oradata02 FsckOpt %-y     ( %-n for no )
+
+
+# hares -add mnt_oradata03 Mount sg_shrpprd02
+# hares -modify mnt_oradata03 MountPoint "/oracle/SHRPRD02/oradata03"
+# hares -modify mnt_oradata03 BlockDevice "/dev/vx/dsk/dg_orashrprd02/oradata03"
+# hares -modify mnt_oradata03 FSType vxfs
+# hares -modify mnt_oradata03 FsckOpt %-y     ( %-n for no )
+
+
+# hares -add mnt_oradata04 Mount sg_shrpprd02
+# hares -modify mnt_oradata04 MountPoint "/oracle/SHRPRD02/oradata04"
+# hares -modify mnt_oradata04 BlockDevice "/dev/vx/dsk/dg_orashrprd02/oradata04"
+# hares -modify mnt_oradata04 FSType vxfs
+# hares -modify mnt_oradata04 FsckOpt %-y     ( %-n for no )
+
+
+--Configure Oracle resource & listener into service group sg_shrpprd02
+# hares -add tns_shrpprd02 Netlsnr sg_shrpprd02
+# hares -modify tns_shrpprd02 Owner oracle
+# hares -modify tns_shrpprd02 Home "/oracle/SHRPRD02/product/102_64"
+# hares -modify tns_shrpprd02 TnsAdmin "/oracle/SHRPRD02/product/102_64/network/admin"
+# hares -modify tns_shrpprd02 Listener LISTENER_SHRPRD02
+
+
+# hares -add db_shrpprd02 Oracle sg_shrpprd02
+# hares -modify db_shrpprd02 Owner oracle
+# hares -modify db_shrpprd02 Sid SHRPRD02
+# hares -modify db_shrpprd02 Home "/oracle/SHRPRD02/product/102_64"
+# hares -modify db_shrpprd02 Pfile "/oracle/SHRPRD02/product/102_64/dbs/initSHRPRD02.ora"
+
+
+--Links all resources to each other:
+
+--volume requires diskgroup
+# hares -link Vol_oraSHRPRD02 dg_orashrprd02
+
+# hares -link Vol_oraarch dg_orashrprd02
+
+# hares -link Vol_redoA dg_orashrprd02
+
+# hares -link Vol_redoB dg_orashrprd02
+
+# hares -link Vol_product dg_orashrprd02
+
+# hares -link Vol_oradata01 dg_orashrprd02
+
+# hares -link Vol_oradata02 dg_orashrprd02
+
+# hares -link Vol_oradata03 dg_orashrprd02
+
+# hares -link Vol_oradata04 dg_orashrprd02
+
+
+--mountpoint requires volumes
+# hares -link mnt_SHRPRD02 Vol_oraSHRPRD02
+
+# hares -link mnt_oraarch Vol_oraarch
+
+# hares -link mnt_redoA Vol_redoA
+
+# hares -link mnt_redoB Vol_redoB
+
+# hares -link mnt_product Vol_product
+
+# hares -link mnt_oradata01 Vol_oradata01
+
+# hares -link mnt_oradata02 Vol_oradata02
+
+# hares -link mnt_oradata03 Vol_oradata03
+
+# hares -link mnt_oradata04 Vol_oradata04
+
+
+--mountpoints require mountpint mnt_SHRPRD02  <<< due to nested mounts.
+# hares -link mnt_oraarch mnt_SHRPRD02
+
+# hares -link mnt_redoA mnt_SHRPRD02
+
+# hares -link mnt_redoB mnt_SHRPRD02
+
+# hares -link mnt_product mnt_SHRPRD02
+
+# hares -link mnt_oradata01 mnt_SHRPRD02
+
+# hares -link mnt_oradata02 mnt_SHRPRD02
+
+# hares -link mnt_oradata03 mnt_SHRPRD02
+
+# hares -link mnt_oradata04 mnt_SHRPRD02
+
+
+--IP require Multnic:
+# hares -link ip_shrpprd02 nic_shrpprd02
+
+
+--oracle requires mountpoint:
+# hares -link db_shrpprd02 mnt_SHRPRD02
+
+# hares -link db_shrpprd02 mnt_oraarch 
+
+# hares -link db_shrpprd02 mnt_redoA 
+
+# hares -link db_shrpprd02 mnt_redoB 
+
+# hares -link db_shrpprd02 mnt_product 
+
+# hares -link db_shrpprd02 mnt_oradata01 
+
+# hares -link db_shrpprd02 mnt_oradata02 
+
+# hares -link db_shrpprd02 mnt_oradata03 
+
+# hares -link db_shrpprd02 mnt_oradata04 
+
+
+--Listener requires IP and Oracle:
+# hares -link tns_shrpprd02 db_shrpprd02 
+
+# hares -link tns_shrpprd02 ip_shrpprd02
+
+
+
+
+
+--If there is no problem, then enable the resources.
+
+# haconf -makerw
+
+# hares -modify dg_orashrprd02 Enabled 1 
+
+# hares -modify Vol_oraSHRPRD02 Enabled 1 
+
+# hares -modify Vol_oraarch Enabled 1 
+
+# hares -modify Vol_redoA Enabled 1 
+
+# hares -modify Vol_redoB Enabled 1 
+
+# hares -modify Vol_product Enabled 1 
+
+# hares -modify Vol_oradata01 Enabled 1 
+
+# hares -modify Vol_oradata02 Enabled 1 
+
+# hares -modify Vol_oradata03 Enabled 1 
+
+# hares -modify Vol_oradata04 Enabled 1 
+
+# hares -modify mnt_SHRPRD02 Enabled 1 
+
+# hares -modify mnt_oraarch Enabled 1 
+
+# hares -modify mnt_redoA Enabled 1 
+
+# hares -modify mnt_redoB Enabled 1 
+
+# hares -modify mnt_product Enabled 1 
+
+# hares -modify mnt_oradata01 Enabled 1 
+
+# hares -modify mnt_oradata02 Enabled 1
+
+# hares -modify mnt_oradata03 Enabled 1
+
+# hares -modify mnt_oradata04 Enabled 1
+
+# hares -modify nic_shrpprd02 Enabled 1
+
+# hares -modify ip_shrpprd02 Enabled 1
+
+# hares -modify db_shrpprd02 Enabled 1
+
+# hares -modify tns_shrpprd02 Enabled 1
+
+# haconf -dump -makero
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

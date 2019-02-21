@@ -1,0 +1,253 @@
+[root@ipew1a log]# grep -i fired engine_A.log 
+2009/04/14 14:29:32 VCS INFO V-16-1-50135 User root fired command: hares -modify tibcodg  tempUseFence  NONE  from localhost
+2009/04/14 14:31:32 VCS INFO V-16-1-50135 User root fired command: hares -modify DG_tibcodg  tempUseFence  NONE  from localhost
+2009/04/14 14:37:29 VCS INFO V-16-1-50135 User root fired command: MSG_CLUSTER_STOP_SYS from localhost
+2009/04/14 14:48:47 VCS INFO V-16-1-50135 User root fired command: MSG_CLUSTER_FORCE_LOCAL ipew1a  from localhost
+2009/04/14 14:50:43 VCS INFO V-16-1-50135 User admin fired command: haconf -makerw from 167.206.113.130
+2009/04/14 14:51:09 VCS INFO V-16-1-50135 User admin fired command: hagrp -add tibco_SG  from 167.206.113.130
+2009/04/14 14:51:09 VCS INFO V-16-1-50135 User admin fired command: hagrp -modify tibco_SG  SystemList  ipew1b  0  ipew1a  1  from 167.206.113.130
+2009/04/14 14:51:09 VCS INFO V-16-1-50135 User admin fired command: hagrp -modify tibco_SG  Parallel  0  from 167.206.113.130
+2009/04/14 14:51:32 VCS INFO V-16-1-50135 User admin fired command: hares -add DG_tibcodg  DiskGroup  tibco_SG  from 167.206.113.130
+2009/04/14 14:51:32 VCS INFO V-16-1-50135 User admin fired command: hares -modify DG_tibcodg  Critical  1  from 167.206.113.130
+2009/04/14 14:51:32 VCS INFO V-16-1-50135 User admin fired command: hares -modify DG_tibcodg  StartVolumes  0  from 167.206.113.130
+2009/04/14 14:51:33 VCS INFO V-16-1-50135 User admin fired command: hares -modify DG_tibcodg  StopVolumes  0  from 167.206.113.130
+2009/04/14 14:51:33 VCS INFO V-16-1-50135 User admin fired command: hares -modify DG_tibcodg  MonitorReservation  0  from 167.206.113.130
+2009/04/14 14:51:33 VCS INFO V-16-1-50135 User admin fired command: hares -modify DG_tibcodg  PanicSystemOnDGLoss  1  from 167.206.113.130
+2009/04/14 14:51:33 VCS INFO V-16-1-50135 User admin fired command: hares -modify DG_tibcodg  DiskGroup  tibcodg  from 167.206.113.130
+2009/04/14 14:51:33 VCS INFO V-16-1-50135 User admin fired command: hares -modify DG_tibcodg  Enabled  1  from 167.206.113.130
+2009/04/14 14:51:34 VCS INFO V-16-1-50135 User root fired command: hares -modify DG_tibcodg  tempUseFence  NONE  from localhost
+2009/04/14 14:51:47 VCS INFO V-16-1-50135 User admin fired command: hagrp -modify tibco_SG  AutoStartList  ipew1a  ipew1b  from 167.206.113.130
+2009/04/14 14:51:51 VCS INFO V-16-1-50135 User admin fired command: hagrp -modify tibco_SG  FailOverPolicy  Load  from 167.206.113.130
+2009/04/14 14:51:59 VCS INFO V-16-1-50135 User admin fired command: hares -modify DG_tibcodg  StartVolumes  1  from 167.206.113.130
+2009/04/14 14:52:01 VCS INFO V-16-1-50135 User admin fired command: hares -modify DG_tibcodg  StopVolumes  1  from 167.206.113.130
+2009/04/14 14:52:52 VCS INFO V-16-1-50135 User admin fired command: hares -add Mt_tibco  Mount  tibco_SG  from 167.206.113.130
+2009/04/14 14:52:52 VCS INFO V-16-1-50135 User admin fired command: hares -modify Mt_tibco  Critical  1  from 167.206.113.130
+2009/04/14 14:52:52 VCS INFO V-16-1-50135 User admin fired command: hares -modify Mt_tibco  SnapUmount  0  from 167.206.113.130
+2009/04/14 14:52:52 VCS INFO V-16-1-50135 User admin fired command: hares -modify Mt_tibco  CkptUmount  1  from 167.206.113.130
+2009/04/14 14:52:53 VCS INFO V-16-1-50135 User admin fired command: hares -modify Mt_tibco  MountPoint  /tibco  from 167.206.113.130
+2009/04/14 14:52:53 VCS INFO V-16-1-50135 User admin fired command: hares -modify Mt_tibco  BlockDevice  /dev/vx/dsk/tibcodg/tibco_VOL  from 167.206.113.130
+2009/04/14 14:52:53 VCS INFO V-16-1-50135 User admin fired command: hares -modify Mt_tibco  FSType  vxfs  from 167.206.113.130
+2009/04/14 14:52:53 VCS INFO V-16-1-50135 User admin fired command: hares -modify Mt_tibco  MountOpt    from 167.206.113.130
+2009/04/14 14:52:54 VCS INFO V-16-1-50135 User admin fired command: hares -modify Mt_tibco  FsckOpt  -y  from 167.206.113.130
+2009/04/14 14:52:54 VCS INFO V-16-1-50135 User admin fired command: hares -modify Mt_tibco  Enabled  1  from 167.206.113.130
+2009/04/14 14:53:03 VCS INFO V-16-1-50135 User admin fired command: haconf -dump from 167.206.113.130
+2009/04/14 14:53:08 VCS INFO V-16-1-50135 User admin fired command: hagrp -online tibco_SG  ipew1a  from 167.206.113.130
+2009/04/14 14:55:41 VCS INFO V-16-1-50135 User admin fired command: hares -link Mt_tibco  DG_tibcodg   0   0  from 167.206.113.130
+2009/04/14 14:55:44 VCS INFO V-16-1-50135 User admin fired command: haconf -dump from 167.206.113.130
+2009/04/14 14:55:47 VCS INFO V-16-1-50135 User admin fired command: hares -clear Mt_tibco  ipew1a  from 167.206.113.130
+2009/04/14 14:59:57 VCS INFO V-16-1-50135 User admin fired command: hares -clear Mt_tibco  ipew1a  from 167.206.113.130
+2009/04/14 15:00:00 VCS INFO V-16-1-50135 User admin fired command: hares -clear Mt_tibco  ipew1b  from 167.206.113.130
+2009/04/14 16:29:21 VCS INFO V-16-1-50135 User root fired command: MSG_CLUSTER_STOP_SYS from localhost
+2009/04/14 16:38:27 VCS INFO V-16-1-50135 User root fired command: MSG_CLUSTER_FORCE_LOCAL ipew1a  from localhost
+2009/04/14 16:38:28 VCS INFO V-16-1-50135 User root fired command: hares -modify DG_tibcodg  tempUseFence  NONE  from localhost
+2009/04/15 08:00:29 VCS INFO V-16-1-50135 User admin fired command: haconf -makerw from 167.206.113.130
+2009/04/15 08:00:35 VCS INFO V-16-1-50135 User admin fired command: hagrp -modify ClusterService  AutoStartList  ipew1b  ipew1a  from 167.206.113.130
+2009/04/15 08:00:40 VCS INFO V-16-1-50135 User admin fired command: hagrp -modify ClusterService  FailOverPolicy  Load  from 167.206.113.130
+2009/04/15 08:00:41 VCS INFO V-16-1-50135 User admin fired command: haconf -dump from 167.206.113.130
+2009/04/15 08:00:50 VCS INFO V-16-1-50135 User admin fired command: hagrp -switch ClusterService  ipew1b  localclus  from 167.206.113.130
+2009/04/15 09:31:15 VCS INFO V-16-1-50135 User root fired command: MSG_CLUSTER_STOP_SYS from localhost
+2009/04/15 09:38:44 VCS INFO V-16-1-50135 User root fired command: MSG_CLUSTER_STOP_SYS from localhost
+2009/04/15 09:43:27 VCS INFO V-16-1-50135 User root fired command: MSG_CLUSTER_FORCE_LOCAL ipew1a  from localhost
+2009/04/15 09:43:28 VCS INFO V-16-1-50135 User root fired command: hares -modify DG_tibcodg  tempUseFence  NONE  from localhost
+2009/04/15 09:45:25 VCS INFO V-16-1-50135 User admin fired command: hagrp -switch tibco_SG  ipew1b  localclus  from 167.206.113.130
+2009/04/15 09:45:37 VCS INFO V-16-1-50135 User admin fired command: hagrp -switch tibco_SG  ipew1a  localclus  from 167.206.113.130
+2009/04/15 09:47:24 VCS INFO V-16-1-50135 User root fired command: MSG_CLUSTER_STOP_SYS from localhost
+2009/04/15 09:52:39 VCS INFO V-16-1-50135 User root fired command: hares -modify DG_tibcodg  tempUseFence  NONE  from localhost
+2009/04/15 10:09:44 VCS INFO V-16-1-50135 User admin fired command: haconf -dump from 167.206.113.130
+2009/04/27 18:16:52 VCS INFO V-16-1-50135 User root fired command: hagrp -offline tibco_SG  ipew1a  from localhost
+2009/04/28 09:53:56 VCS INFO V-16-1-50135 User root fired command: hagrp -switch tibco_SG  ipew1a  from localhost
+2009/04/28 10:03:24 VCS INFO V-16-1-50135 User admin fired command: haconf -makerw from 167.206.113.179
+2009/04/28 10:04:20 VCS INFO V-16-1-50135 User admin fired command: hares -add IP_tibco  IP  tibco_SG  from 167.206.113.179
+2009/04/28 10:04:20 VCS INFO V-16-1-50135 User admin fired command: hares -modify IP_tibco  Critical  0  from 167.206.113.179
+2009/04/28 10:04:20 VCS INFO V-16-1-50135 User admin fired command: hares -modify IP_tibco  Device  e10000g0  from 167.206.113.179
+2009/04/28 10:04:21 VCS INFO V-16-1-50135 User admin fired command: hares -modify IP_tibco  Address  10.248.91.15  from 167.206.113.179
+2009/04/28 10:04:21 VCS INFO V-16-1-50135 User admin fired command: hares -modify IP_tibco  NetMask  255.255.255.192  from 167.206.113.179
+2009/04/28 10:04:21 VCS INFO V-16-1-50135 User admin fired command: hares -modify IP_tibco  Options    from 167.206.113.179
+2009/04/28 10:04:21 VCS INFO V-16-1-50135 User admin fired command: hares -modify IP_tibco  Enabled  1  from 167.206.113.179
+2009/04/28 10:04:40 VCS INFO V-16-1-50135 User admin fired command: hares -modify IP_tibco  Device  eth0  from 167.206.113.179
+2009/04/28 10:04:48 VCS INFO V-16-1-50135 User admin fired command: hares -online IP_tibco  ipew1a  from 167.206.113.179
+2009/04/28 10:04:52 VCS INFO V-16-1-50135 User admin fired command: MSG_RES_PROBE IP_tibco  ipew1a  from 167.206.113.179
+2009/04/28 10:04:55 VCS INFO V-16-1-50135 User admin fired command: MSG_RES_PROBE IP_tibco  ipew1b  from 167.206.113.179
+2009/04/28 10:04:59 VCS INFO V-16-1-50135 User admin fired command: hares -online IP_tibco  ipew1a  from 167.206.113.179
+2009/04/28 10:05:18 VCS INFO V-16-1-50135 User admin fired command: haconf -dump -makero from 167.206.113.179
+2009/04/28 11:45:57 VCS INFO V-16-1-50135 User root fired command: MSG_CLUSTER_STOP_SYS from localhost
+2009/04/28 11:50:06 VCS INFO V-16-1-50135 User root fired command: hares -modify DG_tibcodg  tempUseFence  NONE  from localhost
+2009/05/01 11:07:48 VCS INFO V-16-1-50135 User admin fired command: haconf -makerw from 167.206.113.179
+2009/05/01 11:10:24 VCS INFO V-16-1-50135 User admin fired command: hares -add App_tomcat  Application  tibco_SG  from 167.206.113.179
+2009/05/01 11:10:24 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_tomcat  Critical  0  from 167.206.113.179
+2009/05/01 11:10:24 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_tomcat  User  swpro  from 167.206.113.179
+2009/05/01 11:10:25 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_tomcat  StartProgram  /opt/tibco/tomcat/bin/startup.sh  from 167.206.113.179
+2009/05/01 11:10:25 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_tomcat  StopProgram  /opt/tibco/tomcat/bin/shutdown.sh  from 167.206.113.179
+2009/05/01 11:10:25 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_tomcat  CleanProgram    from 167.206.113.179
+2009/05/01 11:10:25 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_tomcat  MonitorProgram    from 167.206.113.179
+2009/05/01 11:10:26 VCS INFO V-16-1-50135 User admin fired command: hares -modify ... -delete -keys App_tomcat  PidFiles  from 167.206.113.179
+2009/05/01 11:10:26 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_tomcat  MonitorProcesses  /usr/jre1.5.0_18/bin/java -Djava.util.logging.config.file=/opt/tibco/tomcat/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djava.library.path=/opt/tibco/tomcat/shared/lib -Djava.endorsed.dirs=/opt/tibco/tomcat/common/endorsed -classpath :/opt/tibco/tomcat/bin/bootstrap.jar:/opt/tibco/tomcat/bin/commons-logging-api.jar -Dcatalina.base=/opt/tibco/tomcat -Dcatalina.home=/opt/tibco/tomcat -Djava.io.tmpdir=/opt/tibco/tomcat/temp org.apache.catalina.startup.Bootstrap start  from 167.206.113.179
+2009/05/01 11:10:26 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_tomcat  Enabled  1  from 167.206.113.179
+2009/05/01 11:10:44 VCS INFO V-16-1-50135 User admin fired command: hares -link App_tomcat  Mt_tibco   0   0  from 167.206.113.179
+2009/05/01 11:11:14 VCS INFO V-16-1-50135 User admin fired command: hares -link App_tomcat  IP_tibco   0   0  from 167.206.113.179
+2009/05/01 11:11:25 VCS INFO V-16-1-50135 User admin fired command: hares -unlink App_tomcat  IP_tibco  from 167.206.113.179
+2009/05/01 11:11:52 VCS INFO V-16-1-50135 User admin fired command: hares -offline App_tomcat  ipew1a  from 167.206.113.179
+2009/05/01 11:12:14 VCS INFO V-16-1-50135 User admin fired command: hares -online App_tomcat  ipew1a  from 167.206.113.179
+2009/05/01 11:16:29 VCS INFO V-16-1-50135 User admin fired command: hares -add App_iProcess  Application  tibco_SG  from 167.206.113.179
+2009/05/01 11:16:29 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_iProcess  Critical  0  from 167.206.113.179
+2009/05/01 11:16:30 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_iProcess  User  swpro  from 167.206.113.179
+2009/05/01 11:16:30 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_iProcess  StartProgram  /tibco/iProcess/IPEPROD1/tools/swstartdr.sh -d /tibco/iProcess/IPEPROD1/tools/dbuser.dat  from 167.206.113.179
+2009/05/01 11:16:30 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_iProcess  StopProgram  /tibco/iProcess/IPEPROD1/tools/swstopdr.sh -d /tibco/iProcess/IPEPROD1/tools/dbuser.dat  from 167.206.113.179
+2009/05/01 11:16:30 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_iProcess  CleanProgram    from 167.206.113.179
+2009/05/01 11:16:30 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_iProcess  MonitorProgram    from 167.206.113.179
+2009/05/01 11:16:31 VCS INFO V-16-1-50135 User admin fired command: hares -modify ... -delete -keys App_iProcess  PidFiles  from 167.206.113.179
+2009/05/01 11:16:31 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_iProcess  MonitorProcesses  /tibco/iProcess/IPEPROD1/etc/swrpcsvr -- -m 1 -p RPC_POOL -i 1 -w 1 ++  from 167.206.113.179
+2009/05/01 11:16:31 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_iProcess  Enabled  1  from 167.206.113.179
+2009/05/01 11:16:42 VCS INFO V-16-1-50135 User admin fired command: hares -link App_iProcess  IP_tibco   0   0  from 167.206.113.179
+2009/05/01 11:16:52 VCS INFO V-16-1-50135 User admin fired command: hares -link App_iProcess  Mt_tibco   0   0  from 167.206.113.179
+2009/05/01 11:16:59 VCS INFO V-16-1-50135 User admin fired command: haconf -dump -makero from 167.206.113.179
+2009/05/01 11:17:04 VCS INFO V-16-1-50135 User admin fired command: hares -offline App_iProcess  ipew1a  from 167.206.113.179
+2009/05/01 11:18:01 VCS INFO V-16-1-50135 User admin fired command: hares -online App_iProcess  ipew1a  from 167.206.113.179
+2009/05/01 11:22:29 VCS INFO V-16-1-50135 User admin fired command: hares -clear App_iProcess  ipew1a  from 167.206.113.179
+2009/05/01 11:28:25 VCS INFO V-16-1-50135 User admin fired command: haconf -makerw from 167.206.113.179
+2009/05/01 11:33:10 VCS INFO V-16-1-50135 User admin fired command: hares -delete App_tomcat  from 167.206.113.179
+2009/05/01 11:35:46 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_iProcess  StopProgram  /tibco/iProcess/IPEPROD1/tools/swstopdr.sh  from 167.206.113.179
+2009/05/01 11:36:48 VCS INFO V-16-1-50135 User admin fired command: hares -online App_iProcess  ipew1a  from 167.206.113.179
+2009/05/01 11:40:29 VCS INFO V-16-1-50135 User admin fired command: hares -clear App_iProcess  ipew1a  from 167.206.113.179
+2009/05/01 11:44:25 VCS INFO V-16-1-50135 User admin fired command: hares -modify ... -delete -keys App_iProcess  MonitorProcesses  from 167.206.113.179
+2009/05/01 11:44:28 VCS INFO V-16-1-50135 User admin fired command: haconf -dump -makero from 167.206.113.179
+2009/06/02 11:30:56 VCS INFO V-16-1-50135 User admin fired command: haconf -makerw from 167.206.113.179
+2009/06/08 13:59:33 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_iProcess  CleanProgram  /usr/bin/pkill -9 iProcess  from 167.206.113.179
+2009/06/08 14:00:16 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_iProcess  MonitorProgram    from 167.206.113.179
+2009/06/08 14:47:23 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_iProcess  MonitorProgram  /tibco/vcs_scripts/iProcessMon.sh  from 167.206.113.179
+2009/06/08 14:47:27 VCS INFO V-16-1-50135 User admin fired command: haconf -dump -makero from 167.206.113.179
+2009/06/08 14:47:33 VCS INFO V-16-1-50135 User admin fired command: MSG_RES_PROBE App_iProcess  ipew1a  from 167.206.113.179
+2009/06/08 14:47:38 VCS INFO V-16-1-50135 User admin fired command: MSG_RES_PROBE App_iProcess  ipew1b  from 167.206.113.179
+2009/06/08 14:49:46 VCS INFO V-16-1-50135 User admin fired command: haconf -makerw from 167.206.113.179
+2009/06/08 14:50:04 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_iProcess  MonitorProgram  /opt/VRTSvcs/scripts/iProcessMon.sh  from 167.206.113.179
+2009/06/08 14:51:26 VCS INFO V-16-1-50135 User admin fired command: MSG_RES_PROBE App_iProcess  ipew1a  from 167.206.113.179
+2009/06/08 14:51:29 VCS INFO V-16-1-50135 User admin fired command: MSG_RES_PROBE App_iProcess  ipew1b  from 167.206.113.179
+2009/06/08 15:00:19 VCS INFO V-16-1-50135 User admin fired command: hatype -modify Application  ToleranceLimit  3  from 167.206.113.179
+2009/06/08 16:33:16 VCS INFO V-16-1-50135 User admin fired command: MSG_RES_PROBE App_iProcess  ipew1a  from 167.206.113.179
+2009/06/08 16:33:20 VCS INFO V-16-1-50135 User admin fired command: MSG_RES_PROBE App_iProcess  ipew1b  from 167.206.113.179
+2009/06/08 17:00:12 VCS INFO V-16-1-50135 User admin fired command: haconf -dump from 167.206.113.179
+2009/06/10 15:26:18 VCS INFO V-16-1-50135 User admin fired command: hares -offline App_iProcess  ipew1a  from 167.206.113.179
+2009/06/10 15:27:43 VCS INFO V-16-1-50135 User admin fired command: hares -online App_iProcess  ipew1a  from 167.206.113.179
+2009/06/10 15:29:47 VCS INFO V-16-1-50135 User admin fired command: hagrp -switch tibco_SG  ipew1b  localclus  from 167.206.113.179
+2009/06/10 15:34:47 VCS INFO V-16-1-50135 User admin fired command: hares -clear App_iProcess  ipew1b  from 167.206.113.179
+2009/06/10 16:06:39 VCS INFO V-16-1-50135 User admin fired command: hares -online App_iProcess  ipew1b  from 167.206.113.179
+2009/06/10 16:15:57 VCS INFO V-16-1-50135 User admin fired command: haconf -dump -makero from 167.206.113.179
+2009/06/10 16:16:00 VCS INFO V-16-1-50135 User admin fired command: hares -clear App_iProcess  ipew1b  from 167.206.113.179
+2009/06/10 16:16:47 VCS INFO V-16-1-50135 User admin fired command: haconf -makerw from 167.206.113.179
+2009/06/10 16:16:52 VCS INFO V-16-1-50135 User admin fired command: hatype -modify Application  ToleranceLimit  2  from 167.206.113.179
+2009/06/10 16:16:56 VCS INFO V-16-1-50135 User admin fired command: haconf -dump -makero from 167.206.113.179
+2009/06/10 16:20:42 VCS INFO V-16-1-50135 User admin fired command: hares -online App_iProcess  ipew1b  from 167.206.113.179
+2009/06/10 16:27:15 VCS INFO V-16-1-50135 User admin fired command: haconf -makerw from 167.206.113.179
+2009/06/10 16:27:15 VCS INFO V-16-1-50135 User admin fired command: hares -modify App_iProcess  Critical  1  from 167.206.113.179
+2009/06/10 16:27:16 VCS INFO V-16-1-50135 User admin fired command: haconf -dump -makero from 167.206.113.179
+2009/06/10 16:50:14 VCS INFO V-16-1-50135 User admin fired command: MSG_RES_PROBE App_iProcess  ipew1b  from 167.206.113.179
+2009/06/10 16:55:41 VCS INFO V-16-1-50135 User admin fired command: MSG_RES_PROBE App_iProcess  ipew1a  from 167.206.113.179
+2009/06/10 16:56:04 VCS INFO V-16-1-50135 User admin fired command: MSG_RES_PROBE App_iProcess  ipew1b  from 167.206.113.179
+2009/06/10 17:00:20 VCS INFO V-16-1-50135 User admin fired command: haconf -makerw from 167.206.113.179
+2009/06/10 17:00:20 VCS INFO V-16-1-50135 User admin fired command: hares -modify IP_tibco  Critical  1  from 167.206.113.179
+2009/06/10 17:00:24 VCS INFO V-16-1-50135 User admin fired command: hagrp -clear tibco_SG  ipew1a  from 167.206.113.179
+2009/06/10 17:00:26 VCS INFO V-16-1-50135 User admin fired command: hagrp -clear tibco_SG  ipew1b  from 167.206.113.179
+2009/06/10 17:00:31 VCS INFO V-16-1-50135 User admin fired command: hagrp -online tibco_SG  ipew1b  from 167.206.113.179
+2009/06/10 17:02:32 VCS INFO V-16-1-50135 User admin fired command: haconf -dump -makero from 167.206.113.179
+2010/03/09 11:09:55 VCS INFO V-16-1-50135 User root fired command: hares -clear App_iProcess  from localhost
+2010/03/09 11:09:56 VCS INFO V-16-1-50135 User root fired command: hares -clear App_iProcess  from localhost
+2010/03/09 11:11:56 VCS INFO V-16-1-50135 User root fired command: hagrp -online tibco_SG  ipew1a  from localhost
+2010/03/16 16:12:05 VCS INFO V-16-1-50135 User root fired command: hagrp -offline -force ClusterService  ipew1a  from localhost
+2010/03/16 16:12:05 VCS INFO V-16-1-50135 User root fired command: hagrp -offline tibco_SG  ipew1a  from localhost
+2010/03/16 16:12:06 VCS INFO V-16-1-50135 User root fired command: hagrp -offline tibco_SG  ipew1a  from localhost
+2010/03/16 16:12:06 VCS INFO V-16-1-50135 User root fired command: hagrp -offline tibco_SG  ipew1a  from localhost
+2010/03/16 16:12:07 VCS INFO V-16-1-50135 User root fired command: hagrp -offline tibco_SG  ipew1a  from localhost
+2010/03/16 16:12:08 VCS INFO V-16-1-50135 User root fired command: hagrp -offline -force ClusterService  ipew1a  from localhost
+2010/03/16 23:24:02 VCS INFO V-16-1-50135 User root fired command: hagrp -offline tibco_SG  ipew1a  from localhost
+2010/03/16 23:24:03 VCS INFO V-16-1-50135 User root fired command: hagrp -offline tibco_SG  ipew1a  from localhost
+2010/03/16 23:24:03 VCS INFO V-16-1-50135 User root fired command: hagrp -offline tibco_SG  ipew1a  from localhost
+2010/03/16 23:24:04 VCS INFO V-16-1-50135 User root fired command: hagrp -offline tibco_SG  ipew1a  from localhost
+2010/05/04 16:51:03 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2010/05/04 16:51:03 VCS INFO V-16-1-50135 User root fired command: hasys -modify ipew1a  ShutdownTimeout  240  from localhost
+2010/05/04 16:51:03 VCS INFO V-16-1-50135 User root fired command: hasys -modify ipew1b  ShutdownTimeout  240  from localhost
+2010/05/04 16:51:03 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2010/06/02 14:38:16 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2010/06/02 14:38:35 VCS INFO V-16-1-50135 User root fired command: hagrp -freeze -persistent tibco_SG  from localhost
+2010/06/02 14:39:34 VCS INFO V-16-1-50135 User root fired command: hagrp -unfreeze -persistent tibco_SG  from localhost
+2010/06/02 14:39:51 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2010/08/05 01:20:11 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2010/08/05 01:21:00 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2010/08/05 01:23:21 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2010/08/05 01:23:43 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2010/08/11 11:32:24 VCS INFO V-16-1-50135 User admin fired command: hares -clear App_iProcess  ipew1a  from 167.206.113.130
+2010/08/11 12:19:01 VCS INFO V-16-1-50135 User root fired command: haconf -dump from localhost
+2010/08/24 18:44:18 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2010/08/24 18:44:28 VCS INFO V-16-1-50135 User root fired command: hagrp -freeze tibco_SG  from localhost
+2010/08/24 18:44:38 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2010/08/24 18:58:54 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2010/08/24 18:59:03 VCS INFO V-16-1-50135 User root fired command: hagrp -unfreeze tibco_SG  from localhost
+2010/08/24 18:59:12 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2010/08/24 19:08:28 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2010/08/24 19:08:48 VCS INFO V-16-1-50135 User root fired command: hagrp -freeze tibco_SG  from localhost
+2010/08/24 19:08:56 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2010/08/24 19:11:28 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2010/08/24 19:11:35 VCS INFO V-16-1-50135 User root fired command: hagrp -unfreeze tibco_SG  from localhost
+2010/08/24 19:11:44 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2010/09/03 13:32:50 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2010/09/03 13:32:54 VCS INFO V-16-1-50135 User root fired command: hagrp -freeze tibco_SG  from localhost
+2010/09/03 13:32:59 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2010/09/03 13:35:45 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2010/09/03 13:35:50 VCS INFO V-16-1-50135 User root fired command: hagrp -unfreeze tibco_SG  from localhost
+2010/09/03 13:35:54 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2010/09/03 15:56:52 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2010/09/03 15:56:55 VCS INFO V-16-1-50135 User root fired command: hagrp -freeze tibco_SG  from localhost
+2010/09/03 15:57:01 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2010/09/03 15:59:26 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2010/09/03 15:59:31 VCS INFO V-16-1-50135 User root fired command: hagrp -unfreeze tibco_SG  from localhost
+2010/09/03 15:59:35 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2010/10/14 04:38:18 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2010/10/14 04:38:34 VCS INFO V-16-1-50135 User root fired command: hagrp -freeze tibco_SG  from localhost
+2010/10/14 04:38:41 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2010/10/14 04:45:27 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2010/10/14 04:45:33 VCS INFO V-16-1-50135 User root fired command: hagrp -unfreeze tibco_SG  from localhost
+2010/10/14 04:45:46 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2010/11/18 01:27:28 VCS INFO V-16-1-50135 User root fired command: MSG_CLUSTER_STOP_ALL_FORCE from localhost
+2010/11/18 01:29:00 VCS INFO V-16-1-50135 User root fired command: hares -modify DG_tibcodg  tempUseFence  NONE  from localhost
+2011/07/19 00:28:00 VCS INFO V-16-1-50135 User root fired command: hares -clear App_iProcess  ipew1a  from localhost
+2011/07/19 00:28:30 VCS INFO V-16-1-50135 User root fired command: hares -online App_iProcess  ipew1a  from localhost
+2011/07/19 00:29:27 VCS INFO V-16-1-50135 User root fired command: hares -clear App_iProcess  ipew1b  from localhost
+2011/10/26 18:19:35 VCS INFO V-16-1-50135 User root fired command: hares -clear App_iProcess  ipew1a  from localhost
+2011/10/26 18:21:38 VCS INFO V-16-1-50135 User root fired command: hagrp -online tibco_SG  ipew1a  from localhost
+2011/10/26 18:24:39 VCS INFO V-16-1-50135 User root fired command: hares -clear App_iProcess  ipew1b  from localhost
+2011/11/09 00:23:04 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2011/11/09 00:23:13 VCS INFO V-16-1-50135 User root fired command: hagrp -freeze tibco_SG  from localhost
+2011/11/09 00:23:24 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2011/11/09 00:26:11 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2011/11/09 00:26:18 VCS INFO V-16-1-50135 User root fired command: hagrp -unfreeze tibco_SG  from localhost
+2011/11/09 00:26:26 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2011/11/15 00:14:37 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2011/11/15 00:14:47 VCS INFO V-16-1-50135 User root fired command: hagrp -freeze tibco_SG  from localhost
+2011/11/15 00:14:52 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2011/11/15 12:47:46 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2011/11/15 12:47:46 VCS INFO V-16-1-50135 User root fired command: hagrp -freeze tibco_SG  from localhost
+2011/11/15 12:47:48 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2011/11/15 16:53:07 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2011/11/15 16:53:25 VCS INFO V-16-1-50135 User root fired command: hagrp -unfreeze tibco_SG  from localhost
+2011/11/15 16:53:59 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2011/11/15 17:56:08 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2011/11/15 17:56:09 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2011/11/15 17:58:34 VCS INFO V-16-1-50135 User root fired command: hagrp -freeze tibco_SG  from localhost
+2011/11/15 17:59:03 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2011/11/15 18:03:32 VCS INFO V-16-1-50135 User root fired command: hares -clear App_iProcess  ipew1a  from localhost
+2011/11/15 18:40:34 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2011/11/15 18:40:42 VCS INFO V-16-1-50135 User root fired command: hagrp -freeze tibco_SG  from localhost
+2011/11/15 18:40:52 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2013/03/08 07:55:26 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2013/03/08 07:56:31 VCS INFO V-16-1-50135 User root fired command: hagrp -freeze -persistent tibco_SG  from localhost
+2013/03/08 07:56:52 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2013/03/08 09:13:55 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2013/03/08 09:15:06 VCS INFO V-16-1-50135 User root fired command: hagrp -unfreeze -persistent tibco_SG  from localhost
+2013/03/08 09:15:14 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2013/10/11 13:24:58 VCS INFO V-16-1-50135 User root fired command: hagrp -freeze tibco_SG  from localhost
+2013/10/11 13:33:10 VCS INFO V-16-1-50135 User root fired command: hagrp -unfreeze tibco_SG  from localhost
+2014/04/29 00:06:45 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2014/04/29 00:07:07 VCS INFO V-16-1-50135 User root fired command: hagrp -freeze -persistent tibco_SG  from localhost
+2014/04/29 00:07:18 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2014/04/29 09:08:01 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2014/04/29 09:10:01 VCS INFO V-16-1-50135 User root fired command: hagrp -unfreeze -persistent tibco_SG  from localhost
+2014/04/29 09:10:31 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost

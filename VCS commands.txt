@@ -1,0 +1,61 @@
+250  gabconfig -a
+  251  lltstat -nvv active
+  252  lltconfig 
+  253  /etc/init.d/llt start
+  254  cat /etc/llthosts 
+  255  vi /etc/llttab 
+  256  /etc/init.d/llt start
+  258  /etc/init.d/llt status
+  259  /etc/init.d/llt stop
+  260  lltstatus -nvv active
+  261  lltstat -nvv active
+  262  /etc/init.d/llt start
+  263  lltstat -nvv active
+  264  gabconfig -a
+  265  lltstat -nvv active
+  266  gabconfig -a
+  267  /etc/init.d/gab stop
+  268  /etc/init.d/gab start
+  269  gabconfig -a
+  270  vxdisk -o alldgs list
+  271  gabconfig -a
+  272  /etc/init.d/vxfen start
+  273  hastatus -sum
+  274  gabconfig -a
+  275  cd /etc/VRTSvcs/conf/config/
+  276  hacf -verify .
+  277  hastart 
+  278  hastatus -sum
+  279  more main.cf
+  280  cat /etc/hosts
+  281  hastatus -sum
+  282  c\tail /var/VRTSvcs/log/engine_A.log 
+  283  tail /var/VRTSvcs/log/engine_A.log 
+  284  ping 10.248.114.230
+  285  ifconfig -a | more
+  286  cat /etc/hosts
+  287  init 0
+  288  ps -ef
+  289  hastatus -sum
+  290  hagrp -flush ClusterService -sys ems1aprov 
+  291  hastatus -sum
+  292  cd /etc/VRTSvcs/conf/config/
+  293  more main.cf
+  294  haconf -makerw
+  295  hares -value webip
+  296  hares -value webip Address 
+  297  hares -modify webip Address  10.248.114.236
+  298  haconf -dump -makero
+  299  hares -value webip Address 
+  300  vi /etc/hosts
+  301  hagrp -online ClusterService -sys ems1aprov 
+  302  hastatus -sum
+  303  hagrp -switch ClusterService -to ems1bprov
+  304  hastatus -sum
+  305  cat /etc/hosts
+  306  hastatus -sum
+  307  hastatus 
+  308  hostname
+  309  cat /etc/hosts
+  310  history
+[root@ems1aprov ~]# 

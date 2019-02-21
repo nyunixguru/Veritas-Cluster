@@ -1,0 +1,464 @@
+
+
+Disk Group   ora_DG
+Service Group  ora_SG
+
+Mountpoints
+/u01/archivelog
+/u01/oradata
+/u01/oradata/export
+/u01/oradata/cvjungo.redoctl01
+/u01/oradata/cvjungo.redoctl02
+/u01/oradata/cvjungo.redoctl03
+/u01/oradata/cvjungo.redoctl04
+
+
+/dev/vx/dsk/ora_DG/archivelog
+/dev/vx/dsk/ora_DG/oradata
+/dev/vx/dsk/ora_DG/export
+/dev/vx/dsk/ora_DG/redoctl01
+/dev/vx/dsk/ora_DG/redoctl02
+/dev/vx/dsk/ora_DG/redoctl03
+/dev/vx/dsk/ora_DG/redoctl04
+
+
+#Configure Disk Group and volumes
+/etc/vx/bin/vxdisksetup -i vmdk0_3
+vxdg init tacap_dg tacap01=vmdk0_3 or vxdiskadm
+
+# To make volumes from whole LUN for each filesystem
+vxassist -g ora_DG make oradata_vol maxsize ora01
+vxassist -g ora_DG make oradata_vol maxsize ora02
+
+..
+..
+
+# Or to carve DiskGroup from one Big LUN
+vxassist -g tacap_dg make oracle 10GB
+vxassist -g tacap_dg make 11.2.0  15GB
+vxassist -g tacap_dg make agent12c 5GB
+vxassist -g tacap_dg make tacap.arch 100GB
+vxassist -g tacap_dg make redoctrl.01  5GB
+vxassist -g tacap_dg make redoctrl.02  5GB
+vxassist -g tacap_dg make redoctrl.03  5GB
+vxassist -g tacap_dg make export 50GB
+vxassist -g tacap_dg make tacap.01 100GB
+vxassist -g tacap_dg make tacap.02 100GB
+vxassist -g tacap_dg make tacap.03 100GB
+vxassist -g tacap_dg make tacap.04 100GB
+
+
+for i in `ls /dev/vx/dsk/ora_DG`; do  mkfs -t ext4 /dev/vx/dsk/ora_DG/${i}; done
+mkfs -t vxfs /dev/vx/dsk/ora_DG/oracle
+mkfs -t vxfs /dev/vx/dsk/ora_DG/11.2.0
+mkfs -t vxfs /dev/vx/dsk/ora_DG/agent12c
+mkfs -t vxfs /dev/vx/dsk/ora_DG/tacap.arrch
+mkfs -t vxfs /dev/vx/dsk/ora_DG/redoctrl.01
+mkfs -t vxfs /dev/vx/dsk/ora_DG/redoctrl.02
+mkfs -t vxfs /dev/vx/dsk/ora_DG/redoctrl.03
+mkfs -t vxfs /dev/vx/dsk/ora_DG/export
+mkfs -t vxfs /dev/vx/dsk/ora_DG/tacap.01
+mkfs -t vxfs /dev/vx/dsk/ora_DG/tacap.02
+mkfs -t vxfs /dev/vx/dsk/ora_DG/tacap.03
+mkfs -t vxfs /dev/vx/dsk/ora_DG/tacap.04
+
+
+
+
+#Check
+
+ls /dev/vx/dsk/ora_DG
+mkfs -t vxfs /dev/vx/dsk/ora_DG/tibco_vol
+vxdg deport ora_DG  on node A
+vxdg import ora_DG  on node B
+
+
+Configure VCS
+
+--Open the config file:
+# haconf –makerw
+
+--Add a new service group ora_SG
+# hagrp –add ora_SG
+
+--Modify a service group & add SystemList & AutoStartList attributes.
+# hagrp –modify ora_SG SystemList –add mr-dl1 0 mr-dl2 1
+# hagrp -modify ora_SG  AutoStartList mr-dl1 mr-dl2
+
+
+
+
+#Delete 
+haconf -makerw 
+hares -delete Ora_DiskGroup_Bin
+haconf -dump -makero
+
+
+
+
+#Configure IP resource VIP for ora_SG
+
+hares -add IP_ora  IP  ora_SG
+hares -modify IP_ora  Device eth0
+hares -modify IP_ora  Address  10.248.121.7
+hares -modify IP_ora  NetMask  255.255.255.128
+hares -modify IP_ora  Enabled  1
+
+
+hares -add Proxy_eth0  Proxy  ora_SG
+hares -modify Proxy_eth0  TargetResName  csgnic
+hares -link IP_ora  Proxy_eth0  0  0
+
+--Add DiskGroup ora9idg_DG resource.
+hares -add ora_DG  DiskGroup  ora_SG
+hares –modify ora_DG DiskGroup ora_DG
+
+
+--Add Mount resources.
+hares -add Mount_archivelog Mount ora_SG
+hares -modify Mount_archivelog MountPoint "/u01/archivelog"
+hares -modify Mount_archivelog  BlockDevice "/dev/vx/dsk/ora_DG/archivelog"
+hares -modify Mount_archivelog  FSType vxfs
+hares -modify Mount_archivelog  FsckOpt %-y     ( %-n for no )
+
+ hares -add Mount_oradata Mount ora_SG
+ hares -modify Mount_oradata MountPoint "/u01/oradata"
+ hares -modify Mount_oradata BlockDevice "/dev/vx/dsk/ora_DG/oradata"
+ hares -modify Mount_oradata FSType vxfs
+ hares -modify Mount_oradata FsckOpt %-y     ( %-n for no )
+
+ hares -add Mount_export Mount ora_SG
+ hares -modify Mount_export MountPoint "/u01/oradata/export"
+ hares -modify Mount_export BlockDevice "/dev/vx/dsk/ora_DG/export"
+ hares -modify Mount_export FSType vxfs
+ hares -modify Mount_export FsckOpt %-y     ( %-n for no )
+
+ hares -add Mount_redoctrl_01 Mount ora_SG
+ hares -modify Mount_redoctrl_01 MountPoint "/u01/oradata/cvjungo.redoctl01"
+ hares -modify Mount_redoctrl_01 BlockDevice "/dev/vx/dsk/ora_DG/redoctl01"
+ hares -modify Mount_redoctrl_01 FSType vxfs
+ hares -modify Mount_redoctrl_01 FsckOpt %-y     ( %-n for no )
+
+ hares -add Mount_redoctrl_02 Mount ora_SG
+ hares -modify Mount_redoctrl_02 MountPoint "/u01/oradata/cvjungo.redoctl02"
+ hares -modify Mount_redoctrl_02 BlockDevice "/dev/vx/dsk/ora_DG/redoctl02"
+ hares -modify Mount_redoctrl_02 FSType vxfs
+ hares -modify Mount_redoctrl_02 FsckOpt %-y     ( %-n for no )
+
+ hares -add Mount_redoctrl_03 Mount ora_SG
+hares -modify Mount_redoctrl_03 MountPoint "/u01/oradata/cvjungo.redoctl03"
+ hares -modify Mount_redoctrl_03 BlockDevice "/dev/vx/dsk/ora_DG/redoctl03"
+ hares -modify Mount_redoctrl_03 FSType vxfs
+ hares -modify Mount_redoctrl_03 FsckOpt %-y     ( %-n for no )
+
+ hares -add Mount_redoctrl_04 Mount ora_SG
+ hares -modify Mount_redoctrl_04 MountPoint "/u01/oradata/cvjungo.redoctl04"
+ hares -modify Mount_redoctrl_04 BlockDevice "/dev/vx/dsk/ora_DG/redoctl04"
+ hares -modify Mount_redoctrl_04 FSType vxfs
+ hares -modify Mount_redoctrl_04 FsckOpt %-y     ( %-n for no )
+
+========================================================================================
+Not used
+
+--Add resource MultiNICB:
+# hares -add nic_shrpprd02 MultiNICB ora_SG
+# hares -modify nic_shrpprd02 Device ce0 "" ce1 ""
+# hares -modify nic_shrpprd02 DefaultRouter "10.8.60.1"
+# hares -modify nic_shrpprd02 Failback 1
+# hares -modify nic_shrpprd02 GroupName ipmpgroup
+
+
+--Add resource IPMultiNICB:
+# hares -add ip_shrpprd02 IPMultiNICB ora_SG
+# hares -modify ip_shrpprd02 BaseResName nic_shrpprd02
+# hares -modify ip_shrpprd02 Address "10.8.62.77"
+# hares -modify ip_shrpprd02 NetMask "255.255.252.0"
+
+--IP require Multnic:
+# hares -link ip_ora1 nic_ora1
+
+
+=========================================================================================
+
+--Configure Oracle resource & listener into service group ora_SG
+hares -add Netlsnr_mrm  Netlsnr  ora_SG 
+hares -modify Netlsnr_mrm  Owner  oratacap
+hares -modify Netlsnr_mrm  Home   /u01/app/oracle/product/11.2.0.3/dbhome_1
+# optional hares -modify Netlsnr_mrm  Listener  "Listenername"
+hares -modify Netlsnr_mrm  Enabled  1 
+
+
+#Configure Database
+hares -add Oracle_mrm  Oracle  ora_SG
+hares -modify Oracle_mrm  Sid  cvjungo  
+hares -modify Oracle_mrm  Home  /u01/app/oracle/product/11.2.0.3/dbhome_1
+
+
+--Links all resources to each other:
+
+#Link mount resources to Disk Group
+
+
+--Link Mountpoints
+--mountpoints require mountpoint Mount_archivelog  <<< due to nested mounts.
+
+hares -link Mount_archivelog ora_DG
+
+
+hares -link Mount_oradata ora_DG
+hares -link Mount_export Mount_oradata
+hares -link Mount_redoctrl_01 Mount_oradata
+hares -link Mount_redoctrl_02 Mount_oradata
+hares -link Mount_redoctrl_03 Mount_oradata
+hares -link Mount_redoctrl_04 Mount_oradata
+
+
+--Oracle instance requires mountpoint:
+
+hares -link Oracle_mrm Mount_archivelog
+hares -link Oracle_mrm Mount_oradata
+hares -link Oracle_mrm Mount_export 
+hares -link Oracle_mrm Mount_redoctrl_01
+hares -link Oracle_mrm Mount_redoctrl_02 
+hares -link Oracle_mrm Mount_redoctrl_03 
+hares -link Oracle_mrm Mount_redoctrl_04
+
+
+ 
+--Listener requires IP and Oracle:
+ hares -link Netlsnr_mrm  Oracle_mrm 
+ hares -link Netlsnr_mrm   IP_ora
+
+
+
+--If there is no problem, then enable the resources.
+
+ haconf -makerw
+
+ hares -modify ora_DG Enabled 1 
+
+ hares -modify Mount_archivelog Enabled 1 
+ hares -modify Mount_oradata Enabled 1 
+ hares -modify Mount_export Enabled 1 
+ hares -modify Mount_redoctrl_01 Enabled 1 
+ hares -modify Mount_redoctrl_02 Enabled 1 
+ hares -modify Mount_redoctrl_03 Enabled 1 
+ hares -modify Mount_redoctrl_04 Enabled 1 
+ hares -modify IP_ora Enabled 1
+
+ hares -modify Oracle_mrm Enabled 1
+
+ hares -modify Netlsnr_mrm Enabled 1
+
+ haconf -dump -makero
+
+
+
+
+
+1022  cat /etc/passwd
+ 1023  grep ora /etc/passwd
+ 1024  su - oratacap
+ 1025  haconf -dump -makero
+ 1026  hastatus -sum
+ 1027  haconf -makerw
+ 1028  more main.cf
+ 1029  hares -add mnt_oracle Mount ora_SG
+ 1030  hares -modify Mount_archivelog MountPoint "/apptacap/oracle"
+ 1031  ls -ld /apptacap/oracle
+ 1032  haconf 
+ 1033  hares
+ 1034  hares -delete mnt_oracle
+ 1035  haconf -dump -makero
+ 1036  haconf -makerw
+ 1037  hares -add Mount_archivelog Mount ora_SG
+ 1038  hares -modify Mount_archivelog MountPoint "/apptacap/oracle"
+ 1039  hares -modify Mount_archivelog  BlockDevice "/dev/vx/dsk/ora_DG/oracle"
+ 1040  hares -modify Mount_archivelog  FSType vxfs
+ 1041  hares -modify Mount_archivelog  FsckOpt %-y 
+ 1042  haconf -dump -makero
+ 1043  more main.cf
+ 1044  haconf -makerw
+ 1045  hares -add Mount_12.1.0 Mount ora_SG
+ 1046  hares -add Mount_12_1_0 Mount ora_SG
+ 1047  hares -modify Mount_12_1_0 MountPoint "/apptacap/oracle/product/12.1.0"
+ 1048  hares -modify Mount_12_1_0 BlockDevice "/dev/vx/dsk/ora_DG/12.1.0"
+ 1049  hares -modify Mount_12_1_0 FSType vxfs
+ 1050  hares -modify Mount_12_1_0 FsckOpt %-y
+ 1051  haconf -dump -makero
+ 1052  haconf -makerw
+ 1053  hares -add Mount_agent12c Mount ora_SG
+ 1054  hares -modify Mount_agent12c MountPoint "/apptacap/oracle/product/agent12c"
+ 1055  hares -modify Mount_agent12c BlockDevice "/dev/vx/dsk/ora_DG/agent12c"
+ 1056  hares -modify Mount_agent12c FSType vxfs
+ 1057  hares -modify Mount_agent12c FsckOpt %-y
+ 1058  hares -add Mount_tacap.arch Mount ora_SG
+ 1059  hares -modify Mount_tacap.arch MountPoint "/apptacap/oradata/tacap.arch"
+ 1060  ls /apptacap/oradata/
+ 1061  haconf -dump -makero
+ 1062  more main.cf
+ 1063  hares -delete Ora_Mnt_Bin
+ 1064  haconf -maerw
+ 1065  haconf -makerw
+ 1066  hares -delete Ora_Mnt_Bin
+ 1067  haconf -dump -makero
+ 1068  more main.cf
+ 1069  haconf -makerw
+ 1070  hares -add Mount_oradata Mount ora_SG
+ 1071  hares -modify Mount_oradata MountPoint "/apptacap/oradata/tacap.arch"
+ 1072  hares -modify Mount_oradata BlockDevice "/dev/vx/dsk/ora_DG/tacap.arch"
+ 1073  hares -modify Mount_oradata FSType vxfs
+ 1074  hares -modify Mount_oradata FsckOpt %-y
+ 1075  haconf -dump -makero
+ 1076  more main.cf
+ 1077  haconf -makerw
+ 1078  hares -add Mount_redoctrl_01 Mount ora_SG
+ 1079  hares -modify Mount_redoctrl_01 MountPoint "/apptacap/oradata/tacap.redoctrl.01
+ 1080  hares -modify Mount_redoctrl_01 MountPoint "/apptacap/oradata/tacap.redoctrl.01"
+ 1081  hares -modify Mount_redoctrl_01 BlockDevice "/dev/vx/dsk/ora_DG/redoctrl.01"
+ 1082  hares -modify Mount_redoctrl_01 FSType vxfs
+ 1083  hares -modify Mount_redoctrl_01 FsckOpt %-y 
+ 1084  haconf -dump -makero
+ 1085  more main.cf
+ 1086  history
+ 1087  more main.cf
+ 1088  hares -add Mount_redoctrl_02 Mount ora_SG
+ 1089  haconf -makerw
+ 1090  hares -add Mount_redoctrl_02 Mount ora_SG
+ 1091  hares -modify Mount_redoctrl_02 MountPoint "/apptacap/oradata/tacap.redoctrl.02"
+ 1092  hares -modify Mount_redoctrl_02 BlockDevice "/dev/vx/dsk/ora_DG/redoctrl.02"
+ 1093  hares -modify Mount_redoctrl_02 FSType vxfs
+ 1094  hares -modify Mount_redoctrl_02 FsckOpt %-y 
+ 1095  haconf -dump -makero
+ 1096  more main.cf
+ 1097  haconf -makerw
+ 1098  hares -add Mount_redoctrl_03 Mount ora_SG
+ 1099  hares -modify Mount_redoctrl_03 MountPoint "/apptacap/oradata/tacap.redoctrl.03"
+ 1100  hares -modify Mount_redoctrl_03 BlockDevice "/dev/vx/dsk/ora_DG/redoctrl.03"
+ 1101  hares -modify Mount_redoctrl_03 FSType vxfs
+ 1102  hares -modify Mount_redoctrl_03 FsckOpt %-y
+ 1103  haconf -dump -makero
+ 1104  more main,cf
+ 1105  more main.cf
+ 1106  haconf -makerw
+ 1107  hares -add Mount_export Mount ora_SG
+ 1108  hares -modify Mount_export MountPoint "/apptacap/oradata/tacap.export"
+ 1109  hares -modify Mount_export BlockDevice "/dev/vx/dsk/ora_DG/tacap.export"
+ 1110  hares -modify Mount_export FSType vxfs
+ 1111  hares -modify Mount_export FsckOpt %-y 
+ 1112  haconf -dump -makero
+ 1113  more main.cf
+ 1114  haconf -makerw
+ 1115  hares -add Mount_tacap_01 Mount ora_SG
+ 1116  hares -modify Mount_tacap_01 MountPoint "/apptacap/oradata/tacap.01"
+ 1117  hares -modify Mount_tacap_01 BlockDevice "/dev/vx/dsk/ora_DG/tacap.01"
+ 1118  hares -modify Mount_tacap_01 FSType vxfs
+ 1119  hares -modify Mount_tacap_01 FsckOpt %-y   
+ 1120  hares -add Mount_tacap_02 Mount ora_SG
+ 1121  hares -modify Mount_tacap_02 MountPoint "/apptacap/oradata/tacap.02"
+ 1122  hares -modify Mount_tacap_02 BlockDevice "/dev/vx/dsk/ora_DG/tacap.02"
+ 1123  hares -modify Mount_tacap_02 FSType vxfs
+ 1124  hares -modify Mount_tacap_02 FsckOpt %-y
+ 1125  hares -add Mount_tacap_03 Mount ora_SG
+ 1126  hares -modify Mount_tacap_03 MountPoint "/apptacap/oradata/tacap.03"
+ 1127  hares -modify Mount_tacap_03 BlockDevice "/dev/vx/dsk/ora_DG/tacap.03"
+ 1128  hares -modify Mount_tacap_03 FSType vxfs
+ 1129  hares -modify Mount_tacap_03 FsckOpt %-y 
+ 1130  hares -add Mount_tacap_04 Mount ora_SG
+ 1131  hares -modify Mount_tacap_04 MountPoint "/apptacap/oradata/tacap.04"
+ 1132  hares -modify Mount_tacap_04 BlockDevice "/dev/vx/dsk/ora_DG/tacap.04"
+ 1133  hares -modify Mount_tacap_04 FSType vxfs
+ 1134  hares -modify Mount_tacap_04 FsckOpt %-y 
+ 1135  haconf -dump -makero
+ 1136  more main.cf
+ 1137  grep ora /etc/passwd
+ 1138  cd /apptacap/oracle/product/12.1.0/dbhome_1
+ 1139  ls
+ 1140  find / -name *.ora"
+ 1141  find / -name "*.ora"
+ 1142  more /apptacap/oracle/product/12.1.0/dbhome_1/dbs/inittacap.ora
+ 1143  ls -l
+ 1144  grep ora
+ 1145  grep ora /etc/passwd
+ 1146  cd -
+ 1147  more main.cf
+ 1148  hacf -verify /etc/VRTSvcs/conf/config
+ 
+ 1151  hares  -list
+ 
+ 1153  hares -dep
+ 1
+ 1155  more main.cf
+ 1156  hares -dep
+ 1157  haconf -makerw
+ 1158  hare -delete Ora_IP
+ 1159  hares -delete Ora_IP
+ 1160  haconf -dump -makero
+ 1161  more main.cf
+ 1162  haconf -makerw
+ 1163  hares -delete Ora_Vol_Bin
+ 1164  haconf -dump -makero
+ 1165  more main.cf
+ 1166  ls -ltr
+ 1167  more main.cf.orig
+ 1168  more main.cf
+ 1169  haconf -makerw
+ 1170  hares -delete Ora_NIC
+ 1171  hares -delete Ora_Netlsnr
+ 1172  hares -delete Ora_Oracle
+ 1173  haconf -dump -makero
+ 1174  more main.cf
+ 1175  ifconfig -a | more
+ 1176  more /etc/hosts
+ 1177  more main.cf
+ 1178  haconf -makerw
+ 1179* 
+ 1180  hares -add IP_ora 167.206.112.71 ora_SG
+ 1181  hares -add IP_ora IP 167.206.112.71 ora_SG
+ 1182  ifconfig eth0
+ 1183  hares -add IP_ora  IP  ora_SG
+ 1184  hares -modify IP_ora  Device eth0
+ 1185  hares -modify IP_ora  Address  167.206.112.71
+ 1186  hares -modify IP_ora  NetMask  255.255.255.192
+ 1187  hares -modify IP_ora  Enabled  1  from localhost
+ 1188  hares -modify IP_ora  Enabled  1 
+ 1189  haconf -dump -makero
+ 1190  more main.cf
+ 1191  haconf -makerw
+ 1192  hares -add Netlsnr_mrm  Netlsnr  ora_SG 
+ 1193  hares -modify Netlsnr_mrm  Owner  oratacap
+ 1194  hares -modify Netlsnr_mrm  Home   /apptacap/oracle/product/12.1.0/dbhome_1
+ 1195  haconf -dump -makero
+ 1196  more main.cf
+ 1197  haconf -makerw
+ 1198  hares -add Oracle_mrm  Oracle  ora_SG
+ 1199  hares -modify Oracle_mrm  Sid  tacap 
+ 1200  hares -modify Oracle_mrm  Home  /apptacap/oracle/product/12.1.0/dbhome_1
+ 1201  haconf -dump -makero
+ 1202  more main.cf
+ 1203  haconf -makerw
+ 1204  hares -add Proxy_eth0  Proxy  ora_SG
+ 1205  hares -modify Proxy_eth0  TargetResName  csgnic
+ 1206  hares -link IP_ora  Proxy_eth0  0  0
+ 1207  haconf -dump -makero
+ 1208  more main.cf
+ 1209  history
+[root@ora1a config]# 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

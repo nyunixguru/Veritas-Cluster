@@ -1,0 +1,276 @@
+210  exit
+  211  ifconfig -a
+  212  exit
+  213  init 6
+  214  ls -ltr
+  215  cd ~panorama
+  216  ls -ltr
+  217  more PrimeHome.conf 
+  218  for a in `seq 8 13`; do ping -c 4 10.248.121.$a; done; ping -c 4 10.248.121.30
+  219  ls -ltr
+  220  more PrimeHome.conf 
+  221  pwd
+  222  vi PrimeHome.conf 
+  223  ls -ltr
+  224  chmod +x primehome_setup_v6.3.1.0.b59.sh 
+  225  ./primehome_setup_v6.3.1.0.b59.sh 
+  226  cd /usr/local/panorama/etc/
+  227  cp hazelcast.properties hazelcast.properties.05192015
+  228  vi hazelcast.properties
+  229  diff hazelcast.properties.05192015 hazelcast.properties
+  230  cd /usr/local/panorama/etc
+  231  ls -ltr
+  232  cp hazelcast.properties hazelcast.properties.05222015
+  233  vi hazelcast.properties
+  234  diff hazelcast.properties.05222015 hazelcast.properties
+  235  cd /usr/local/panorama/etc/nginx/
+  236  ls -ltr
+  237  cd ..
+  238  ls -ltr
+  239  chown panorama:panorama hazelcast.properties*
+  240  ls -ltr
+  241  cp hazelcast.properties hazelcast.properties.05222015_1400
+  242  cp hazelcast.properties.05222015 hazelcast.properties
+  243  diff hazelcast.properties.05222015_1400 hazelcast.properties
+  244  cd /usr/local/panorama/portal/tomcat/conf
+  245  ls -ltr
+  246  cp server.xml server.xml.bku.05262015
+  247  view server.xml
+  248  ls
+  249  cd server-build/
+  250  ls
+  251  chmod +x *
+  252  ./RHEL6-HPSA-X64-HCVLNY.sh
+  253  ps -ef
+  254  visudo
+  255  ./RHEL6-HPSA-X64-HCVLNY.sh
+  256  echo $?
+  257  visudo
+  258  exit
+  259  cd /etc/init.d
+  260  ls -ltr
+  261  cat activemq
+  262  cd /usr/local/panorama/portal/tomcat/conf/
+  263  cat server.xml
+  264  ls -ltr
+  265  chown panorama:panorama server.xml.bku.05262015 
+  266  ls -ltr
+  267  vi server.xml
+  268  cd ~akoo
+  269  ls -ltr
+  270  ./AppDynamics-install.sh  > /dev/null 2>&1
+  271  ls -ltr /usr/local/*
+  272  ls -ltr /usr/local/appDynamics/*
+  273  pwd
+  274  cd /usr/local/panorama/portal/tomcat/bin
+  275  ls -ltr
+  276  cp -p catalina.sh catalina.sh.bku.05272015; touch catalina.sh.bku.05272015; chmod -x catalina.sh.bku.05272015
+  277  ls -ltr
+  278  vi catalina.sh
+  279  ls -ltr
+  280  diff catalina.sh.bku.05272015 catalina.sh
+  281  vi catalina.sh
+  282  diff catalina.sh.bku.05272015 catalina.sh
+  283  vi catalina.sh
+  284  diff catalina.sh.bku.05272015 catalina.sh
+  285  cd ~panorama/
+  286  ls -ltr
+  287  more PrimeHome.conf 
+  288  cd /etc/init.d
+  289  ls -ltr
+  290  cat activemq 
+  291  vi activemq 
+  292  ls -ltr ~panorama/
+  293  cp -p activemq ~panorama/backups/etc.init.d-activemq; touch ~panorama/backups/etc.init.d-activemq
+  294  ls -ltr ~panorama/backups/
+  295  chown panorama:panorama ~panorama/backups/etc.init.d-activemq ; chmod -x ~panorama/backups/etc.init.d-activemq 
+  296  ls -ltr
+  297  ls -ltr ~panorama/backups/
+  298  vi activemq 
+  299  ls -ltr
+  300  cp -p nginx ~panorama/backups/etc.init.d-nginx; chmod -x ~panorama/backups/etc.init.d-nginx
+  301  ls -ltr ~panorama/backups/
+  302  chown panorama:panorama ~panorama/backups/etc.init.d-nginx 
+  303  ls -ltr
+  304  ls -ltr ~panorama/backups/
+  305  vi nginx 
+  306  ls -ltr /usr/local/appDynamics/*
+  307  cd /etc/sysconfig/
+  308  vi network
+  309  service network restart
+  310  netstat -nr
+  311  exit
+  312  vi /etc/sysconfig/network
+  313  service network restart
+  314  netstat -nr
+  315  exit
+  316  cdc
+  317  vi .bashrc
+  318  exec bash -l
+  319  cd /home/ddilwort
+  320  cat > main.cf
+  321  cat > out
+  322  vi out
+  323  haconf -makerw
+  324    hagrp -add mradmin_SG
+  325    hagrp -modify mradmin_SG  SystemList  mr-admin1  1  mr-admin2  2
+  326    hagrp -autoenable mradmin_SG  mr-admin1
+  327    hagrp -modify mradmin_SG  Aut  mr-admin1  1  mr-admin2  2
+  328    hagrp -modify mradmin_SG  AutoStartList  mr-admin1  mr-admin2
+  329    haconf -dump
+  330  vi /etc/profile
+  331  vi /root/.bash_profile 
+  332  source /root/.bash_profile
+  333    hagrp -add mradmin_SG
+  334  haconf -makerw
+  335    hagrp -add mradmin_SG
+  336  head out
+  337  hagrp -modify mradmin_SG  SystemList  mr-admin1  1  mr-admin2  2
+  338  hagrp -autoenable mradmin_SG  mr-admin1
+  339  more out
+  340  hagrp -modify mradmin_SG  SystemList  mr-admin1  1  mr-admin2  2
+  341  hagrp -add mradmin_SG  SystemList  mr-admin1  1  mr-admin2  2
+  342  haconf -dump -makero
+  343  cat /etc/VRTSvcs/conf/config/main.cf
+  344  more out
+  345  haconf -makerw
+  346  hagrp -modify mradmin_SG  AutoStartList  mr-admin1  mr-admin2
+  347  haconf -dump -makero
+  348  cat /etc/VRTSvcs/conf/config/main.cf
+  349  more out
+  350  ifconfig -a
+  351  pinf 10.248.121.56
+  352  ping 10.248.121.56
+  353  ping 10.248.121.57
+  354  ping 10.248.121.58
+  355  vi out
+  356  haconf -makerw
+  357  hares -add IP_mradmin  IP  mradmin_SG
+  358  hares -modify IP_mradmin  Device eth0
+  359  hares -modify IP_mradmin  Address  10.248.121.58
+  360  hares -modify IP_mradmin  NetMask  255.255.255.128
+  361  hares -modify IP_mradmin  Enabled  1
+  362  haconf -dump
+  363  cat /etc/VRTSvcs/conf/config/main.cf
+  364  more out
+  365  haconf -makerw
+  366  haconf -dump
+  367  haconf -dump -makero
+  368  haconf -makerw
+  369  haconf -dump -makero
+  370  hastatus
+  371  more out
+  372  haconf -makerw
+  373  hares -online IP_mradmin  mr-admin1
+  374  hares -online IP_mradmin admin1
+  375  hares -online IP_mradmin mr-admin1
+  376  more out
+  377  hares -add Proxy_bond0  Proxy  mradmin_SG
+  378  hares -modify Proxy_bond0  TargetResName  csgnic
+  379  hares -link IP_mradmin  Proxy_bond0  0  0
+  380  haconf -dump -makero
+  381  hagrp -switch mradmin_SG  mr-admin2
+  382  more out
+  383  cat /etc/VRTSvcs/conf/config/main.cf
+  384  more out
+  385  haconf -makerw
+  386  hares -modify Proxy_bond0  enabled  1
+  387  hares -modify Proxy_bond0  Enabled  1
+  388  haconf -dump -makero
+  389  more out
+  390  cat > outback
+  391  cat >> outback
+  392  more outback 
+  393  !
+  394  egrep -v MSG_RES_PROBE outback > out1
+  395  vi out1
+  396  grep Toler out1
+  397  vi out1
+  398  more out1
+  399  grep hares out1
+  400  more main.cf
+  401  more out1
+  402  haconf -makerw
+  403  hatype -modify Application  ToleranceLimit  10
+  404  hatype -modify IP  ToleranceLimit  10 
+  405  hatype -modify Application  MonitorInterval  15
+  406  hatype -modify IP  MonitorInterval  15 
+  407  hatype -modify Application  OfflineMonitorInterval  300
+  408  hatype -modify IP  OfflineMonitorInterval  300
+  409  hatype -modify Application  FireDrill  0
+  410  hatype -modify IP  FireDrill  0 
+  411  hagrp -modify ClusterService  AutoStart  0
+  412  hagrp -modify ClusterService  OnlineRetryInterval  0 
+  413  grep hares out1| more
+  414  haconf -makerw
+  415  hares -add Tomcat  Application  mrsl1_SG
+  416  vi out1
+  417  grep hares out1| more
+  418  hares -add Tomcat  Application  mradmin_SG
+  419  hares -modify Tomcat  Enabled  1
+  420  hares -modify Tomcat  User  root
+  421  hares -modify Tomcat  StartProgram  /etc/init.d/tomcat start
+  422  hares -modify Tomcat  StopProgram  /etc/init.d/tomcat stop
+  423  hares -modify Tomcat  CleanProgram  /etc/init.d/tomcat clean
+  424  hares -modify Tomcat  MonitorProgram  /etc/init.d/tomcat status
+  425  haconf -dump -makero
+  426  cat >> outback
+  427  more outback 
+  428  more /etc/VRTSvcs/conf/config/main.cf
+  429  grep hares out1| more
+  430  haconf -makerw
+  431  hares -add ActiveMQ  Application  mradmin_SG
+  432  hares -modify ActiveMQ  Enabled  1
+  433  hares -modify ActiveMQ  User  root
+  434  hares -modify ActiveMQ  StartProgram  /etc/init.d/activemq start
+  435  hares -modify ActiveMQ  StopProgram  /etc/init.d/activemq stop 
+  436  hares -modify ActiveMQ  CleanProgram  /etc/init.d/activemq clean
+  437  hares -modify ActiveMQ  MonitorProgram  /etc/init.d/activemq status
+  438  hares -link ActiveMQ  IP_mradmin
+  439  hares -link ActiveMQ  IP_mradmin 0 0
+  440  hares -link Tomcat  ActiveMQ  0  0
+  441  hares -unlink ActiveMQ  IP_mradmin
+  442  hares -link ActiveMQ  IP_mradmin 0 0
+  443  haconf -dump -makero
+  444  more /etc/VRTSvcs/conf/config/main.cf
+  445  grep hares out1| more
+  446  more out1
+  447  more /etc/VRTSvcs/conf/config/main.cf
+  448  vi out1
+  449  grep inx out1
+  450  clear
+  451  grep inx out1
+  452  haconf -makerw
+  453  hares -add Nginx  Application  mradmin_SG
+  454  hares -modify Nginx  Critical  1
+  455  hares -modify Nginx  Enabled   1
+  456  hares -modify Nginx  User  root
+  457  hares -modify Nginx  UseSUDash  0 
+  458  hares -modify Nginx  Enabled  0 
+  459  hares -modify Nginx  Critical  0
+  460  hares -modify Nginx  Enabled  1
+  461  hares -modify Nginx  StartProgram  /etc/init.d/nginx start
+  462  hares -modify Nginx  StopProgram  /etc/init.d/nginx stop
+  463  hares -modify Nginx  MonitorProgram  /etc/init.d/nginx status
+  464  hares -link Nginx  IP_mrsl1 
+  465  hares -link Nginx  IP_mradmin 0 0
+  466  haconf -dump -makero
+  467  more /etc/VRTSvcs/conf/config/main.cf
+  468  vi out1
+  469  hares -modify Tomcat Critical 0
+  470  haconf -makerw
+  471  hares -modify Tomcat Critical 0
+  472  hares -modify Nginx Critical 0
+  473  hares -modify ActiveMQ Critical 0
+  474  haconf -dump -makero
+  475  more /etc/VRTSvcs/conf/config/main.cf
+  476  ls /etc/init.d/
+  477  ps -ef
+  478  more /etc/VRTSvcs/conf/config/main.cf
+  479  cat /etc/VRTSvcs/conf/config/main.cf
+  480  hacf –very /etc/VRTSvcs/conf/config
+  481  hacf –verify /etc/VRTSvcs/conf/config
+  482  hacf -verify /etc/VRTSvcs/conf/config
+  483  echo $?
+  484  history
+[root@mr-admin1 ddilwort]# 

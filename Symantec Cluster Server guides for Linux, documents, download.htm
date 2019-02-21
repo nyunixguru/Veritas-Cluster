@@ -1,0 +1,1322 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- This is release SORT 3_11 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="cache-control" content="no-cache">
+	<meta name="description" content="download Symantec Cluster Server guides (Release Nodes, Configuration Guide, Installation Guide, Administrator's Guide, Troubleshooting Guide, User Guide) on Linux">
+<script type="text/javascript" src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/HeaderInfo.htm"></script>
+	<script>
+	if((typeof validSession != 'undefined') && (validSession == 'YES') )
+	{
+		window.location.replace("https://sort.symantec.com/vos_sso");
+	}
+	function add_gadget(){}
+	function symAccountFadeIn(){}
+	function signIn(){}
+</script>
+<script>
+	if (window !=top)
+	{
+		top.location.href=location.href;
+	}
+    var assetsURL = "https://d1mj3xqaoh14j0.cloudfront.net/";
+</script>
+<!-- base href="https://sort.symantec.com/" -->
+<link rel="SHORTCUT ICON" href="https://d1mj3xqaoh14j0.cloudfront.net/public/images/vos.ico">
+<link href="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/masterstylesheetMonitor-min.css" rel="stylesheet" type="text/css">
+<link href="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/navi_new-min_32.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" language="javascript" src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/jquery-latest.js"></script>
+<script type="text/javascript" language="javascript" src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/jquery-migrate-1.js"></script>
+<script type="text/javascript" language="javascript" src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/common_init.js"></script>
+<script type="text/javascript" language="JavaScript" src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/hl_layout-min.js"></script>
+<link href="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/datatable.css" rel="stylesheet" type="text/css">
+<link href="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/ia_tables.css" rel="stylesheet" type="text/css">
+<link href="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/jquery-ui-1.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" language="javascript" src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/jquery_002.js"></script>
+<script type="text/javascript" language="javascript" src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/jquery_003.js"></script>
+<title>Symantec Cluster Server guides for Linux, documents, download</title>
+</head>
+
+<body class="vosbodytext">
+<noscript><div style="color:red;font-size:14px;margin: 0 auto; margin-top:20px;border:1px solid #ccc; width:950px;padding:4px;text-align:center;">
+To use SORT, JavaScript must be enabled. <a href="http://support.mozilla.com/en-US/kb/JavaScript" target="_blank">How to enable JavaScript.</a></div></noscript>
+
+<div id="header_pane">
+			<style>
+	.highlighted{ color:#D84704 }
+</style>
+<!--Text and Icons-->
+<div id="logobar">
+<style>
+.bar_feedback a:visited{color:#3880C2;}
+/* Add text-align style for autocomplete as the outer body use: text-align: center */
+.ui-autocomplete {
+    text-align: left;
+    position: absolute; cursor: default;z-index:999 !important;
+}
+
+#symconnect_link_sub {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #3880C2;
+	width:275px;
+    margin-top: 5px;
+    padding: 3px 10px;
+    position: absolute;
+    text-align: left;
+    visibility: hidden;
+    z-index: 1001;
+}
+#symconnect_link_sub a{
+	font-size: 11px;
+    height: 18px;
+	line-height: 18px;
+}
+#symconnect_link_sub a:hover,#symconnect_link a:hover{
+	text-decoration:underline;
+}
+#symconnect_link_sub li{
+	list-style: none outside none;
+}
+
+#search-input-wrapper {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: solid 1px #d7d7d7;
+    float: right;
+	height: 24px; 
+	width: 300px;
+    margin-right:26px;
+}
+.search_wrapper{border: solid 1px #d7d7d7; height: 24px; width:26px;position:absolute;right:0px; }
+a.search-tip {
+    background: none repeat scroll 0 0 #F6F6F6;
+    border: 1px solid #DCDBDB;
+    border-radius: 2px 2px 2px 2px;
+    color: #999999;
+    display: block;
+    float: right;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 15px;
+    margin: 3px 3px 0 0;
+    padding: 0 20px 0 6px;
+    position: relative;
+    white-space: nowrap;
+}
+
+label.search_tip_label{
+    background-color: #CACACA;
+    border-radius: 3px 3px 3px 3px;
+	color: #FFFFFF;
+	font-size: 8.5px;
+    height: 12px;
+    position: absolute;
+    right: 5px;
+    top: 1.4px;
+    width: 11px;
+}
+
+label.search_tip_label:hover{
+	background-color: #333333;
+	text-decoration:underline;
+	cursor:pointer;
+}
+
+a.search-tip:hover {
+    background-color: #EFEFEF;
+    border-color: #333333;
+    color: #333333;
+    text-decoration: none;
+}
+
+input.form-text {
+    padding: 3px;
+}
+
+input#mainSearchField {
+	background-color: #FFFFFF; 
+	color: #777777; 
+	font-size: 11px; 
+	border: none;
+	width: 240px;
+	padding-bottom: 3px; 
+	padding-top: 4.5px;
+	height: 15px;
+	position: absolute;
+}
+#header_table td {padding:0px; vertical-align: middle; }
+#header_table tr {height: 24px;}
+</style>
+
+<script type="text/javascript" src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/jquery-ui-latest.js"></script>
+<script type="text/javascript" src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/core-min.js"></script>
+<script type="text/javascript" src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/enc-base64-min.js"></script>
+
+<script type="text/javascript">
+var defaultStr = 'Search SORT website';
+function clickclear(thisfield, defaulttext) {
+  if (thisfield.value == defaulttext) {
+    thisfield.value = "";
+	var $ = jQuery;
+	$("#mainSearchField").removeClass("grey_text");
+  }
+}
+function clickrecall(thisfield, defaulttext) {
+	var emptyExp = /^\s*$/;
+	if (emptyExp.test(thisfield.value)) {
+		var $ = jQuery;
+		$("#mainSearchField").addClass("grey_text");
+		thisfield.value = defaulttext;
+	}
+}
+
+function checkEnterChar(e, keywordsID)
+{
+	if(e.keyCode==13)
+	{
+		submitSearch(keywordsID);
+	}
+}
+
+function urlEscape(url)
+{
+    url = escape(url);
+    url = url.replace(/\+/gm, "%2B");
+    return url.replace(/\\/gm, "%2F");
+}
+
+function submitSearch(keywordsID)
+{
+	var $ = jQuery;
+	var keywords = $(keywordsID).val();
+	var defaultText = /^\s*Search SORT website\s*$/i;
+	var emptyExp = /^\s*$/;
+	var baseURL = "https://sort.symantec.com/";
+    if (! emptyExp.test(keywords) && ! defaultText.test(keywords)) {
+        window.location.href = baseURL + "search?q=" + encodeURIComponent(keywords);
+    }
+}
+
+function doSearch()
+{
+	submitSearch("#mainSearchField");
+}
+
+function showFeedback(location)
+{
+	var $ = jQuery;
+	var feedbackURL = "https://sort.symantec.com/public/js/feedback.js";
+	$.ajax({
+			url : feedbackURL,
+			async: true,
+			dataType : "script",
+			cache : true,
+			success : function(data) {
+				feedback.init(location);
+			}
+	});
+}
+
+function underline(id)
+{
+	var $ = jQuery;
+	$(id).css("text-decoration","underline");
+}
+
+function remove_underline(id)
+{
+	var $ = jQuery;
+	$(id).css("text-decoration","none");
+}
+
+function accumulate_symconnect_click(category){
+var A=jQuery;
+A.ajax({
+    url:"statistic_click/symconnect_clicked/"+category,
+    dataType:"html",
+    timeout:30000,
+    cache:false,
+    async:true,
+    error:function(xhr, ajaxOptions, thrownError){},
+    success:function(B){}
+});
+}
+
+jQuery("#mainSearchField").ready(function(){
+	if(defaultStr != jQuery("#mainSearchField").val()){
+		jQuery("#mainSearchField").removeClass("grey_text");
+    }
+    $('#symconnect_link').bind('click',function(e){
+        e.stopPropagation();
+        if($('#symconnect_link_sub').css('visibility')=='hidden'){
+            $('#symconnect_link_sub').css('visibility','visible');
+        }else{
+            $('#symconnect_link_sub').css('visibility','hidden');
+        }
+    });
+
+    $(document).bind('click', function(){
+        $('#symconnect_link_sub').css('visibility', 'hidden');
+    });
+
+});
+</script>
+
+<div style="position: relative;">
+<table id="header_table" cellspacing="0">
+<tbody><tr>
+  <td id="bar_logo" rowspan="2" width="280">
+    <a href="http://go.symantec.com/sort"><img src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/symantec.gif"></a>
+<!--    <div id="navi_login"></div> -->
+  </td>
+  <td id="bar_feedback" width="130">
+    <a href="javascript:showFeedback('');">
+    <div id="feedback_icon">[+]</div>SORT Support</a>
+  </td>
+  <td id="bar_suggestion" style="position:relative;" width="130">
+    <a href="javascript:void(0);" id="symconnect_link">
+    <div id="feedback_icon">[+]</div>SORT Suggestions</a>
+<div style="position:absolute; top:23px; visibility:hidden; ">
+ <ul id="symconnect_link_sub" style="width:295px;">
+   <li><a href="http://www.symantec.com/connect/storage-management/ideas" target="_blank" onclick="accumulate_symconnect_click('sf')">Submit Storage Foundation/VCS SORT enhancement</a></li>
+   <li><a href="http://www.symantec.com/connect/backup-and-archiving/ideas" target="_blank" onclick="accumulate_symconnect_click('nbu')">Submit NetBackup enhancement</a></li>
+ </ul>
+</div>
+
+  </td>
+
+  	<!--  <div id="search-box" class="clearfix"> -->
+  		<td>
+			<div id="search-input-wrapper">
+    			<input autocomplete="off" class="form-text ui-autocomplete-input" id="mainSearchField" maxlength="100" onkeydown="checkEnterChar(event,'#mainSearchField');" value="Search SORT website" onfocus="clickclear(this,defaultStr)" onblur="clickrecall(this, defaultStr)" type="text"><span class="ui-helper-hidden-accessible" aria-live="polite" role="status"></span>
+				<a class="search-tip" href="https://sort.symantec.com/search/show_tips">Tips<label class="search_tip_label">&nbsp;?</label></a>
+			</div>
+            <div class="search_wrapper">
+			<input id="mainSearchIcon" alt="Search" src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/g-search-icon.png" onclick="doSearch()" type="image">
+            </div>
+  		</td>
+  	<!-- </div> -->
+
+</tr>
+<tr>
+  <td id="bar_links" colspan="3">
+    <style type="text/css">
+
+#jsddm {
+	margin: 0;
+	padding: 0;
+	z-index: 200;
+	float:right;
+	
+}
+#jsddm li {
+	float: left;
+	list-style: none;
+	font-size: 12px;
+}
+
+#jsddm .link_divider{
+	padding:0px 5px;
+}
+
+#jsddm .link_divider2{
+	padding-right:30px;
+}
+
+#jsddm li a {
+	display: block;
+	white-space: nowrap;
+}
+
+#jsddm li a:hover {
+cursor:pointer;
+}
+
+#jsddm li ul {
+	text-align:left;
+	margin-top:18px;
+	padding:3px 5px;
+    left: 0px;
+	position: absolute;
+	visibility: hidden;
+	border: 1px solid #3880c2;
+	background: #ffffff;
+	z-index:1001;
+    font-size:11px;
+	width:105px;
+}
+#jsddm li ul li {
+	float: none;
+	display: inline;
+}
+#jsddm li ul li a {
+	width: auto;
+	height:18px;
+	line-height:18px;
+	font-size:11px;
+}
+#jsddm li ul li a:hover {
+	/*background: #ffcc00;*/
+	text-decoration: underline;
+}
+#jsddm #myAccount{position:relative;}
+#myaccount_img{
+	float:left;
+	margin: 3px 0px 0px 3px;
+	width:9px;
+	height:9px;
+	background:url('https://d1mj3xqaoh14j0.cloudfront.net/public/images/newstyle/navigation/MyAccountArrow_13.png') no-repeat;
+}
+
+#myaccount_text{
+	float:left;
+}
+
+ .ps-enable, .ps-disable, .ps-enable span, .ps-disable span { background: url('https://d1mj3xqaoh14j0.cloudfront.net/public/images/newstyle/navigation/latestOnOff.png') repeat-x; display: block; float: left; }
+ .ps-enable_left {border-radius: 4px 0 0 4px;}
+ .ps-disable_right {border-radius: 0 4px 4px 0;} 
+ .ps-enable span, .ps-disable span { line-height: 16px;display: block; background-repeat: no-repeat; font-weight: bold; }
+ .ps-enable span { background-position: left -48px; padding: 0 10px;}
+ .ps-disable span { background-position: right -96px;padding: 0 10px;}
+ .ps-disable.selected { background-position: 0 -16px;}
+ .ps-disable.selected span { background-position: right -112px; color: #fff; }
+ .ps-enable.selected { background-position: 0 -32px; }
+ .ps-enable.selected span { background-position: left -80px; }
+ .switch label { cursor: pointer; }
+ .switch label:hover { text-shadow: 0 0 2px #fff; color: #888; }
+ .switch input { display: none; }
+
+</style>
+
+<!--[if IE 6]>
+<style>
+	#myaccount_img { 
+		background: none;
+	    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='https://d1mj3xqaoh14j0.cloudfront.net/public/images/newstyle/navigation/MyAccountArrow_13.png', sizingMethod='crop');
+	}
+</style>
+<![endif]-->
+
+<script type="text/javascript">
+
+$(document).ready(function()
+{		
+	$('#jsddm > #myAccount').bind('click',function(e){
+			//e.preventDefault();
+			e.stopPropagation();
+
+			var account_menu_popup = $('#account_menu_popup').val();
+			if(account_menu_popup == 'true'){
+				$(this).find('ul').eq(0).css('visibility', 'hidden');
+				$('#account_menu_popup').val(false);
+			}else{
+				$(this).find('ul').eq(0).css('visibility', 'visible');
+				//$(this).find('ul').eq(0).bgiframe();
+				$('#account_menu_popup').val(true);
+			}		
+			
+	});
+	
+	$(document).bind('click', function(){
+				$('#jsddm > #myAccount').find('ul').eq(0).css('visibility', 'hidden');
+				$('#account_menu_popup').val(false);
+	});
+		
+	$(".ps-enable").click(function(){
+        var parent = $(this).parents('.switch');
+        $('.ps-disable',parent).removeClass('selected');
+        $(this).addClass('selected');
+        $('.checkbox',parent).prop('checked', true);       
+    	
+    	$.ajax({
+            url : "prefs/change_preference_switcher/1",
+            dataType : "html",
+            timeout : 30000,
+            cache : false,
+            async : false,
+            success : function(data) {
+                location.reload();
+            }
+        });
+    });
+    
+    $(".ps-disable").click(function(){
+        var parent = $(this).parents('.switch');
+        $('.ps-enable',parent).removeClass('selected');
+        $(this).addClass('selected');
+        $('.checkbox',parent).prop('checked', false);
+    	
+    	$.ajax({
+            url : "prefs/change_preference_switcher/0",
+            dataType : "html",
+            timeout : 30000,
+            cache : false,
+            async : false,
+            success : function(data) {
+                location.reload();
+            }
+        });
+    });
+	
+});
+</script>
+
+<div id="webGlobalMenu">
+	<div class="webglobalText">
+		<ul id="jsddm"><li><a href="https://sort.symantec.com/home">My SORT</a></li><li class="link_divider">|</li><li><a href="https://sort.symantec.com/help" target="_blank">Help</a></li><li class="link_divider">|</li><li><a onclick='javascript:symAccountFadeIn("https://symaccount.symantec.com/SymAccount/initCreate.do?widget=true&amp;logoutURL=https://sort.symantec.com/vos_sso/logout/&amp;returnURL=https%3A%2F%2Fsort.symantec.com%2Fdocuments%2Fdoc_details%2Fvcs%2F6.1%2FLinux%2FProductGuides%2F&amp;forwardURL=https://sort.symantec.com/vos_sso","https://symaccount.symantec.com/SymAccount/presentation/iHeader.jsp",2)' href="javascript:void(0);">Register</a></li><li class="link_divider">|</li><li><a onclick='javascript:symAccountFadeIn("https://symaccount.symantec.com/SymAccount/index.jsp?forwardURL=https://sort.symantec.com/vos_sso&amp;widget=true&amp;returnURL=https://sort.symantec.com/documents/doc_details/vcs/6.1/Linux/ProductGuides/","https://symaccount.symantec.com/SymAccount/presentation/iHeader.jsp",2)' href="javascript:void(0);">Sign In</a></li></ul><input id="account_menu_popup" value="false" type="hidden">	</div>
+</div> 
+  </td>
+</tr>
+</tbody></table>
+
+</div>
+
+
+<script>
+function setup_autocomplete_for(id)
+{
+    $(id).autocomplete({
+        search: function(e, ui) {
+            var querystr = $(id).val();
+            if ((/^\s*$/).test(querystr)) {
+                return false;
+            }
+        },
+
+        source: function(req, add) {
+		    var base64_req = CryptoJS.enc.Latin1.parse(req.term).toString(CryptoJS.enc.Base64);
+            $.getJSON("search/ac/" + base64_req, null, function(data) {
+                var suggestions = [];   // Create array for suggestion candidate.
+                $.each(data, function(i, val) {
+                    suggestions.push(val.keywords);
+                });
+
+                add(suggestions);       // Pass array to callback.
+            });
+        },
+
+        select: function(e, ui) {       // Submit search request once candidate is selected.
+            $(id).val(ui.item.value);
+            submitSearch(id);
+        }
+    });
+}
+
+
+$(document).ready(function() {
+    setup_autocomplete_for("#mainSearchField");
+});
+
+</script>
+</div>
+<div class="globalNav" id="top_navigation">
+<div id="navi_coverup" style="position:absolute;background:url('https://d1mj3xqaoh14j0.cloudfront.net/public/images/land.gif') no-repeat -160px -0px; width:8px; height:56px; margin:-3px 0 0 0; left:0px; z-index:1000;display:none; ">
+</div>
+		<div class="globalNavLftCnr" style="background:url('https://d1mj3xqaoh14j0.cloudfront.net/public/images/land.gif') no-repeat -75px -30px; width:5px; height:26px; display:inline;">
+		</div>
+		<div class="globalNavCntr">
+			        <div id="globalNavMain1" class="globalNavMain ">
+		        <div id="globalNavMainInner1" class="">
+		          <a id="vos_tab" href="https://sort.symantec.com/land">SORT</a>
+				</div>
+		    </div>
+						<span style="color:#444">|</span>
+						        <div id="globalNavMain2" class="globalNavMain ">
+		        <div id="globalNavMainInner2" class="">
+		          <a id="downloads_tab" href="https://sort.symantec.com/welcome/download">Downloads</a>
+				</div>
+		    </div>
+						<span style="color:#444">|</span>
+						        <div id="globalNavMain3" class="globalNavMain globalSegNavOnRight defaultTopNav">
+		        <div id="globalNavMainInner3" class="globalSegNavOn">
+		          <a id="documents_tab" href="https://sort.symantec.com/welcome/documentation">Documentation</a>
+				</div>
+		    </div>
+						<span style="color:#444">|</span>
+						        <div id="globalNavMain4" class="globalNavMain ">
+		        <div id="globalNavMainInner4" class="">
+		          <a id="assessment_tab" href="https://sort.symantec.com/assessment/about">Assessments</a>
+				</div>
+		    </div>
+						<span style="color:#444">|</span>
+						        <div id="globalNavMain5" class="globalNavMain ">
+		        <div id="globalNavMainInner5" class="">
+		          <a id="hosts_tab" href="https://sort.symantec.com/welcome/systems">My Systems</a>
+				</div>
+		    </div>
+						<span style="color:#444">|</span>
+						        <div id="globalNavMain6" class="globalNavMain ">
+		        <div id="globalNavMainInner6" class="">
+		          <a id="reports_tab" href="https://sort.symantec.com/welcome/reports">My Reports</a>
+				</div>
+		    </div>
+						<span style="color:#444">|</span>
+						        <div id="globalNavMain7" class="globalNavMain ">
+		        <div id="globalNavMainInner7" class="">
+		          <a id="notifications_tab" href="https://sort.symantec.com/welcome/notifications">Notifications</a>
+				</div>
+		    </div>
+						<span style="color:#444">|</span>
+						        <div id="globalNavMain8" class="globalNavMain ">
+		        <div id="globalNavMainInner8" class="">
+		          <a id="support_tab" href="https://sort.symantec.com/support/related_links">Support</a>
+				</div>
+		    </div>
+					        </div>
+      	<div class="globalNavRgtCnr" style="background:url('https://d1mj3xqaoh14j0.cloudfront.net/public/images/land.gif') no-repeat -85px -30px; width:6px; height:26px; display:inline; float:right;">
+      		<!-- <img src="https://d1mj3xqaoh14j0.cloudfront.net/public/images/newstyle/navigation/globalnavrgtCnr.gif" alt=""/> --> 
+      	</div>
+</div>
+
+<script type="text/javascript">
+var objBarTimer = null;
+var highlightedTab = "";
+var defaultHighlightedTab = '';
+var sub_navigation = "yes";
+
+$("#top_navigation").ready(function(){	
+	var menu_popup = false;
+	defaultHighlightedTab = "#"+$(".globalSegNavOnRight a").attr("id");
+	highlightedTab = defaultHighlightedTab;
+
+	            $("#globalNavMainInner1").hoverIntent(function(){displayPopupSubTabs('vos');}, removePopupSubTabs);
+            $("#globalNavMainInner2").hoverIntent(function(){displayPopupSubTabs('downloads');}, removePopupSubTabs);
+            $("#globalNavMainInner3").hoverIntent(function(){displayPopupSubTabs('documents');}, removePopupSubTabs);
+            $("#globalNavMainInner4").hoverIntent(function(){displayPopupSubTabs('assessment');}, removePopupSubTabs);
+            $("#globalNavMainInner5").hoverIntent(function(){displayPopupSubTabs('hosts');}, removePopupSubTabs);
+            $("#globalNavMainInner6").hoverIntent(function(){displayPopupSubTabs('reports');}, removePopupSubTabs);
+            $("#globalNavMainInner7").hoverIntent(function(){displayPopupSubTabs('notifications');}, removePopupSubTabs);
+            $("#globalNavMainInner8").hoverIntent(function(){displayPopupSubTabs('support');}, removePopupSubTabs);
+    });
+
+var navi_tabs = {
+vos:{name:'SORT', uri:'land', index:'1', sub_tab:{ 'Welcome': {uri:'land', title:''},'My SORT': {uri:'home', title:''},'SORT News': {uri:'about/news', title:''},'SORT Mobile': {uri:'mobile_ios', title:''},'SORT for NetBackup': {uri:'netbackup', title:''},'Feature Table': {uri:'featurematrix', title:''} } },
+downloads:{name:'Downloads', uri:'welcome/download', index:'2', sub_tab:{ 'About Downloads': {uri:'welcome/download', title:''},'Patches': {uri:'patch/finder', title:''},'High Availability Agents': {uri:'agents', title:''},'ASL/APM/DDI/DDL': {uri:'asl', title:''},'VOM': {uri:'vom', title:''},'SORT Data Collectors': {uri:'data_collectors', title:''} } },
+documents:{name:'Documentation', uri:'welcome/documentation', index:'3', sub_tab:{ 'About Documentation': {uri:'welcome/documentation', title:''},'Documents': {uri:'documents', title:''},'Error Codes': {uri:'ecls', title:''},'Compatibility Lists - HCL': {uri:'hclcentral', title:''},'Product EOSL': {uri:'eosl', title:''},'Product Features': {uri:'product_features', title:''},'Products and Platforms Matrix': {uri:'productmatrix', title:''} } },
+assessment:{name:'Assessments', uri:'assessment/about', index:'4', sub_tab:{ 'About Assessment': {uri:'assessment/about', title:''},'Install and Upgrade': {uri:'assessment/install_upgrade', title:''},'Risks': {uri:'assessment/risks', title:''},'Licenses': {uri:'assessment/licenses', title:''},'SPVU Calculator': {uri:'spvu_calc', title:''},'VxExplorer': {uri:'assessment/vxexplorer', title:''} } },
+hosts:{name:'My Systems', uri:'welcome/systems', index:'5', sub_tab:{ 'About Systems': {uri:'welcome/systems', title:''},'Show Systems&nbsp;<img style="width:12px;height:12px; vertical-align:middle;" src="https://d1mj3xqaoh14j0.cloudfront.net/public/images/newstyle/navi_lock.gif">': {uri:'javascript:symAccountFadeIn("https://symaccount.symantec.com/SymAccount/index.jsp?forwardURL=https://sort.symantec.com/vos_sso&widget=true&returnURL=https://sort.symantec.com/systems","https://symaccount.symantec.com/SymAccount/presentation/iHeader.jsp",2);', title:'title="Show Systems page requires sign in. Click to sign in."'},'Share Groups&nbsp;<img style="width:12px;height:12px; vertical-align:middle;" src="https://d1mj3xqaoh14j0.cloudfront.net/public/images/newstyle/navi_lock.gif">': {uri:'javascript:symAccountFadeIn("https://symaccount.symantec.com/SymAccount/index.jsp?forwardURL=https://sort.symantec.com/vos_sso&widget=true&returnURL=https://sort.symantec.com/settings/sharing","https://symaccount.symantec.com/SymAccount/presentation/iHeader.jsp",2);', title:'title="Share Groups page requires sign in. Click to sign in."'} } },
+reports:{name:'My Reports', uri:'welcome/reports', index:'6', sub_tab:{ 'About Reports': {uri:'welcome/reports', title:''},'View Reports&nbsp;<img style="width:12px;height:12px; vertical-align:middle;" src="https://d1mj3xqaoh14j0.cloudfront.net/public/images/newstyle/navi_lock.gif">': {uri:'javascript:symAccountFadeIn("https://symaccount.symantec.com/SymAccount/index.jsp?forwardURL=https://sort.symantec.com/vos_sso&widget=true&returnURL=https://sort.symantec.com/reports","https://symaccount.symantec.com/SymAccount/presentation/iHeader.jsp",2);', title:'title="View Reports page requires sign in. Click to sign in."'},'Installation and Upgrade Statistics&nbsp;<img style="width:12px;height:12px; vertical-align:middle;" src="https://d1mj3xqaoh14j0.cloudfront.net/public/images/newstyle/navi_lock.gif">': {uri:'javascript:symAccountFadeIn("https://symaccount.symantec.com/SymAccount/index.jsp?forwardURL=https://sort.symantec.com/vos_sso&widget=true&returnURL=https://sort.symantec.com/reports/statistics","https://symaccount.symantec.com/SymAccount/presentation/iHeader.jsp",2);', title:'title="Installation and Upgrade Statistics page requires sign in. Click to sign in."'},'Risk Assessment Statistics&nbsp;<img style="width:12px;height:12px; vertical-align:middle;" src="https://d1mj3xqaoh14j0.cloudfront.net/public/images/newstyle/navi_lock.gif">': {uri:'javascript:symAccountFadeIn("https://symaccount.symantec.com/SymAccount/index.jsp?forwardURL=https://sort.symantec.com/vos_sso&widget=true&returnURL=https://sort.symantec.com/reports/ra_statistics","https://symaccount.symantec.com/SymAccount/presentation/iHeader.jsp",2);', title:'title="Risk Assessment Statistics page requires sign in. Click to sign in."'} } },
+notifications:{name:'Notifications', uri:'welcome/notifications', index:'7', sub_tab:{ 'About Notifications': {uri:'welcome/notifications', title:''},'Edit&nbsp;<img style="width:12px;height:12px; vertical-align:middle;" src="https://d1mj3xqaoh14j0.cloudfront.net/public/images/newstyle/navi_lock.gif">': {uri:'javascript:symAccountFadeIn("https://symaccount.symantec.com/SymAccount/index.jsp?forwardURL=https://sort.symantec.com/vos_sso&widget=true&returnURL=https://sort.symantec.com/settings/notifications","https://symaccount.symantec.com/SymAccount/presentation/iHeader.jsp",2);', title:'title="Edit page requires sign in. Click to sign in."'},'History&nbsp;<img style="width:12px;height:12px; vertical-align:middle;" src="https://d1mj3xqaoh14j0.cloudfront.net/public/images/newstyle/navi_lock.gif">': {uri:'javascript:symAccountFadeIn("https://symaccount.symantec.com/SymAccount/index.jsp?forwardURL=https://sort.symantec.com/vos_sso&widget=true&returnURL=https://sort.symantec.com/settings/notifications/history","https://symaccount.symantec.com/SymAccount/presentation/iHeader.jsp",2);', title:'title="History page requires sign in. Click to sign in."'},'Sample': {uri:'settings/mail_sample', title:''} } },
+support:{name:'Support', uri:'support/related_links', index:'8', sub_tab:{ 'Related Links': {uri:'support/related_links', title:''},'Videos': {uri:'videos', title:''},'SORT Help': {uri:'support/help', title:''} } }}
+;
+
+function displayPopupSubTabs(tab){
+	tabList=navi_tabs[tab]["sub_tab"];
+	tabIndex = navi_tabs[tab]["index"];
+
+	var tab_id = "#"+tab+"_tab";
+	if(highlightedTab != tab_id){
+		$(highlightedTab).css("color", "#444");
+		$(tab_id).css("color", "#FFCC00");
+		$(".globalNavMain").removeClass("globalSegNavOnRight");
+		$(".globalNavMain").find("div").removeClass("globalSegNavOn");
+		$("#globalNavMain"+tabIndex).addClass("globalSegNavOnRight");
+		$("#globalNavMainInner"+tabIndex).addClass("globalSegNavOn");
+		if(tab == "vos"){
+			$("#navi_coverup").show();
+		}else{
+			$("#navi_coverup").hide();
+		}
+	}
+	highlightedTab = tab_id;
+	displayNewSubTabs(tabList);
+}
+
+function displayNewSubTabs( tabs )
+{
+	    var $ = jQuery;
+		$("#object_bar_empty").hide();
+		$(".hideObjBar").show();
+		$("#object_bar").css("display","");
+		clearTimeout(objBarTimer);
+		$(".popupSubTabs").remove();
+		$(".defaultSubTabs").css("display","none");
+		var current_index = 0;
+		for(index in tabs)
+		{
+			/*
+			current_index ++;
+			if(current_index == 1)
+				var tabHTML = '<div class="segNavMainTab popupSubTabs segNavMainTabOn"><span><a href=\''+tabs[index]+'\'>'+index+'</a></span></div>';
+			else*/
+            var tabHTML = '<div class="segNavMainTab popupSubTabs"><span><a href=\''+tabs[index]["uri"]+'\''+tabs[index]["title"]+'>'+index+'</a></span></div>';
+            if (tabs[index]["uri"] == "productmatrix"){
+              tabHTML = '<div class="segNavMainTab popupSubTabs"><span><a style="padding:.5em 9px .55em 9px;float:right;" href=\''+tabs[index]["uri"]+'\''+tabs[index]["title"]+'>'+index+'</a></span></div>';
+            }
+			$("#subTabs").append(tabHTML);
+		}
+}
+
+function removePopupSubTabs()
+{
+	objBarTimer = setTimeout(removeTabs,400);
+}
+
+function removeTabs()
+{
+	var $ = jQuery;
+	
+	$("#object_bar").css("display","");
+	$(".defaultSubTabs").css("display","");
+	$(".popupSubTabs").remove();
+	$(".hideObjBar").hide();
+	$(highlightedTab).css("color", "#444");
+	
+	$(".globalNavMain").removeClass("globalSegNavOnRight");
+	$(".globalNavMain").find("div").removeClass("globalSegNavOn");
+	$("#navi_coverup").hide();
+
+	//to deal with top-navigation
+	if(sub_navigation == "yes"){
+		var topNavid = $(".defaultTopNav").attr('id');
+		
+		$(".defaultTopNav").addClass("globalSegNavOnRight");
+		$(".defaultTopNav").find("div").addClass("globalSegNavOn");
+		$(".defaultTopNav").find("a").css("color", "#FFCC00");
+		if(topNavid == 'globalNavMain1' ){
+			$("#navi_coverup").show();
+		}
+	}
+
+	//to deal with secondary-navigation
+	if(sub_navigation == "no"){
+		$("#object_bar").css("display","none");
+		$("#object_bar_empty").show();
+	}else{
+		$("#object_bar_empty").hide();
+	}
+	highlightedTab = defaultHighlightedTab;
+}
+
+</script>
+ 
+	
+ <div class="segNav " style="display:" id="object_bar" onmouseover="onObjBar();" onmouseout="removePopupSubTabs();">
+			<!-- <div class="segNavLftCnr"><img src="https://d1mj3xqaoh14j0.cloudfront.net/public/images/newstyle/navigation/segNavlftCnr.gif" alt=""></div> -->
+			<div class="segNavLftCnr"></div>
+			<div class="segNavCntr" id="subTabs">
+								<div id="segNavMainTab1" class="segNavMainTab defaultSubTabs ">
+                        							<span><a href="https://sort.symantec.com/welcome/documentation">About Documentation</a></span>
+					</div>
+									<div id="segNavMainTab1" class="segNavMainTab defaultSubTabs segNavMainTabOn">
+                        							<span><a href="https://sort.symantec.com/documents">Documents</a></span>
+					</div>
+									<div id="segNavMainTab1" class="segNavMainTab defaultSubTabs ">
+                        							<span><a href="https://sort.symantec.com/ecls">Error Codes</a></span>
+					</div>
+									<div id="segNavMainTab1" class="segNavMainTab defaultSubTabs ">
+                        							<span><a href="https://sort.symantec.com/hclcentral">Compatibility Lists - HCL</a></span>
+					</div>
+									<div id="segNavMainTab1" class="segNavMainTab defaultSubTabs ">
+                        							<span><a href="https://sort.symantec.com/eosl">Product EOSL</a></span>
+					</div>
+									<div id="segNavMainTab1" class="segNavMainTab defaultSubTabs ">
+                        							<span><a href="https://sort.symantec.com/product_features">Product Features</a></span>
+					</div>
+									<div id="segNavMainTab1" class="segNavMainTab defaultSubTabs ">
+                        							<span><a style="padding: .5em 9px .55em 9px;" href="https://sort.symantec.com/productmatrix">Products and Platforms Matrix</a></span>
+					</div>
+							</div>
+			<!-- <div class="segNavRgtCnr"><img src="https://d1mj3xqaoh14j0.cloudfront.net/public/images/newstyle/navigation/segNavrgtCnr.gif" alt=""></div> -->
+<!--[if IE 6]>
+<style>.segNavRgtCnr{position:absolute;}</style>
+<![endif]-->
+		<div class="segNavRgtCnr" style="">
+        </div>
+</div>
+
+<div id="object_bar_empty" class="segEmpty" style="display:none"></div>
+
+<script>
+	function onObjBar()
+	{
+		clearTimeout(objBarTimer);
+	}
+</script>
+ 
+	<div class="nortonOneCol">
+    <div class="crumbs">
+	    			<a href="https://sort.symantec.com/land"><img src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/home-icon.png" width="13px"></a>
+			<span> / </span>
+								<a href="https://sort.symantec.com/documents">Documentation</a>
+			<span> / </span>
+									Documents						</div>
+</div>
+	<div style="clear:both;"></div>
+</div>
+<div id="auth_intro" title="Symantec Employee E-mail Verification Instructions" style="display:none; background:#ffffff;padding-bottom:15px;">
+       <span>An e-mail with instructions has been sent to your Symantec address. Follow the instruction there to complete verification.</span>
+   <ul class="auth_step_list">
+       <li>Step 1: Click on the "VERIFY MY ACCOUNT" button, and you will be directed to the authentication confirmation page.</li>
+       <li>Step 2: This confirmation page will display that your e-mail 
+verification is completed (i.e., "You have been verified as an active 
+Symantec employee"). If not, please follow the instructions indicated in
+ the e-mail body.</li>
+       <li>Step 3: Refresh the [here] page after email validation is done. Note that the validation process is an one-time task only.</li>
+   </ul>
+   <span>If for any reasons, you have not received the e-mail verification, go <a id="close_popup">back</a> and try again. If you still have not received it, please <a href="mailto:VOSFeedback@symantec.com">contact us</a>.</span>
+</div>
+<script type="text/javascript">
+function showAuthInstruction() {
+	    $.post("activate/send_verify_mail");
+		$("#auth_intro").dialog({
+	        dialogClass: "text_align",
+			autoOpen: true,
+			width: 600,
+			modal: true
+		}).dialog('open');
+}
+$("#close_popup").click(function() {
+		$("a.ui-dialog-titlebar-close").click();
+});
+</script>
+<div id="content_pane">
+<style>
+#reportList td{ border-bottom:1px #cccccc solid}
+#reportList table{ border-bottom-width:0px; width:auto}
+.plat_tab{background-image: url("https://d1mj3xqaoh14j0.cloudfront.net/layout/images/sidebar/tile_header.png");background-repeat: repeat-x;vertical-align:middle;float:left; border:1px #999 solid; padding-left:10px; padding-right:10px; padding-top:3px; height:18px; font-weight:normal}
+.plat_tab_ul{ margin-left:10px;}
+.selected_tab{ height: 21px; background:#ffffff; vertical-align:middle; float:left; border:1px #999 solid; padding-left:10px; padding-right:10px; padding-top:6px; font-weight:bold; margin-top:-5px;border-bottom:1px #ffffff; overflow:visible}
+.plat_tab a{ color:#3880C2;}
+.plat_tab a:hover{ text-decoration:underline}
+.plat_tab a:visited{ color:purple}
+</style>
+<div id="reportList">
+	<div>
+		<table style="width:100%; margin-bottom:2px;">
+	<tbody><tr id="tableHeaderBar">
+		<th id="tableHeaderRow" colspan="11" style="border-bottom:none">
+			<ul class="plat_tab_ul" style="list-style:none; float:left">
+								
+				<li class="plat_tab en-us"><a href="https://sort.symantec.com/documents/doc_details/vcs/6.1/AIX/ProductGuides/">AIX </a></li>
+				
+								<li class="selected_tab">Linux </li>
+								
+				<li class="plat_tab en-us"><a href="https://sort.symantec.com/documents/doc_details/vcs/6.1/Solaris/ProductGuides/">Solaris </a></li>
+				
+								
+				<li class="plat_tab en-us"><a href="https://sort.symantec.com/documents/doc_details/vcs/6.1/Windows/ProductGuides/">Windows </a></li>
+				
+							</ul>
+                        <div style="font-weight:normal; float:right; margin-top:5px;display:none;">
+			                <ul style="list-style: none; font-weight:normal; float:left">
+                    <li style="float:left; padding-top:3px; padding-right:5px;">Document Language: </li>
+					                    <li style="float:left; padding-right:5px;"><input checked="checked" class="locale_item" name="all" id="locale_all" onclick="switch_locale('all',true);" type="checkbox">All</li>
+					                    <li style="float:left; padding-right:5px;"><input checked="checked" class="locale_item" name="en-us" id="locale_en-us" onclick="switch_locale('en-us',true);" type="checkbox">English</li>
+					                </ul>
+            </div>
+		</th>
+	</tr>
+</tbody></table>
+<script>
+	function add_doc_viewtime(docid, lang_ad_key){
+		var A=jQuery;
+		A.ajax({
+			url:"documents/accumulate_doc_viewtimes/"+docid+"/"+lang_ad_key,
+			timeout:30000,
+			cache:false,
+			async:true
+		});
+	}
+	var pageTracker=pageTracker||undefined;
+	
+	function ga_track(docurl,docid,lang_ad_key){
+		if(docid!=null&&docid!=undefined&&lang_ad_key!=undefined){
+			add_doc_viewtime(docid, lang_ad_key);
+		}
+		if(pageTracker){
+			pageTracker._trackPageview(docurl);
+		}
+	}
+
+	function show_in_table(docs,langs,doc_table){
+		var tbl = document.getElementById(doc_table);
+		if(!tbl){
+			return;
+		}
+		
+		len = tbl.rows.length;
+		for(i=1;i<len;i++)
+			tbl.deleteRow(1);	
+		k=1;
+		odd_row=0;
+		for(type in docs){
+			 var subrows = docs[type];		 
+			 a = null;
+			 lastk = k;
+			 for(i=0;i<subrows.length;i++){
+					if(!langs['all'] &&  !langs[subrows[i]['lang']]){
+						continue;
+					}
+					
+					if(a === null){
+						r = tbl.insertRow(k);
+						a = r.insertCell(0);
+						b = r.insertCell(1);
+						a.innerHTML=type;
+						b.innerHTML=subrows[i]['html'];		 			
+						a.width="150px";
+						odd_row++;
+					}else{
+						r = tbl.insertRow(k);
+						c = r.insertCell(0);
+						c.innerHTML=subrows[i]['html'];
+					}
+					classname = (odd_row%2)?'tableOdd':'tableEven';
+					r.className=classname;
+					k++;
+			 }
+			 if(a !== null){
+				a.rowSpan=k-lastk;
+			 }
+		}
+	}
+
+	$(document).ready(function(){
+		var http_accept_lang = 'en-US';
+		var selector = $.cookie("document_language");
+        if (selector){selector = selector.toLowerCase();}else {selector="";}
+                var language_all=selector.indexOf("all");
+                var i=0;
+                var language_str=selector;
+                language_arr=language_str.split(",");
+                
+		if(selector && language_all<0){
+                            while(i<(language_arr.length))
+                            {                               
+                                    $("#locale_"+language_arr[i]).prop("checked",true);
+                                    i++;
+                            }
+		}else{
+			if(!$.cookie("document_language") && http_accept_lang){
+                            
+				var all_selected = true;
+				$(".locale_item").each(function(){
+					name = $(this).attr('name');
+					if(name==http_accept_lang){
+						$(this).prop("checked",true);
+					}else if(name!='all'){
+						all_selected = false;
+						$(this).prop("checked",false);
+					}
+				});
+				if(all_selected)
+					$("#locale_all").prop("checked",true);
+				$("#locale_en-us").prop("checked",true);
+			}else{
+				$(".locale_item").each(function(){
+					$(this).prop("checked",true)
+				});
+			}
+		}
+		
+		switch_locale();
+	});
+	function switch_locale(clicked,update_cookie)
+	{
+		var selector = "";
+		var cookieStr = "";
+		if(clicked == "all"){
+			var all_c = $("#locale_all").prop("checked");
+			$(".locale_item").each(function(){
+				if(all_c)
+					$(this).prop("checked",true);
+				else
+					$(this).prop("checked",false);
+			});
+		}
+		$(".datatable").css("display", "");
+		var all_selected = true;
+		var has_selected = false;
+		var langs={};
+		$(".locale_item").each(function(){
+			if($(this).prop("checked"))
+			{
+				has_selected = true;
+				if($(this).attr("name") != "all")
+				{
+					cookieStr += "#" +$(this).attr("id") +",";
+					lang = $(this).attr("name");
+					langs[lang] = 1;
+				}
+			}else{
+				if($(this).attr("name")!="all")
+					all_selected = false;
+			}
+		});
+		if(all_selected){
+			$("#locale_all").prop("checked", true);
+		}else{
+			$("#locale_all").prop("checked",false);
+		}
+		if(!has_selected) 
+			$(".datatable").css("display","none");
+		var date = new Date();
+		date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
+		var other_options = { path: "/", expires: date };
+		if(update_cookie){
+                           var new_cookie=null;
+                           var  cookie_array=cookieStr.split(',');
+                           var new_cookie;
+                           var temp_array=new Array();
+                           for(var i=0; i<cookie_array.length; i++)
+                           {                            
+                               var cookie_s=cookie_array[i].slice(8);
+                                 temp_array[i]=cookie_s;                            
+                           }
+                           if(temp_array.length>1){
+                               new_cookie=temp_array.join(",");
+                           }
+                           else
+                               {
+                                   new_cookie=temp_array[0];
+                               }
+                          
+			$.cookie("document_language", new_cookie, other_options);
+			ga_track(clicked);
+		}
+				langs = {'all':1};
+				show_in_table(docs_v6_1,langs,'doc_table_v6_1');
+		
+				$(".locale_item:not(:checked)").each(function(){
+			if($(this).attr("name")=='all') return;
+			$(".plat_tab."+$(this).attr("name")).css("display","none");
+		});
+		$(".locale_item:checked").each(function(){
+			$(".plat_tab."+$(this).attr("name")).css("display","");
+		});
+	}
+
+</script>
+		<style>
+#reportList{ margin: 0px 0px 0px 0px;}
+</style>
+<table id="doc_table_v6_1" class="datatable" style="margin-bottom: 20px; width: 100%;" cellspacing="0">
+	<thead>
+		<tr id="tableCatagoryBar">
+			<th colspan="2" style="cursor:default">
+					Release: 6.1
+			</th>
+		</tr>
+	<tr class="tableOdd"><td rowspan="1" width="150px">Release Notes</td><td><a href="http://www.symantec.com/business/support/resources/sites/BUSINESS/content/live/DOCUMENTATION/6000/DOC6963/en_US/vcs_notes_61_lin.pdf" onclick='ga_track("http://www.symantec.com/business/support/resources/sites/BUSINESS/content/live/DOCUMENTATION/6000/DOC6963/en_US/vcs_notes_61_lin.pdf","5357","f6e69644-14b8-46fe-aa4d-fa190fa79269");' target="_blank"><img src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/pdf_icon.png" border="0" height="16px" width="16px"></a>&nbsp;&nbsp;&nbsp;Symantec Cluster Server Release Notes<span style="color:#555555"> - English</span></td></tr><tr class="tableEven"><td rowspan="1" width="150px">Cluster Server Agent Guides</td><td><a href="https://sort.symantec.com/public/documents/vcs/6.1/linux/productguides/html/vcs_oracle_agent/" onclick='ga_track("https://sort.symantec.com/public/documents/vcs/6.1/linux/productguides/html/vcs_oracle_agent/","5457","02170bfc-7021-4f6f-af1c-3f5c38e1565c");'><img src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/html_icon.png" border="0" height="16px" width="16px"></a>&nbsp;&nbsp;&nbsp;Symantec Cluster Server Agent for Oracle Installation and Configuration Guide<span style="color:#555555"> - English</span></td></tr><tr class="tableOdd"><td rowspan="6" width="150px">Cluster Server Guides</td><td><a href="http://www.symantec.com/business/support/resources/sites/BUSINESS/content/live/DOCUMENTATION/6000/DOC6943/en_US/vcs_bundled_agents_61_lin.pdf" onclick='ga_track("http://www.symantec.com/business/support/resources/sites/BUSINESS/content/live/DOCUMENTATION/6000/DOC6943/en_US/vcs_bundled_agents_61_lin.pdf","5348","9d2b53d3-ba2d-4a8c-840b-04f320148e7b");' target="_blank"><img src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/pdf_icon.png" border="0" height="16px" width="16px"></a>&nbsp;&nbsp;<a href="https://sort.symantec.com/public/documents/vcs/6.1/linux/productguides/html/vcs_bundled_agents/" onclick='ga_track("https://sort.symantec.com/public/documents/vcs/6.1/linux/productguides/html/vcs_bundled_agents/","5435","2fd29298-76e6-4716-8ee0-44e7c5273623");'><img src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/html_icon.png" border="0" height="16px" width="16px"></a>&nbsp;&nbsp;&nbsp;Symantec Cluster Server Bundled Agents Reference Guide<span style="color:#555555"> - English</span></td></tr><tr class="tableOdd"><td><a href="http://www.symantec.com/business/support/resources/sites/BUSINESS/content/live/DOCUMENTATION/6000/DOC6984/en_US/vcs_admin_61_lin.pdf" onclick='ga_track("http://www.symantec.com/business/support/resources/sites/BUSINESS/content/live/DOCUMENTATION/6000/DOC6984/en_US/vcs_admin_61_lin.pdf","5348","f0c49a90-f035-4c7e-b74e-a3d3fa69df41");' target="_blank"><img src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/pdf_icon.png" border="0" height="16px" width="16px"></a>&nbsp;&nbsp;<a href="https://sort.symantec.com/public/documents/vcs/6.1/linux/productguides/html/vcs_admin/" onclick='ga_track("https://sort.symantec.com/public/documents/vcs/6.1/linux/productguides/html/vcs_admin/","5435","b110bee7-d78f-461b-999c-cef89ba923ca");'><img src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/html_icon.png" border="0" height="16px" width="16px"></a>&nbsp;&nbsp;&nbsp;Symantec Cluster Server Administrator's Guide<span style="color:#555555"> - English</span></td></tr><tr class="tableOdd"><td><a href="http://www.symantec.com/business/support/resources/sites/BUSINESS/content/live/DOCUMENTATION/6000/DOC6983/en_US/vcs_install_61_lin.pdf" onclick='ga_track("http://www.symantec.com/business/support/resources/sites/BUSINESS/content/live/DOCUMENTATION/6000/DOC6983/en_US/vcs_install_61_lin.pdf","5348","dca73b17-958a-4f38-9b79-5f33829f4c6d");' target="_blank"><img src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/pdf_icon.png" border="0" height="16px" width="16px"></a>&nbsp;&nbsp;<a href="https://sort.symantec.com/public/documents/vcs/6.1/linux/productguides/html/vcs_install/" onclick='ga_track("https://sort.symantec.com/public/documents/vcs/6.1/linux/productguides/html/vcs_install/","5458","3e8c46bc-db5d-4afc-8dbc-226309aba8e5");'><img src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/html_icon.png" border="0" height="16px" width="16px"></a>&nbsp;&nbsp;&nbsp;Symantec Cluster Server Installation Guide<span style="color:#555555"> - English</span></td></tr><tr class="tableOdd"><td><a href="http://www.symantec.com/business/support/resources/sites/BUSINESS/content/live/DOCUMENTATION/6000/DOC6922/en_US/vcs_agent_dev_61_unix.pdf" onclick='ga_track("http://www.symantec.com/business/support/resources/sites/BUSINESS/content/live/DOCUMENTATION/6000/DOC6922/en_US/vcs_agent_dev_61_unix.pdf","5371","7b46f85e-4fe2-48ff-8dd9-a842d8e46704");' target="_blank"><img src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/pdf_icon.png" border="0" height="16px" width="16px"></a>&nbsp;&nbsp;<a href="https://sort.symantec.com/public/documents/vcs/6.1/linux/productguides/html/vcs_agent_dev/" onclick='ga_track("https://sort.symantec.com/public/documents/vcs/6.1/linux/productguides/html/vcs_agent_dev/","5435","2a63a99a-d183-459d-a941-4bb20a6c75f4");'><img src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/html_icon.png" border="0" height="16px" width="16px"></a>&nbsp;&nbsp;&nbsp;Symantec Cluster Server Agent Developer's Guide<span style="color:#555555"> - English</span></td></tr><tr class="tableOdd"><td><a href="http://www.symantec.com/business/support/resources/sites/BUSINESS/content/live/DOCUMENTATION/7000/DOC7309/en_US/vbs_users.pdf" onclick='ga_track("http://www.symantec.com/business/support/resources/sites/BUSINESS/content/live/DOCUMENTATION/7000/DOC7309/en_US/vbs_users.pdf","5400","6f1445a5-27b1-4fa2-a366-fd1c1ea8c315");' target="_blank"><img src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/pdf_icon.png" border="0" height="16px" width="16px"></a>&nbsp;&nbsp;<a href="https://sort.symantec.com/public/documents/vom/6.0/windowsandunix/productguides/html/vbs_users/" onclick='ga_track("https://sort.symantec.com/public/documents/vom/6.0/windowsandunix/productguides/html/vbs_users/","5458","0228c93c-0ad4-45f4-995a-a88afc701207");'><img src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/html_icon.png" border="0" height="16px" width="16px"></a>&nbsp;&nbsp;&nbsp;Virtual Business Service–Availability User's Guide<span style="color:#555555"> - English</span></td></tr><tr class="tableOdd"><td><a href="http://www.symantec.com/business/support/resources/sites/BUSINESS/content/live/DOCUMENTATION/7000/DOC7036/en_US/vcs_gen_agent_61_linux.pdf" onclick='ga_track("http://www.symantec.com/business/support/resources/sites/BUSINESS/content/live/DOCUMENTATION/7000/DOC7036/en_US/vcs_gen_agent_61_linux.pdf","5474","12ce13ea-fe72-48c0-b214-a32a37ec0dd4");' target="_blank"><img src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/pdf_icon.png" border="0" height="16px" width="16px"></a>&nbsp;&nbsp;<a href="https://sort.symantec.com/public/documents/vcs/6.1/linux/productguides/html/vcs_gen_agent/" onclick='ga_track("https://sort.symantec.com/public/documents/vcs/6.1/linux/productguides/html/vcs_gen_agent/","5474","190c4765-d310-4a19-90f1-e868e2a1aa10");'><img src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/html_icon.png" border="0" height="16px" width="16px"></a>&nbsp;&nbsp;&nbsp;Symantec Cluster Server Generic Application Agent Configuration Guide<span style="color:#555555"> - English</span></td></tr><tr class="tableEven"><td rowspan="3" width="150px">Cluster Server Guides (Agent-specific)</td><td><a href="http://www.symantec.com/business/support/resources/sites/BUSINESS/content/live/DOCUMENTATION/6000/DOC6941/en_US/vcs_oracle_agent_61_lin.pdf" onclick='ga_track("http://www.symantec.com/business/support/resources/sites/BUSINESS/content/live/DOCUMENTATION/6000/DOC6941/en_US/vcs_oracle_agent_61_lin.pdf","5347","520f99a2-8477-412e-9d6d-f32f01d65621");' target="_blank"><img src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/pdf_icon.png" border="0" height="16px" width="16px"></a>&nbsp;&nbsp;&nbsp;Symantec Cluster Server Agent for Oracle Installation and Configuration Guide<span style="color:#555555"> - English</span></td></tr><tr class="tableEven"><td><a href="http://www.symantec.com/business/support/resources/sites/BUSINESS/content/live/DOCUMENTATION/6000/DOC6942/en_US/vcs_sybase_agent_61_lin.pdf" onclick='ga_track("http://www.symantec.com/business/support/resources/sites/BUSINESS/content/live/DOCUMENTATION/6000/DOC6942/en_US/vcs_sybase_agent_61_lin.pdf","5347","fe9bf0d1-4362-4eba-9730-bb139e76321c");' target="_blank"><img src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/pdf_icon.png" border="0" height="16px" width="16px"></a>&nbsp;&nbsp;<a href="https://sort.symantec.com/public/documents/vcs/6.1/linux/productguides/html/vcs_sybase_agent/" onclick='ga_track("https://sort.symantec.com/public/documents/vcs/6.1/linux/productguides/html/vcs_sybase_agent/","5473","cb76fbef-785e-48a8-a547-d84869e1e720");'><img src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/html_icon.png" border="0" height="16px" width="16px"></a>&nbsp;&nbsp;&nbsp;Symantec Cluster Server Agent for Sybase Installation and Configuration Guide<span style="color:#555555"> - English</span></td></tr><tr class="tableEven"><td><a href="http://www.symantec.com/business/support/resources/sites/BUSINESS/content/live/DOCUMENTATION/6000/DOC6940/en_US/vcs_db2_agent_61_lin.pdf" onclick='ga_track("http://www.symantec.com/business/support/resources/sites/BUSINESS/content/live/DOCUMENTATION/6000/DOC6940/en_US/vcs_db2_agent_61_lin.pdf","5347","f8a2ed51-f883-40a6-b2b7-d15b18d3e421");' target="_blank"><img src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/pdf_icon.png" border="0" height="16px" width="16px"></a>&nbsp;&nbsp;<a href="https://sort.symantec.com/public/documents/vcs/6.1/linux/productguides/html/vcs_db2_agent/" onclick='ga_track("https://sort.symantec.com/public/documents/vcs/6.1/linux/productguides/html/vcs_db2_agent/","5473","076dd0de-334f-4400-bd71-a4fd07b0432e");'><img src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/html_icon.png" border="0" height="16px" width="16px"></a>&nbsp;&nbsp;&nbsp;Symantec Cluster Server Agent for DB2 Installation and Configuration Guide<span style="color:#555555"> - English</span></td></tr><tr class="tableOdd"><td rowspan="1" width="150px">Symantec High Availability Guides</td><td><a href="http://www.symantec.com/business/support/resources/sites/BUSINESS/content/live/DOCUMENTATION/7000/DOC7090/en_US/sha_solutions_61_vmware_lin.pdf" onclick='ga_track("http://www.symantec.com/business/support/resources/sites/BUSINESS/content/live/DOCUMENTATION/7000/DOC7090/en_US/sha_solutions_61_vmware_lin.pdf","5615","605559e5-cb22-44f4-839f-90687a92e968");' target="_blank"><img src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/pdf_icon.png" border="0" height="16px" width="16px"></a>&nbsp;&nbsp;<a href="https://sort.symantec.com/public/documents/vcs/6.1/linux/productguides/html/sha_solutions_vmware/" onclick='ga_track("https://sort.symantec.com/public/documents/vcs/6.1/linux/productguides/html/sha_solutions_vmware/","5610","fc4d8b37-98fc-43e6-9f3e-534135b8c017");'><img src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/html_icon.png" border="0" height="16px" width="16px"></a>&nbsp;&nbsp;&nbsp;Symantec High Availability Solution Guide for VMware<span style="color:#555555"> - English</span></td></tr></thead>
+	<tbody>
+	</tbody>
+</table>
+	
+<script type="text/javascript">
+var docs_v6_1=
+	{"Release Notes":[{"lang":"en-us","html":"<a href=\"http:\/\/www.symantec.com\/business\/support\/resources\/sites\/BUSINESS\/content\/live\/DOCUMENTATION\/6000\/DOC6963\/en_US\/vcs_notes_61_lin.pdf\"  onclick='ga_track(\"http:\/\/www.symantec.com\/business\/support\/resources\/sites\/BUSINESS\/content\/live\/DOCUMENTATION\/6000\/DOC6963\/en_US\/vcs_notes_61_lin.pdf\",\"5357\",\"f6e69644-14b8-46fe-aa4d-fa190fa79269\");' target='_blank'><img src=\"https:\/\/d1mj3xqaoh14j0.cloudfront.net\/public\/images\/pdf_icon.png\" border=0 height='16px' width='16px'><\/a>&nbsp;&nbsp;&nbsp;Symantec Cluster Server Release Notes<span style=\"color:#555555\"> - English<\/span>"}],"Cluster Server Agent Guides":[{"lang":"en-us","html":"<a href=\"https:\/\/sort.symantec.com\/public\/documents\/vcs\/6.1\/linux\/productguides\/html\/vcs_oracle_agent\/\"  onclick='ga_track(\"https:\/\/sort.symantec.com\/public\/documents\/vcs\/6.1\/linux\/productguides\/html\/vcs_oracle_agent\/\",\"5457\",\"02170bfc-7021-4f6f-af1c-3f5c38e1565c\");'><img src=\"https:\/\/d1mj3xqaoh14j0.cloudfront.net\/public\/images\/html_icon.png\" border=0 height='16px' width='16px'><\/a>&nbsp;&nbsp;&nbsp;Symantec Cluster Server Agent for Oracle Installation and Configuration Guide<span style=\"color:#555555\"> - English<\/span>"}],"Cluster Server Guides":[{"lang":"en-us","html":"<a href=\"http:\/\/www.symantec.com\/business\/support\/resources\/sites\/BUSINESS\/content\/live\/DOCUMENTATION\/6000\/DOC6943\/en_US\/vcs_bundled_agents_61_lin.pdf\"  onclick='ga_track(\"http:\/\/www.symantec.com\/business\/support\/resources\/sites\/BUSINESS\/content\/live\/DOCUMENTATION\/6000\/DOC6943\/en_US\/vcs_bundled_agents_61_lin.pdf\",\"5348\",\"9d2b53d3-ba2d-4a8c-840b-04f320148e7b\");' target='_blank'><img src=\"https:\/\/d1mj3xqaoh14j0.cloudfront.net\/public\/images\/pdf_icon.png\" border=0 height='16px' width='16px'><\/a>&nbsp;&nbsp;<a href=\"https:\/\/sort.symantec.com\/public\/documents\/vcs\/6.1\/linux\/productguides\/html\/vcs_bundled_agents\/\"  onclick='ga_track(\"https:\/\/sort.symantec.com\/public\/documents\/vcs\/6.1\/linux\/productguides\/html\/vcs_bundled_agents\/\",\"5435\",\"2fd29298-76e6-4716-8ee0-44e7c5273623\");'><img src=\"https:\/\/d1mj3xqaoh14j0.cloudfront.net\/public\/images\/html_icon.png\" border=0 height='16px' width='16px'><\/a>&nbsp;&nbsp;&nbsp;Symantec Cluster Server Bundled Agents Reference Guide<span style=\"color:#555555\"> - English<\/span>"},{"lang":"en-us","html":"<a href=\"http:\/\/www.symantec.com\/business\/support\/resources\/sites\/BUSINESS\/content\/live\/DOCUMENTATION\/6000\/DOC6984\/en_US\/vcs_admin_61_lin.pdf\"  onclick='ga_track(\"http:\/\/www.symantec.com\/business\/support\/resources\/sites\/BUSINESS\/content\/live\/DOCUMENTATION\/6000\/DOC6984\/en_US\/vcs_admin_61_lin.pdf\",\"5348\",\"f0c49a90-f035-4c7e-b74e-a3d3fa69df41\");' target='_blank'><img src=\"https:\/\/d1mj3xqaoh14j0.cloudfront.net\/public\/images\/pdf_icon.png\" border=0 height='16px' width='16px'><\/a>&nbsp;&nbsp;<a href=\"https:\/\/sort.symantec.com\/public\/documents\/vcs\/6.1\/linux\/productguides\/html\/vcs_admin\/\"  onclick='ga_track(\"https:\/\/sort.symantec.com\/public\/documents\/vcs\/6.1\/linux\/productguides\/html\/vcs_admin\/\",\"5435\",\"b110bee7-d78f-461b-999c-cef89ba923ca\");'><img src=\"https:\/\/d1mj3xqaoh14j0.cloudfront.net\/public\/images\/html_icon.png\" border=0 height='16px' width='16px'><\/a>&nbsp;&nbsp;&nbsp;Symantec Cluster Server Administrator's Guide<span style=\"color:#555555\"> - English<\/span>"},{"lang":"en-us","html":"<a href=\"http:\/\/www.symantec.com\/business\/support\/resources\/sites\/BUSINESS\/content\/live\/DOCUMENTATION\/6000\/DOC6983\/en_US\/vcs_install_61_lin.pdf\"  onclick='ga_track(\"http:\/\/www.symantec.com\/business\/support\/resources\/sites\/BUSINESS\/content\/live\/DOCUMENTATION\/6000\/DOC6983\/en_US\/vcs_install_61_lin.pdf\",\"5348\",\"dca73b17-958a-4f38-9b79-5f33829f4c6d\");' target='_blank'><img src=\"https:\/\/d1mj3xqaoh14j0.cloudfront.net\/public\/images\/pdf_icon.png\" border=0 height='16px' width='16px'><\/a>&nbsp;&nbsp;<a href=\"https:\/\/sort.symantec.com\/public\/documents\/vcs\/6.1\/linux\/productguides\/html\/vcs_install\/\"  onclick='ga_track(\"https:\/\/sort.symantec.com\/public\/documents\/vcs\/6.1\/linux\/productguides\/html\/vcs_install\/\",\"5458\",\"3e8c46bc-db5d-4afc-8dbc-226309aba8e5\");'><img src=\"https:\/\/d1mj3xqaoh14j0.cloudfront.net\/public\/images\/html_icon.png\" border=0 height='16px' width='16px'><\/a>&nbsp;&nbsp;&nbsp;Symantec Cluster Server Installation Guide<span style=\"color:#555555\"> - English<\/span>"},{"lang":"en-us","html":"<a href=\"http:\/\/www.symantec.com\/business\/support\/resources\/sites\/BUSINESS\/content\/live\/DOCUMENTATION\/6000\/DOC6922\/en_US\/vcs_agent_dev_61_unix.pdf\"  onclick='ga_track(\"http:\/\/www.symantec.com\/business\/support\/resources\/sites\/BUSINESS\/content\/live\/DOCUMENTATION\/6000\/DOC6922\/en_US\/vcs_agent_dev_61_unix.pdf\",\"5371\",\"7b46f85e-4fe2-48ff-8dd9-a842d8e46704\");' target='_blank'><img src=\"https:\/\/d1mj3xqaoh14j0.cloudfront.net\/public\/images\/pdf_icon.png\" border=0 height='16px' width='16px'><\/a>&nbsp;&nbsp;<a href=\"https:\/\/sort.symantec.com\/public\/documents\/vcs\/6.1\/linux\/productguides\/html\/vcs_agent_dev\/\"  onclick='ga_track(\"https:\/\/sort.symantec.com\/public\/documents\/vcs\/6.1\/linux\/productguides\/html\/vcs_agent_dev\/\",\"5435\",\"2a63a99a-d183-459d-a941-4bb20a6c75f4\");'><img src=\"https:\/\/d1mj3xqaoh14j0.cloudfront.net\/public\/images\/html_icon.png\" border=0 height='16px' width='16px'><\/a>&nbsp;&nbsp;&nbsp;Symantec Cluster Server Agent Developer's Guide<span style=\"color:#555555\"> - English<\/span>"},{"lang":"en-us","html":"<a href=\"http:\/\/www.symantec.com\/business\/support\/resources\/sites\/BUSINESS\/content\/live\/DOCUMENTATION\/7000\/DOC7309\/en_US\/vbs_users.pdf\"  onclick='ga_track(\"http:\/\/www.symantec.com\/business\/support\/resources\/sites\/BUSINESS\/content\/live\/DOCUMENTATION\/7000\/DOC7309\/en_US\/vbs_users.pdf\",\"5400\",\"6f1445a5-27b1-4fa2-a366-fd1c1ea8c315\");' target='_blank'><img src=\"https:\/\/d1mj3xqaoh14j0.cloudfront.net\/public\/images\/pdf_icon.png\" border=0 height='16px' width='16px'><\/a>&nbsp;&nbsp;<a href=\"https:\/\/sort.symantec.com\/public\/documents\/vom\/6.0\/windowsandunix\/productguides\/html\/vbs_users\/\"  onclick='ga_track(\"https:\/\/sort.symantec.com\/public\/documents\/vom\/6.0\/windowsandunix\/productguides\/html\/vbs_users\/\",\"5458\",\"0228c93c-0ad4-45f4-995a-a88afc701207\");'><img src=\"https:\/\/d1mj3xqaoh14j0.cloudfront.net\/public\/images\/html_icon.png\" border=0 height='16px' width='16px'><\/a>&nbsp;&nbsp;&nbsp;Virtual Business Service\u2013Availability User's Guide<span style=\"color:#555555\"> - English<\/span>"},{"lang":"en-us","html":"<a href=\"http:\/\/www.symantec.com\/business\/support\/resources\/sites\/BUSINESS\/content\/live\/DOCUMENTATION\/7000\/DOC7036\/en_US\/vcs_gen_agent_61_linux.pdf\"  onclick='ga_track(\"http:\/\/www.symantec.com\/business\/support\/resources\/sites\/BUSINESS\/content\/live\/DOCUMENTATION\/7000\/DOC7036\/en_US\/vcs_gen_agent_61_linux.pdf\",\"5474\",\"12ce13ea-fe72-48c0-b214-a32a37ec0dd4\");' target='_blank'><img src=\"https:\/\/d1mj3xqaoh14j0.cloudfront.net\/public\/images\/pdf_icon.png\" border=0 height='16px' width='16px'><\/a>&nbsp;&nbsp;<a href=\"https:\/\/sort.symantec.com\/public\/documents\/vcs\/6.1\/linux\/productguides\/html\/vcs_gen_agent\/\"  onclick='ga_track(\"https:\/\/sort.symantec.com\/public\/documents\/vcs\/6.1\/linux\/productguides\/html\/vcs_gen_agent\/\",\"5474\",\"190c4765-d310-4a19-90f1-e868e2a1aa10\");'><img src=\"https:\/\/d1mj3xqaoh14j0.cloudfront.net\/public\/images\/html_icon.png\" border=0 height='16px' width='16px'><\/a>&nbsp;&nbsp;&nbsp;Symantec Cluster Server Generic Application Agent Configuration Guide<span style=\"color:#555555\"> - English<\/span>"}],"Cluster Server Guides (Agent-specific)":[{"lang":"en-us","html":"<a href=\"http:\/\/www.symantec.com\/business\/support\/resources\/sites\/BUSINESS\/content\/live\/DOCUMENTATION\/6000\/DOC6941\/en_US\/vcs_oracle_agent_61_lin.pdf\"  onclick='ga_track(\"http:\/\/www.symantec.com\/business\/support\/resources\/sites\/BUSINESS\/content\/live\/DOCUMENTATION\/6000\/DOC6941\/en_US\/vcs_oracle_agent_61_lin.pdf\",\"5347\",\"520f99a2-8477-412e-9d6d-f32f01d65621\");' target='_blank'><img src=\"https:\/\/d1mj3xqaoh14j0.cloudfront.net\/public\/images\/pdf_icon.png\" border=0 height='16px' width='16px'><\/a>&nbsp;&nbsp;&nbsp;Symantec Cluster Server Agent for Oracle Installation and Configuration Guide<span style=\"color:#555555\"> - English<\/span>"},{"lang":"en-us","html":"<a href=\"http:\/\/www.symantec.com\/business\/support\/resources\/sites\/BUSINESS\/content\/live\/DOCUMENTATION\/6000\/DOC6942\/en_US\/vcs_sybase_agent_61_lin.pdf\"  onclick='ga_track(\"http:\/\/www.symantec.com\/business\/support\/resources\/sites\/BUSINESS\/content\/live\/DOCUMENTATION\/6000\/DOC6942\/en_US\/vcs_sybase_agent_61_lin.pdf\",\"5347\",\"fe9bf0d1-4362-4eba-9730-bb139e76321c\");' target='_blank'><img src=\"https:\/\/d1mj3xqaoh14j0.cloudfront.net\/public\/images\/pdf_icon.png\" border=0 height='16px' width='16px'><\/a>&nbsp;&nbsp;<a href=\"https:\/\/sort.symantec.com\/public\/documents\/vcs\/6.1\/linux\/productguides\/html\/vcs_sybase_agent\/\"  onclick='ga_track(\"https:\/\/sort.symantec.com\/public\/documents\/vcs\/6.1\/linux\/productguides\/html\/vcs_sybase_agent\/\",\"5473\",\"cb76fbef-785e-48a8-a547-d84869e1e720\");'><img src=\"https:\/\/d1mj3xqaoh14j0.cloudfront.net\/public\/images\/html_icon.png\" border=0 height='16px' width='16px'><\/a>&nbsp;&nbsp;&nbsp;Symantec Cluster Server Agent for Sybase Installation and Configuration Guide<span style=\"color:#555555\"> - English<\/span>"},{"lang":"en-us","html":"<a href=\"http:\/\/www.symantec.com\/business\/support\/resources\/sites\/BUSINESS\/content\/live\/DOCUMENTATION\/6000\/DOC6940\/en_US\/vcs_db2_agent_61_lin.pdf\"  onclick='ga_track(\"http:\/\/www.symantec.com\/business\/support\/resources\/sites\/BUSINESS\/content\/live\/DOCUMENTATION\/6000\/DOC6940\/en_US\/vcs_db2_agent_61_lin.pdf\",\"5347\",\"f8a2ed51-f883-40a6-b2b7-d15b18d3e421\");' target='_blank'><img src=\"https:\/\/d1mj3xqaoh14j0.cloudfront.net\/public\/images\/pdf_icon.png\" border=0 height='16px' width='16px'><\/a>&nbsp;&nbsp;<a href=\"https:\/\/sort.symantec.com\/public\/documents\/vcs\/6.1\/linux\/productguides\/html\/vcs_db2_agent\/\"  onclick='ga_track(\"https:\/\/sort.symantec.com\/public\/documents\/vcs\/6.1\/linux\/productguides\/html\/vcs_db2_agent\/\",\"5473\",\"076dd0de-334f-4400-bd71-a4fd07b0432e\");'><img src=\"https:\/\/d1mj3xqaoh14j0.cloudfront.net\/public\/images\/html_icon.png\" border=0 height='16px' width='16px'><\/a>&nbsp;&nbsp;&nbsp;Symantec Cluster Server Agent for DB2 Installation and Configuration Guide<span style=\"color:#555555\"> - English<\/span>"}],"Symantec High Availability Guides":[{"lang":"en-us","html":"<a href=\"http:\/\/www.symantec.com\/business\/support\/resources\/sites\/BUSINESS\/content\/live\/DOCUMENTATION\/7000\/DOC7090\/en_US\/sha_solutions_61_vmware_lin.pdf\"  onclick='ga_track(\"http:\/\/www.symantec.com\/business\/support\/resources\/sites\/BUSINESS\/content\/live\/DOCUMENTATION\/7000\/DOC7090\/en_US\/sha_solutions_61_vmware_lin.pdf\",\"5615\",\"605559e5-cb22-44f4-839f-90687a92e968\");' target='_blank'><img src=\"https:\/\/d1mj3xqaoh14j0.cloudfront.net\/public\/images\/pdf_icon.png\" border=0 height='16px' width='16px'><\/a>&nbsp;&nbsp;<a href=\"https:\/\/sort.symantec.com\/public\/documents\/vcs\/6.1\/linux\/productguides\/html\/sha_solutions_vmware\/\"  onclick='ga_track(\"https:\/\/sort.symantec.com\/public\/documents\/vcs\/6.1\/linux\/productguides\/html\/sha_solutions_vmware\/\",\"5610\",\"fc4d8b37-98fc-43e6-9f3e-534135b8c017\");'><img src=\"https:\/\/d1mj3xqaoh14j0.cloudfront.net\/public\/images\/html_icon.png\" border=0 height='16px' width='16px'><\/a>&nbsp;&nbsp;&nbsp;Symantec High Availability Solution Guide for VMware<span style=\"color:#555555\"> - English<\/span>"}]};
+</script>
+
+
+	</div>
+</div>
+</div>
+<script>
+	jQuery("#vosstatusbar").ready(function(){
+		if(!elIE6)
+		{
+		    jQuery("#vosstatusbar").addClass("statusbar");
+		}
+		
+		var $ = jQuery;
+		$("#tos_link").mouseover(function(){
+			$(this).css("text-decoration", "underline");
+		});
+		$("#tos_link").mouseout(function(){
+			$(this).css("text-decoration", "none");
+		});
+		
+		$("#tos_link").click(function(){
+			$.ajax({				
+				url:"legal/terms_of_service",
+				dataType : "html",
+				timeout : 30000,
+				cache : true,
+				async : true,
+				success : function(data) {
+					$("#tos_link").css("color","purple");
+					$("#tos_container").html("");
+					$("#tos_container").append(data);
+					var docHeight = getDocHeight();
+					$("#tos_div").css("height",docHeight);
+					if(elIE6)
+					{
+						var winHeight = $(window).height();
+						var tosHeight =  winHeight - 100;
+                        $('#tos_div').css('width',document.documentElement.clientWidth);
+						$("#tos_content").css("height", tosHeight - 100);
+						$("#tos_container").css("width", "90%");
+						$("#tos_container").css("height", tosHeight);
+						$("#tos_container").bgiframe();
+
+						if(docHeight > winHeight)
+						{
+							var topHeight = docHeight -tosHeight - 55;
+							$("#tos_container").css("top", topHeight);
+						}
+					}
+					$("#tos_container").css("display","block");
+					$("#tos_div").css("display","block");
+					$("#tos_close_btn").click(function(){
+						$("#tos_container").css("display","none");
+						$("#tos_div").css("display","none");
+					});
+                    window.scrollTo(0,0);
+				}
+			});
+		});
+	});
+	
+</script>
+<div id="footer_pane" style="clear:both;">
+	<div id="vosstatusbar" class="bckGry statusbar">
+		<div class="footerContent">
+			<div style="float:left;">©1995 - 2014 Symantec Corporation
+			</div>
+			<span style="float:right">
+              <span style="padding-right: 20px;">
+                 <a href="https://sort.symantec.com/sitemap">Site Map</a>
+              </span>
+              <span style="padding-right:20px;">
+                <a href="http://www.symantec.com/about/profile/policies/eulas" target="_blank">Third Party Notice</a>
+              </span>
+              <span></span>
+              <span id="tos_link" style="cursor:pointer">Terms of Service</span>
+            </span>
+		</div>
+	</div>
+<div style="margin:auto;text-align:center;padding:0;"><a href="https://sealinfo.verisign.com/splash?form_file=fdf/splash.fdf&amp;dn=sort.symantec.com&amp;lang=en" target="_blank"><img src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/vseal_gray.gif"></a></div>
+</div>
+
+<script>
+var feedback_questions;
+function show_float_feedback(){
+  $("#feedback_dialog").dialog({"modal": true,
+    "title": "Tell us about your experience with SORT website",
+    "width": "650", "height":"auto", "position":[ "center", "center"]});
+  $("#feedback_q_left").html("");
+  $("#feedback_q_right").html("");
+  $.getJSON("feedback/get_feedback_questions?"+  (new Date()).valueOf() , function(data){
+        feedback_questions = data;
+        middle_num=Math.ceil(feedback_questions.length/2);
+        for(i in feedback_questions){
+            q=feedback_questions[i];
+            if (i<middle_num){
+                $("#feedback_q_left").append(q['html']);
+            }else {
+                $("#feedback_q_right").append(q['html']);
+            }
+        }
+    });
+}
+function send_feedback(){
+  page_url = "/documents/doc_details/vcs/6.1/Linux/ProductGuides/";
+  symacctid = "";
+  symacctid= (symacctid=="")?"0":symacctid;
+
+  survey_qa=[];
+  for(i in feedback_questions){
+    q=feedback_questions[i];
+    if(q['type']=='radio'){
+        val = $('#feedback_dialog input[name="q'+q['num']+'_radio"]:radio:checked').val();
+    }else if (q['type']=='select'){
+        val = $('#feedback_dialog select[name="q'+q['num']+'_select"]').val();
+    }else if (q['type']=='text'){
+        val = $('#feedback_dialog textarea[name="q'+q['num']+'_text"]').val();
+    }else {
+        continue;
+    }
+    chk_fun_name = this.window["check_feedback_"+q['num']];
+    if (typeof chk_fun_name === 'function'){
+        if (!chk_fun_name()){return false;}
+    }
+    if(typeof(val)=="undefined"){val="";}
+    qa={"questionID": q['qid'], "answer":val};
+    survey_qa[i] = qa;
+  }
+
+  data={"symAccountUID":symacctid, submitterIPAddress:"", "referrer":"From WEB:"+page_url, "survey_qa": survey_qa};
+  str_data = $.toJSON(data);
+  send_url = "https://sort.symantec.com/SORTServices/rest/survey/1.0/questionnaire/satisfaction_web/submit?source=web_310";
+  $.ajax({url:send_url, data:str_data , type:"post", dataType:"json", complete:function(xhr, status){$("#feedback_dialog").dialog("close");alert("Thank you for your feedback!")}});
+}
+</script>
+<div id="floating_feedback" class="oo_feedback_float" onclick="javascript:show_float_feedback();">
+ <div class="olUp" tabindex="0">Feedback</div>
+ <div class="olOver"><span>Click here to rate this page</span></div>
+ <div class="oo_transparent"></div>
+</div>
+<div id="feedback_dialog" style="display:none;"><form autocomplete="off">
+ <table class="layout" id="frame">
+  <tbody><tr> <td colspan="2" align="left"><img src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/symantec.gif"></td></tr>
+  <tr style="height:278px;"> <td id="feedback_q_left" align="left" valign="top" width="50%">
+    </td>
+    <td id="feedback_q_right" align="left" valign="top" width="50%">
+    </td>
+  </tr>
+ </tbody></table>
+<hr>
+<input id="btnFinish" value="SEND FEEDBACK" style="margin-left:0px;" onclick="send_feedback();" type="button">
+</form></div>
+
+<div id="feedback_common" title="Feedback" style="display:none; background:#ffffff">
+</div>
+
+<div id="tos_div" class="tos"></div>
+<div id="tos_container"></div>
+<style>
+.pageMask {
+	WIDTH: 100%; BACKGROUND-COLOR: #aaaaaa;
+}
+</style>
+<!-- MASK LAYER -->
+<script language="javascript" src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/jquery.js"></script>
+<div id="pagemask" class="pageMask"></div>
+<div id="symAccountClose" class="symAccountClose"><a href="javascript:symAccountFadeOut()"><img src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/close_layer.gif" border="none"></a></div>
+<div id="symAccount" style="font-size:11px">
+	<div class="shadow1">
+		<div class="shadow2">
+			<div class="shadow3">
+				<div class="container">
+					<iframe id="symAccountHeader" src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/blank_003.gif" frameborder="0" height="66" scrolling="no" width="670"></iframe><br>
+					<iframe id="symAccountContent" src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/blank_003.gif" frameborder="0" height="464" scrolling="auto" width="670"></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="sideBar" style="LEFT: 680px; TOP: 0px; POSITION: absolute; width:300px; height:636px; z-index:1003;">
+	   <div class="shadow1" style="height:100%;">
+	      <div class="shadow2" style="height:100%">
+	         <div class="shadow3" style="height:100%">
+	            <div class="container loginText" style="height:100%">
+	               <div style="margin:5px 5px 5px 5px; color:#7a6f69">
+                       <p class="pageHeader" style="color:#7a6f69">Why Register?</p>	       
+                       <div class="dividerHeader"></div>
+                       
+                       <p style="color:#7a6f69; margin:15px; font-weight: bold">Get notifications about ASLs/APMs, HCLs, patches, and high availability agents</p>
+                       <p style="color:#7a6f69; margin:15px">As a 
+registered user, you can create notifications to receive updates about 
+NetBackup Future Platform and Feature Plans, NetBackup hot fixes/EEBs in
+ released versions, Array Support Libraries (ASLs)/Array Policy Modules 
+(APMs), hardware compatibility lists (HCLs), patches and high 
+availability agents. In addition, you can create system-specific 
+notifications customized to your environment.</p>
+                       
+                       <p style="color:#7a6f69; margin:15px; font-weight: bold">Compare configurations</p>
+                       <p style="color:#7a6f69; margin:15px">The Compare
+ Configurations feature lets you compare different system scans by the 
+data collector. When you sign in, you can choose a target system, 
+compare reports run at different times, and easily see how the system's 
+configuration has changed.</p>
+
+                       <p style="color:#7a6f69; margin:15px; font-weight: bold">Save configurations</p>
+                       <p style="color:#7a6f69; margin:15px">After 
+logging in, you can retrieve past reports, share reports with 
+colleagues, review notifications you received, and retain custom 
+settings. Anonymous users cannot access these features.</p>
+
+                       <p style="color:#7a6f69; margin:15px; font-weight: bold">Bulk uploader</p>
+                       <p style="color:#7a6f69; margin:15px">As a registered user,you can upload multiple reports, using the Bulk Uploader.</p>
+
+	               </div>
+	            </div>
+	         </div>
+	      </div>
+	   </div>
+	</div>
+	<b></b>
+</div>
+<!--[if IE 6]>
+<script>
+    $('#pagemask').css('width',document.documentElement.clientWidth);
+    $('#pagemask').bgiframe();
+</script>
+<![endif]-->
+<!-- /MASK LAYER -->
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/ga.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        var pageTracker = _gat._getTracker("UA-2928719-1");
+        pageTracker._initData();
+        pageTracker._trackPageview();
+    </script>
+<script type="text/javascript" language="JavaScript" src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/docs_tracker.js"></script>
+<script type="text/javascript" language="JavaScript" src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/cookie.js"></script>
+<script type="text/javascript" language="JavaScript" src="Symantec%20Cluster%20Server%20guides%20for%20Linux,%20documents,%20download_files/jquery_fixedtableheader-1-0-2_min.js"></script>
+
+<script>
+/*
+var feedback_questions;
+function show_float_feedback(){
+  $("#feedback_dialog").dialog({"modal": true,
+    "title": "Symantec Operations Readiness Tools Feedback", 
+    "width": "650", "position":[ "center", "center"]});
+  $("#feedback_q_left").html("");
+  $("#feedback_q_right").html("");
+  $.getJSON("feedback/get_feedback_questions", function(data){
+        feedback_questions = data;
+        middle_num=Math.ceil(feedback_questions.length/2);
+        for(i in feedback_questions){
+            q=feedback_questions[i];
+            if (i<middle_num){
+                $("#feedback_q_left").append(q['html']);
+            }else {
+                $("#feedback_q_right").append(q['html']);
+            }
+        }
+    }); 
+}
+function send_feedback(){
+  page_url = "/documents/doc_details/vcs/6.1/Linux/ProductGuides/";
+  symacctid = "";
+  symacctid= (symacctid=="")?"0":symacctid;
+
+  survey_qa=[];
+  for(i in feedback_questions){
+    q=feedback_questions[i];
+    if(q['type']=='radio'){
+        val = $('#feedback_dialog input[name="q'+q['num']+'_radio"]:radio:checked').val();
+    }else if (q['type']=='select'){
+        val = $('#feedback_dialog select[name="q'+q['num']+'_select"]').val();
+    }else if (q['type']=='text'){
+        val = $('#feedback_dialog textarea[name="q'+q['num']+'_text"]').val();
+    }else {
+        continue;
+    }
+    if(typeof(val)=="undefined"){val="";}
+    qa={"questionID": q['qid'], "answer":val};
+    survey_qa[i] = qa;
+  }
+
+  data={"symAccountUID":symacctid, submitterIPAddress:"", "referrer":"From WEB"+page_url, "survey_qa": survey_qa};
+  str_data = JSON.stringify(data);
+  send_url = "https://sort.symantec.com/SORTServices/rest/survey/1.0/questionnaire/satisfaction_web/submit?source=web_310";
+  $.post(send_url, str_data , function(data){$("#feedback_dialog").dialog("close");alert("Thank you for your feedback!")});
+}*/
+</script>
+<!-- <div id="floating_feedback" class="oo_feedback_float" onclick="javascript:show_float_feedback();">
+ <div class="olUp" tabindex="0">Feedback</div>
+ <div class="olOver"><span>Click here to rate this page</span></div>
+ <div class="oo_transparent"></div>
+</div>
+<div id="feedback_dialog" style="display:none;"><form autocomplete="off">
+ <table class="layout" id="frame">
+  <tr> <td colspan="2" align="left"><img src="https://d1mj3xqaoh14j0.cloudfront.net/public/images/symantec.gif"/></td></tr>
+  <tr style="height:278px;"> <td width="50%" align="left" valign="top" id="feedback_q_left">
+    </td>
+    <td width="50%" align="left" valign="top" id="feedback_q_right">
+    </td>
+  </tr>
+ </table>
+<hr>
+<input type="button" id="btnFinish" value="Send Feedback" style="margin-left:0px;" onclick="send_feedback();"></input>
+</form></div> -->
+
+
+
+<ul style="z-index: 11; display: none;" tabindex="0" id="ui-id-1" class="ui-autocomplete ui-menu ui-widget ui-widget-content ui-corner-all"></ul></body></html>

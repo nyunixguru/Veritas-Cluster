@@ -1,0 +1,101 @@
+ems2.srv.bthpny.cv.net# grep -i fired engine_A.log
+2009/03/19 16:28:13 VCS INFO V-16-1-50135 User root fired command: MSG_CLUSTER_STOP_SYS from localhost
+
+2009/03/20 10:18:40 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2009/03/20 10:18:40 VCS INFO V-16-1-50135 User root fired command: hares -local vxfsckd  ActivationMode  from localhost
+2009/03/20 10:18:40 VCS INFO V-16-1-50135 User root fired command: hares -modify ... -add vxfsckd  ActivationMode  emsdg  sw  ems1  from localhost
+2009/03/20 10:18:40 VCS INFO V-16-1-50135 User root fired command: hares -modify ... -add vxfsckd  ActivationMode  emsdg  sw  ems2  from localhost
+2009/03/20 10:18:40 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+
+
+
+2009/03/20 10:21:52 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2009/03/20 10:21:52 VCS INFO V-16-1-50135 User root fired command: hagrp -add vrts_vea_cfs_int_cfsmount1  from localhost
+2009/03/20 10:21:52 VCS INFO V-16-1-50135 User root fired command: hagrp -modify vrts_vea_cfs_int_cfsmount1  SystemList  ems1  0  ems2  1  from localhost
+2009/03/20 10:21:52 VCS INFO V-16-1-50135 User root fired command: hagrp -modify vrts_vea_cfs_int_cfsmount1  AutoStartList  ems1  ems2  from localhost
+2009/03/20 10:21:52 VCS INFO V-16-1-50135 User root fired command: hagrp -modify vrts_vea_cfs_int_cfsmount1  Parallel  1  from localhost
+2009/03/20 10:21:52 VCS INFO V-16-1-50135 User root fired command: hagrp -modify vrts_vea_cfs_int_cfsmount1  AutoFailOver  0  from localhost
+2009/03/20 10:21:52 VCS INFO V-16-1-50135 User root fired command: hagrp -link vrts_vea_cfs_int_cfsmount1  cvm  1  1  from localhost
+2009/03/20 10:21:52 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+
+
+2009/03/20 10:21:52 VCS INFO V-16-1-50135 User root fired command: hagrp -autoenable vrts_vea_cfs_int_cfsmount1  ems1  from localhost
+2009/03/20 10:21:52 VCS INFO V-16-1-50135 User root fired command: hagrp -online vrts_vea_cfs_int_cfsmount1  ems1  from localhost
+2009/03/20 10:21:52 VCS INFO V-16-1-50135 User root fired command: hagrp -autoenable vrts_vea_cfs_int_cfsmount1  ems2  from localhost
+2009/03/20 10:21:52 VCS INFO V-16-1-50135 User root fired command: hagrp -online vrts_vea_cfs_int_cfsmount1  ems2  from localhost
+
+2009/03/20 10:21:52 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2009/03/20 10:21:52 VCS INFO V-16-1-50135 User root fired command: hares -add cvmvoldg1  CVMVolDg  vrts_vea_cfs_int_cfsmount1  from localhost
+2009/03/20 10:21:52 VCS INFO V-16-1-50135 User root fired command: hares -modify cvmvoldg1  CVMDiskGroup  emsdg  from localhost
+2009/03/20 10:21:52 VCS INFO V-16-1-50135 User root fired command: hares -local vxfsckd  ActivationMode  from localhost
+2009/03/20 10:21:52 VCS INFO V-16-1-50135 User root fired command: hares -local cvmvoldg1  CVMActivation  from localhost
+2009/03/20 10:21:53 VCS INFO V-16-1-50135 User root fired command: hares -modify cvmvoldg1  CVMActivation  sw  ems1  from localhost
+2009/03/20 10:21:53 VCS INFO V-16-1-50135 User root fired command: hares -modify cvmvoldg1  CVMActivation  sw  ems2  from localhost
+2009/03/20 10:21:53 VCS INFO V-16-1-50135 User root fired command: hares -modify cvmvoldg1  Critical  0  from localhost
+2009/03/20 10:21:53 VCS INFO V-16-1-50135 User root fired command: hares -modify cvmvoldg1  Enabled  1  from localhost
+2009/03/20 10:21:53 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+
+
+2009/03/20 10:21:53 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2009/03/20 10:21:53 VCS INFO V-16-1-50135 User root fired command: hares -add cfsmount1  CFSMount  vrts_vea_cfs_int_cfsmount1  from localhost
+2009/03/20 10:21:53 VCS INFO V-16-1-50135 User root fired command: hares -modify cfsmount1  MountPoint  /tibco  from localhost
+2009/03/20 10:21:53 VCS INFO V-16-1-50135 User root fired command: hares -modify cfsmount1  BlockDevice  /dev/vx/dsk/emsdg/ems_VOL  from localhost
+2009/03/20 10:21:53 VCS INFO V-16-1-50135 User root fired command: hares -local cfsmount1  MountOpt  from localhost
+2009/03/20 10:21:53 VCS INFO V-16-1-50135 User root fired command: hares -local cfsmount1  RemountRes  from localhost
+2009/03/20 10:21:53 VCS INFO V-16-1-50135 User root fired command: hares -local cfsmount1  ForceOff  from localhost
+2009/03/20 10:21:53 VCS INFO V-16-1-50135 User root fired command: hares -local cfsmount1  SetPrimary  from localhost
+2009/03/20 10:21:53 VCS INFO V-16-1-50135 User root fired command: hares -modify cfsmount1  MountOpt  cluster  ems1  from localhost
+2009/03/20 10:21:53 VCS INFO V-16-1-50135 User root fired command: hares -modify cfsmount1  NodeList  ems1  from localhost
+2009/03/20 10:21:53 VCS INFO V-16-1-50135 User root fired command: hares -modify cfsmount1  Critical  0  from localhost
+2009/03/20 10:21:53 VCS INFO V-16-1-50135 User root fired command: hares -link cfsmount1  cvmvoldg1  0  0  from localhost
+2009/03/20 10:21:53 VCS INFO V-16-1-50135 User root fired command: hares -modify cfsmount1  Enabled  1  from localhost
+2009/03/20 10:21:54 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+
+
+2009/03/20 10:21:55 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2009/03/20 10:21:55 VCS INFO V-16-1-50135 User root fired command: hares -local cfsmount1  MountOpt  from localhost
+2009/03/20 10:21:55 VCS INFO V-16-1-50135 User root fired command: hares -modify cfsmount1  MountOpt  cluster  ems2  from localhost
+2009/03/20 10:21:55 VCS INFO V-16-1-50135 User root fired command: hares -modify ... -add cfsmount1  NodeList  ems2  from localhost
+2009/03/20 10:21:55 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+
+
+2009/03/20 10:21:55 VCS INFO V-16-1-50135 User root fired command: hares -modify cfsmount1  RemountRes  DONE  ems2  from localhost
+
+
+2009/03/20 10:21:55 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2009/03/20 10:21:55 VCS INFO V-16-1-50135 User root fired command: hagrp -modify vrts_vea_cfs_int_cfsmount1  AutoStartList  ems1  ems2  from localhost
+2009/03/20 10:21:55 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2009/03/20 10:22:42 VCS INFO V-16-1-50135 User root fired command: MSG_RES_PROBE cfsmount1  ems1  from localhost
+2009/03/20 10:22:42 VCS INFO V-16-1-50135 User root fired command: MSG_RES_PROBE cfsmount1  ems2  from localhost
+2009/03/20 10:22:43 VCS INFO V-16-1-50135 User root fired command: hares -clear cfsmount1  ems1  from localhost
+2009/03/20 10:22:43 VCS INFO V-16-1-50135 User root fired command: hares -online cfsmount1  ems1  from localhost
+2009/03/20 10:22:43 VCS INFO V-16-1-50135 User root fired command: hares -clear cfsmount1  ems2  from localhost
+2009/03/20 10:22:43 VCS INFO V-16-1-50135 User root fired command: hares -online cfsmount1  ems2  from localhost
+2009/03/20 10:22:47 VCS INFO V-16-1-50135 User root fired command: hares -clear cvmvoldg1  ems1  from localhost
+2009/03/20 10:30:35 VCS INFO V-16-1-50135 User root fired command: MSG_RES_PROBE cfsmount1  ems1  from localhost
+2009/03/20 10:30:35 VCS INFO V-16-1-50135 User root fired command: MSG_RES_PROBE cfsmount1  ems2  from localhost
+2009/03/20 10:30:36 VCS INFO V-16-1-50135 User root fired command: hares -clear cfsmount1  ems1  from localhost
+2009/03/20 10:30:36 VCS INFO V-16-1-50135 User root fired command: hares -online cfsmount1  ems1  from localhost
+2009/03/20 10:30:36 VCS INFO V-16-1-50135 User root fired command: hares -clear cfsmount1  ems2  from localhost
+2009/03/20 10:30:36 VCS INFO V-16-1-50135 User root fired command: hares -online cfsmount1  ems2  from localhost
+2009/03/20 10:33:28 VCS INFO V-16-1-50135 User root fired command: MSG_RES_PROBE cfsmount1  ems1  from localhost
+2009/03/20 10:33:28 VCS INFO V-16-1-50135 User root fired command: MSG_RES_PROBE cfsmount1  ems2  from localhost
+2009/03/20 10:33:30 VCS INFO V-16-1-50135 User root fired command: hares -clear cfsmount1  ems1  from localhost
+2009/03/20 10:33:30 VCS INFO V-16-1-50135 User root fired command: hares -online cfsmount1  ems1  from localhost
+2009/03/20 10:33:30 VCS INFO V-16-1-50135 User root fired command: hares -clear cfsmount1  ems2  from localhost
+2009/03/20 10:33:30 VCS INFO V-16-1-50135 User root fired command: hares -online cfsmount1  ems2  from localhost
+2009/03/20 13:53:20 VCS INFO V-16-1-50135 User root fired command: MSG_CLUSTER_STOP_SYS from localhost
+2009/03/20 18:20:43 VCS INFO V-16-1-50135 User root fired command: hares -modify cfsmount1  Primary  ems2  from localhost
+2009/03/23 12:45:14 VCS INFO V-16-1-50135 User root fired command: hares -modify cfsmount1  Primary  ems2  from localhost
+2009/03/24 11:14:38 VCS INFO V-16-1-50135 User root fired command: MSG_CLUSTER_STOP_SYS from localhost
+2009/03/24 11:21:32 VCS INFO V-16-1-50135 User root fired command: hares -modify cfsmount1  Primary  ems2  from localhost
+2009/03/24 11:22:18 VCS INFO V-16-1-50135 User root fired command: MSG_CLUSTER_STOP_SYS from localhost
+2009/03/24 11:32:25 VCS INFO V-16-1-50135 User root fired command: hares -modify cfsmount1  Primary  ems2  from localhost
+2009/03/24 11:33:38 VCS INFO V-16-1-50135 User root fired command: MSG_CLUSTER_STOP_SYS from localhost
+2009/03/25 15:22:19 VCS INFO V-16-1-50135 User root fired command: hares -modify cfsmount1  Primary  ems2  from localhost
+2009/08/26 11:51:42 VCS INFO V-16-1-50135 User root fired command: haclus -updatelic from localhost
+2012/10/11 00:23:59 VCS INFO V-16-1-50135 User root fired command: hares -modify cfsmount1  Primary  ems2  from localhost
+2013/06/21 21:11:02 VCS INFO V-16-1-50135 User root fired command: MSG_CLUSTER_STOP_SYS from localhost
+2013/06/21 21:21:06 VCS INFO V-16-1-50135 User root fired command: hares -online vxfsckd  ems1  from localhost
+2013/06/21 21:21:06 VCS INFO V-16-1-50135 User root fired command: hares -online vxfsckd  ems2  from localhost
+2013/06/21 21:34:09 VCS INFO V-16-1-50135 User root fired command: hares -modify cfsmount1  Primary  ems2  from localhost

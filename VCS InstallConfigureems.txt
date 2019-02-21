@@ -1,0 +1,942 @@
+VCS Install example for ems2a.2b
+
+
+	Copy Storage Foundations and untar
+	Add both hosts to /etc/hosts
+	[root@ipew1bprov rhel6_x86_64]# cat /etc/hosts
+	10.248.114.233  ipew1aprov.vsf4-2.hcvlny.dhg.cv.net ipew1aprov
+	10.248.114.234  ipew1bprov.vsf4-2.hcvlny.dhg.cv.net ipew1bprov
+	10.248.114.235  ipew1prov.vsf4-2.hcvlny.dhg.cv.net ipew1prov (VIP)
+
+	Modify sshd_config add *@10.248.114.* permit root login yes ; uncomment root from denyusers; service sshd reload
+	Test ssh between hosts
+	Change PermitRootLogin no to yes in two spots, delete root from deny users
+	service sshd reload
+
+	Install following 32 bit RPM’s  
+	yum install libstdc++.i686
+	yum install ksh.x86_64  mksh.x86_64
+	yum install libpam.so.0
+
+yum install libstdc++.i686;yum install ksh.x86_64 ;yum install mksh.x86_64;yum install libpam.so.0
+
+
+	Configure two network interfaces on each host E1000 on Vmotion Network Swr10-11
+	Configure three Disks for fencing 1GB in size
+
+
+Install software and Patch in one command
+root@mr-admin1 rhel6_x86_64]# ls ../../
+Patch  SFHA
+Go to install directory
+
+[root@mr-admin1 rhel6_x86_64]# pwd
+/home/ddilwort/INSTALL/dvd1-redhatlinux/rhel6_x86_64
+/home/ddilwort/Patch/rhel6_x86_64
+Go to Patch directory and run command
+/home/ddilwort/Patch/rhel6_x86_64
+[root@mr-admin1 rhel6_x86_64]# ./installmr -base_path /home/ddilwort/SFHA/dvd1-redhatlinux/rhel6_x86_64 mr-admin1 mr-admin2
+
+
+
+[root@ems2a dvd1-redhatlinux]# cd rhel6_x86_64
+[root@ems2a rhel6_x86_64]# ls
+applicationha   dynamic_multipathing  rpms                                       storage_foundation_for_oracle_rac     webinstaller
+cluster_server  file_system           scripts                                    storage_foundation_high_availability  windows
+copyright       installer             storage_foundation                         VII                                   xprtl
+docs            perl                  storage_foundation_cluster_file_system_ha  volume_manager
+
+
+[root@ems2a rhel6_x86_64]# ./installer
+
+                                  Symantec Storage Foundation and High Availability Solutions 6.1 Install Program                                   
+
+Copyright (c) 2013 Symantec Corporation. All rights reserved.  Symantec, the Symantec Logo are trademarks or registered trademarks of Symantec 
+Corporation or its affiliates in the U.S. and other countries. Other names may be trademarks of their respective owners.
+
+The Licensed Software and Documentation are deemed to be "commercial computer software" and "commercial computer software documentation" as defined 
+in FAR Sections 12.212 and DFARS Section 227.7202.
+
+Logs are being written to /var/tmp/installer-201406041412UVN while installer is in progress.
+
+
+                                  Symantec Storage Foundation and High Availability Solutions 6.1 Install Program                                   
+
+Symantec Product                         Version Installed on ems2a    Licensed
+================================================================================
+Symantec Licensing Utilities (VRTSvlic) are not installed due to which products and licenses are not discovered.
+Use the menu below to continue.
+
+
+Task Menu:
+
+    P) Perform a Pre-Installation Check       I) Install a Product
+    C) Configure an Installed Product         G) Upgrade a Product
+    O) Perform a Post-Installation Check      U) Uninstall a Product
+    L) License a Product                      S) Start a Product
+    D) View Product Descriptions              X) Stop a Product
+    R) View Product Requirements              ?) Help
+
+Enter a Task: [P,I,C,G,O,U,L,S,D,X,R,?] I
+
+
+                                  Symantec Storage Foundation and High Availability Solutions 6.1 Install Program                                   
+
+     1)  Symantec Dynamic Multi-Pathing (DMP)
+     2)  Symantec Cluster Server (VCS)
+     3)  Symantec Storage Foundation (SF)
+     4)  Symantec Storage Foundation and High Availability (SFHA)
+     5)  Symantec Storage Foundation Cluster File System HA (SFCFSHA)
+     6)  Symantec Storage Foundation for Oracle RAC (SF Oracle RAC)
+     7)  Symantec ApplicationHA (ApplicationHA)
+     b)  Back to previous menu
+
+Select a product to install: [1-7,b,q] 4
+
+This Symantec product may contain open source and other third party materials that are subject to a separate license.  See the applicable 
+Third-Party Notice at http://www.symantec.com/about/profile/policies/eulas
+
+Do you agree with the terms of the End User License Agreement as specified in the storage_foundation_high_availability/EULA/en/EULA_SFHA_Ux_6.1.pdf 
+file present on media? [y,n,q,?] y
+
+
+                                       Symantec Storage Foundation and High Availability 6.1 Install Program                                        
+
+     1)  Install minimal required rpms - 586 MB required
+     2)  Install recommended rpms - 858 MB required
+     3)  Install all rpms - 889 MB required
+     4)  Display rpms to be installed for each option
+
+Select the rpms to be installed on all systems? [1-4,q,?] (2) 
+
+Enter the 64 bit RHEL6 system names separated by spaces: [q,?] ems2a ems2b
+
+                                       Symantec Storage Foundation and High Availability 6.1 Install Program                                        
+                                                                     ems2a ems2b                                                                    
+
+Logs are being written to /var/tmp/installer-201406041412UVN while installer is in progress
+
+    Verifying systems: 12%               _______________________________________________________________________________________________________ 
+
+    Estimated time remaining: (mm:ss) 0:10                                                                                                1 of 8
+
+    Checking system communication ............................................................................................... Partially Done
+
+Either ssh or rsh needs to be set up between the local system and ems2b for communication
+
+Would you like the installer to setup ssh or rsh communication automatically between the systems?
+Superuser passwords for the systems will be asked. [y,n,q,?] (y) 
+
+Enter the superuser password for system ems2b: 
+
+     1)  Setup ssh between the systems
+     2)  Setup rsh between the systems
+     b)  Back to previous menu
+
+Select the communication method [1-2,b,q,?] (1) 
+
+Setting up communication between systems. Please wait.
+Re-verifying systems.
+
+
+                                       Symantec Storage Foundation and High Availability 6.1 Install Program                                        
+                                                                     ems2a ems2b                                                                    
+
+Logs are being written to /var/tmp/installer-201406041412UVN while installer is in progress
+
+    Verifying systems: 100%                                                                                                                      
+
+    Estimated time remaining: (mm:ss) 0:00                                                                                                8 of 8
+
+    Checking system communication ......................................................................................................... Done
+    Checking release compatibility ........................................................................................................ Done
+    Checking installed product ............................................................................................................ Done
+    Checking prerequisite patches and rpms ................................................................................................ Done
+    Checking platform version ............................................................................................................. Done
+    Checking file system free space ....................................................................................................... Done
+    Checking product licensing ............................................................................................................ Done
+    Performing product prechecks .......................................................................................................... Done
+
+System verification checks completed successfully
+
+
+                                       Symantec Storage Foundation and High Availability 6.1 Install Program                                        
+                                                                     ems2a ems2b                                                                    
+
+The following Symantec Storage Foundation and High Availability rpms will be installed on all systems:
+
+Rpm               Version              Rpm Description
+VRTSperl          5.16.1.6             Perl Redistribution
+VRTSvlic          3.02.61.010          Licensing
+VRTSspt           6.1.0.000            Software Support Tools
+VRTSvxvm          6.1.0.000            Volume Manager Binaries
+VRTSaslapm        6.1.0.000            Volume Manager - ASL/APM
+VRTSob            3.4.678              Enterprise Administrator Service
+VRTSvxfs          6.1.0.000            File System
+VRTSfsadv         6.1.0.000            File System Advanced Solutions
+VRTSllt           6.1.0.000            Low Latency Transport
+VRTSgab           6.1.0.000            Group Membership and Atomic Broadcast
+VRTSvxfen         6.1.0.000            I/O Fencing
+VRTSamf           6.1.0.000            Asynchronous Monitoring Framework
+VRTSvcs           6.1.0.000            Cluster Server
+VRTSvcsag         6.1.0.000            Cluster Server Bundled Agents
+VRTSvcsdr         6.1.0.000            Cluster Server Disk Reservation Modules
+VRTSvcsea         6.1.0.000            Cluster Server Enterprise Agents
+VRTSdbed          6.1.0.000            Storage Foundation Databases
+VRTSodm           6.1.0.000            Oracle Disk Manager
+VRTSsfmh          6.0.0.0              Storage Foundation Managed Host
+VRTSvbs           6.1.0.000            Virtual Business Service
+VRTSvcswiz        6.1.0.000            Cluster Server Wizards
+VRTSsfcpi61       6.1.0.000            Storage Foundation Installer
+
+Press [Enter] to continue: 
+
+
+                                       Symantec Storage Foundation and High Availability 6.1 Install Program                                        
+                                                                     ems2a ems2b                                                                    
+
+Logs are being written to /var/tmp/installer-201406041412UVN while installer is in progress
+
+    Installing SFHA: 100%                                                                                                                        
+
+    Estimated time remaining: (mm:ss) 0:00                                                                                              24 of 24
+
+    Performing SFHA preinstall tasks ...................................................................................................... Done
+    Installing VRTSperl rpm ............................................................................................................... Done
+    Installing VRTSvlic rpm ............................................................................................................... Done
+    Installing VRTSspt rpm ................................................................................................................ Done
+    Installing VRTSvxvm rpm ............................................................................................................... Done
+    Installing VRTSaslapm rpm ............................................................................................................. Done
+    Installing VRTSob rpm ................................................................................................................. Done
+    Installing VRTSvxfs rpm ............................................................................................................. Failed
+    Installing VRTSfsadv rpm .............................................................................................................. Done
+    Installing VRTSllt rpm ................................................................................................................ Done
+    Installing VRTSgab rpm ................................................................................................................ Done
+    Installing VRTSvxfen rpm .............................................................................................................. Done
+    Installing VRTSamf rpm ................................................................................................................ Done
+    Installing VRTSvcs rpm ................................................................................................................ Done
+    Installing VRTSvcsag rpm .............................................................................................................. Done
+    Installing VRTSvcsdr rpm .............................................................................................................. Done
+    Installing VRTSvcsea rpm .............................................................................................................. Done
+    Installing VRTSdbed rpm ............................................................................................................... Done
+    Installing VRTSodm rpm ................................................................................................................ Done
+    Installing VRTSsfmh rpm ............................................................................................................... Done
+    Installing VRTSvbs rpm ................................................................................................................ Done
+    Installing VRTSvcswiz rpm ............................................................................................................. Done
+    Installing VRTSsfcpi61 rpm ............................................................................................................ Done
+    Performing SFHA postinstall tasks ..................................................................................................... Done
+
+Symantec Storage Foundation and High Availability Install did not complete successfully
+
+VRTSvxfs rpm failed to install on ems2a
+VRTSvxfs rpm failed to install on ems2b
+
+rpms/patches failed to install. Do you want to exit installer? [y,n,q] (y) y
+Refer to the installer logs for details and correct the settings. Continue with the installer again, or try to install the packages/patches 
+manually.
+
+ssh is configured in password-less mode on ems2b
+
+Do you want to cleanup the communication for the systems ems2b? [y,n,q] (n) 
+
+installer log files, summary file, and response file are saved at:
+
+        /opt/VRTS/install/logs/installer-201406041412UVN
+
+Would you like to view the summary file? [y,n,q] (n) n
+
+
+
+
+(2) Install the patch
+
+
+
+
+cd /var/tmp
+[root@ems2a tmp]# ls
+sfha-rhel6_x86_64-6.1.0.300-rpms.tar
+[root@ems2a tmp]# tar xvf sfha-rhel6_x86_64-6.1.0.300-rpms.tar 
+rpms/
+rpms/VRTSvxvm-6.1.0.100-GA_RHEL6.x86_64.rpm
+rpms/README_SYMC.VRTSvxvm
+rpms/README_SYMC.VRTSllt
+rpms/VRTSllt-6.1.0.200-GA_RHEL6.x86_64.rpm
+rpms/VRTSlvmconv-6.1.0.100-GA_RHEL6.i686.rpm
+rpms/README_SYMC.VRTSlvmconv
+rpms/info/
+rpms/info/VRTSllt-6.1.0.200-GA_RHEL6.x86_64.rpm
+rpms/info/VRTSlvmconv-6.1.0.100-GA_RHEL6.i686.rpm
+rpms/info/VRTSvxvm-6.1.0.100-GA_RHEL6.x86_64.rpm
+rpms/patch-meta.json
+scripts/
+scripts/vvr_upgrade_finish
+scripts/vvr_upgrade_start
+scripts/CPIP/
+scripts/CPIP/Pkg/
+scripts/CPIP/Pkg/VRTSsvs61.pm
+.
+scripts/EDR/Transport/WMI.pm
+scripts/EDR/Transport/VOM.pm
+README
+installSFHA610HF300
+
+
+
+
+
+
+
+[root@ems2a tmp]# ./installSFHA610HF300
+
+                              Symantec Storage Foundation and High Availability Solutions SFHA610HF300 Install Program                              
+
+Copyright (c) 2013 Symantec Corporation. All rights reserved.  Symantec, the Symantec Logo are trademarks or registered trademarks of Symantec 
+Corporation or its affiliates in the U.S. and other countries. Other names may be trademarks of their respective owners.
+
+The Licensed Software and Documentation are deemed to be "commercial computer software" and "commercial computer software documentation" as defined 
+in FAR Sections 12.212 and DFARS Section 227.7202.
+
+Logs are being written to /var/tmp/installSFHA610HF300-201406041420kPU while installSFHA610HF300 is in progress.
+
+Enter the 64 bit RHEL6 system names separated by spaces: [q,?] (ems2a) ems2a ems2b
+
+                          Symantec Storage Foundation and High Availability Solutions SFHA610HF300 Hot Fix Upgrade Program                          
+                                                                     ems2a ems2b                                                                    
+
+Logs are being written to /var/tmp/installSFHA610HF300-201406041420kPU while installSFHA610HF300 is in progress
+
+    Verifying systems: 100%                                                                                                                      
+
+    Estimated time remaining: (mm:ss) 0:00                                                                                                8 of 8
+
+    Checking system communication ......................................................................................................... Done
+    Checking release compatibility ........................................................................................................ Done
+    Checking installed product ............................................................................................................ Done
+    Checking prerequisite patches and rpms ................................................................................................ Done
+    Checking platform version ............................................................................................................. Done
+    Checking file system free space ....................................................................................................... Done
+    Checking product licensing ............................................................................................................ Done
+    Performing product prechecks .......................................................................................................... Done
+
+System verification checks completed successfully
+
+
+                               Symantec Storage Foundation and High Availability SFHA610HF300 Hot Fix Upgrade Program                               
+                                                                     ems2a ems2b                                                                    
+
+
+The following Symantec Storage Foundation and High Availability patches will be installed on all systems:
+
+Patch                Rpm
+VRTSvxvm-6.1.0.100   VRTSvxvm
+VRTSllt-6.1.0.200    VRTSllt
+
+Press [Enter] to continue: 
+
+All SFHA processes that are currently running must be stopped
+
+Do you want to stop SFHA processes now? [y,n,q,?] (y) y
+
+
+                               Symantec Storage Foundation and High Availability SFHA610HF300 Hot Fix Upgrade Program                               
+                                                                     ems2a ems2b                                                                    
+
+Logs are being written to /var/tmp/installSFHA610HF300-201406041420kPU while installSFHA610HF300 is in progress
+
+    Stopping SFHA: 100%                                                                                                                          
+
+    Estimated time remaining: (mm:ss) 0:00                                                                                              25 of 25
+
+    Performing SFHA prestop tasks ......................................................................................................... Done
+    Stopping vxsvc ........................................................................................................................ Done
+    Stopping vxodm ........................................................................................................................ Done
+    Stopping vxdbd ........................................................................................................................ Done
+    Stopping had .......................................................................................................................... Done
+    Stopping CmdServer .................................................................................................................... Done
+    Stopping amf .......................................................................................................................... Done
+    Stopping vxfen ........................................................................................................................ Done
+    Stopping gab .......................................................................................................................... Done
+    Stopping llt .......................................................................................................................... Done
+    Stopping vxcafs ....................................................................................................................... Done
+    Stopping fdd .......................................................................................................................... Done
+    Stopping vxportal ..................................................................................................................... Done
+    Stopping vxfs ......................................................................................................................... Done
+    Stopping sfmh-discovery ............................................................................................................... Done
+    Stopping vxdclid ...................................................................................................................... Done
+    Stopping vxconfigbackupd .............................................................................................................. Done
+    Stopping vxsited ...................................................................................................................... Done
+    Stopping vxrelocd ..................................................................................................................... Done
+    Stopping vxnotify ..................................................................................................................... Done
+    Stopping vxesd ........................................................................................................................ Done
+    Stopping vxconfigd .................................................................................................................... Done
+    Stopping vxspec ....................................................................................................................... Done
+    Stopping vxio ......................................................................................................................... Done
+    Stopping vxdmp ........................................................................................................................ Done
+
+Symantec Storage Foundation and High Availability Shutdown completed successfully
+
+
+                               Symantec Storage Foundation and High Availability SFHA610HF300 Hot Fix Upgrade Program                               
+                                                                     ems2a ems2b                                                                    
+
+Logs are being written to /var/tmp/installSFHA610HF300-201406041420kPU while installSFHA610HF300 is in progress
+
+    Installing SFHA: 100%                                                                                                                        
+
+    Estimated time remaining: (mm:ss) 0:00                                                                                                4 of 4
+
+    Performing SFHA preinstall tasks ...................................................................................................... Done
+    Installing VRTSvxvm patch ............................................................................................................. Done
+    Installing VRTSllt patch .............................................................................................................. Done
+    Performing SFHA postinstall tasks ..................................................................................................... Done
+
+Symantec Storage Foundation and High Availability Install completed successfully
+
+
+Skipping Startup due to no product configuration found for Symantec Storage Foundation and High Availability on the systems. Please run the 
+'/opt/VRTS/install/installsfha61 -configure ems2a ems2b' command to configure Symantec Storage Foundation and High Availability
+
+The updates to VRTSaslapm package are released via the Symantec SORT web page: https://sort.symantec.com/asl. To make sure you have the latest 
+version of VRTSaslapm (for up to date ASLs and APMs), download and install the latest package from the SORT web page.
+
+You are running this virtual machine under a VMware environment. You may access the cluster view for this virtual machine using the vSphere client. 
+To access the cluster view for the virtual machine using the vSphere client, log on to the vCenter Server through the vSphere client, navigate to 
+the virtual machine in the inventory view and click on the 'Symantec High Availability' tab.
+You may also access the cluster view from a browser. To access the cluster view through a browser, open the URL below in a browser:
+
+https://<VM_IP_or_Hostname>:5634/vcs/admin/application_health.html
+
+Checking online updates for Symantec Storage Foundation and High Availability 6.1
+
+        A connection attempt to https://sort.symantec.com to check for product updates failed.
+        Visit https://sort.symantec.com to check for available product updates and information.
+
+installSFHA610HF300 log files, summary file, and response file are saved at:
+
+        /opt/VRTS/install/logs/installSFHA610HF300-201406041420kPU
+
+Would you like to view the summary file? [y,n,q] (n) 
+
+
+
+
+(3) Configure
+
+
+
+
+[root@ems2a tmp]# /opt/VRTS/install/installsfha61 -configure ems2a ems2b
+
+                                      Symantec Storage Foundation and High Availability 6.1 Configure Program                                       
+                                                                     ems2a ems2b                                                                    
+
+Copyright (c) 2013 Symantec Corporation. All rights reserved.  Symantec, the Symantec Logo are trademarks or registered trademarks of Symantec 
+Corporation or its affiliates in the U.S. and other countries. Other names may be trademarks of their respective owners.
+
+The Licensed Software and Documentation are deemed to be "commercial computer software" and "commercial computer software documentation" as defined 
+in FAR Sections 12.212 and DFARS Section 227.7202.
+
+Logs are being written to /var/tmp/installsfha61-201406041444kCN while installsfha61 is in progress.
+
+The installer has discovered an existing installer process. The process exited while performing configure of SFHA on ems2a ems2b. Do you want to 
+resume this process? [y,n,q,?] (y) 
+
+
+                                      Symantec Storage Foundation and High Availability 6.1 Configure Program                                       
+                                                                     ems2a ems2b                                                                    
+
+Logs are being written to /var/tmp/installsfha61-201406041444kCN while installsfha61 is in progress
+
+    Verifying systems: 100%                                                                                                                      
+
+    Estimated time remaining: (mm:ss) 0:00                                                                                                5 of 5
+
+    Checking system communication ......................................................................................................... Done
+    Checking release compatibility ........................................................................................................ Done
+    Checking installed product ............................................................................................................ Done
+    Checking platform version ............................................................................................................. Done
+    Performing product prechecks .......................................................................................................... Done
+
+System verification checks completed successfully
+
+
+                                      Symantec Storage Foundation and High Availability 6.1 Configure Program                                       
+                                                                     ems2a ems2b                                                                    
+
+To configure VCS, answer the set of questions on the next screen.
+
+When [b] is presented after a question, 'b' may be entered to go back to the first question of the configuration set.
+
+When [?] is presented after a question, '?' may be entered for help or additional information about the question.
+
+Following each set of questions, the information you have entered will be presented for confirmation.  To repeat the set of questions and correct 
+any previous errors, enter 'n' at the confirmation prompt.
+
+No configuration changes are made to the systems until all configuration questions are completed and confirmed.
+
+                                      Symantec Storage Foundation and High Availability 6.1 Configure Program                                       
+                                                                     ems2a ems2b                                                                    
+
+To configure VCS for SFHA the following information is required:
+
+        A unique cluster name
+        One or more NICs per system used for heartbeat links
+        A unique cluster ID number between 0-65535
+
+        One or more heartbeat links are configured as private links
+        You can configure one heartbeat link as a low-priority link
+
+All systems are being configured to create one cluster.
+
+
+                                      Symantec Storage Foundation and High Availability 6.1 Configure Program                                       
+                                                                     ems2a ems2b                                                                    
+
+
+On Linux systems, only activated NICs can be detected and configured automatically.
+
+                                      Symantec Storage Foundation and High Availability 6.1 Configure Program                                       
+                                                                     ems2a ems2b                                                                    
+
+Logs are being written to /var/tmp/installsfha61-201406041444kCN while installsfha61 is in progress
+
+    Configuring LLT links: 100%                                                                                                                  
+
+    Estimated time remaining: (mm:ss) 0:00                                                                                                4 of 4
+
+    Checking system NICs on ems2a ................................................................................................. 3 NICs found
+    Checking system NICs on ems2b ................................................................................................. 3 NICs found
+    Checking network links ........................................................................................................ 1 link found
+    Setting link priority ......................................................................................... No high priority links found
+
+
+Failed to detect and configure LLT heartbeat links. Configure LLT manually.
+
+
+    Discovering NICs on ems2a ........................................................................................ Discovered eth0 eth1 eth2
+
+Enter the NIC for the first private heartbeat link on ems2a: [b,q,?] (eth1) 
+
+Would you like to configure a second private heartbeat link? [y,n,q,b,?] (n) y
+Enter the NIC for the second private heartbeat link on ems2a: [b,q,?] (eth2) 
+
+Do you want to configure an additional low-priority heartbeat link? [y,n,q,b,?] (n) 
+
+Are you using the same NICs for private heartbeat links on all systems? [y,n,q,b,?] (y) 
+    Checking media speed for eth1 on ems2a ............................................................................................ 1000Mb/s
+    Checking media speed for eth2 on ems2a ............................................................................................ 1000Mb/s
+    Checking media speed for eth1 on ems2b ............................................................................................ 1000Mb/s
+    Checking media speed for eth2 on ems2b ............................................................................................ 1000Mb/s
+
+Enter a unique cluster ID number between 0-65535: [b,q,?] (6372) 
+
+The cluster cannot be configured if the cluster ID 6372 is in use by another cluster. Installer can perform a check to determine if the cluster ID 
+is duplicate. The check will take less than a minute to complete.
+
+Would you like to check if the cluster ID is in use by another cluster? [y,n,q] (y) 
+
+    Checking cluster ID ................................................................................................................... Done
+
+Duplicated cluster ID detection passed. The cluster ID 6372 can be used for the cluster.
+
+Press [Enter] to continue: 
+
+                                      Symantec Storage Foundation and High Availability 6.1 Configure Program                                       
+                                                                     ems2a ems2b                                                                    
+
+Cluster information verification:
+
+        Cluster Name:      ems2cluster
+        Cluster ID Number: 6372
+
+        Private Heartbeat NICs for ems2a: 
+                link1=eth1
+                link2=eth2
+
+        Private Heartbeat NICs for ems2b: 
+                link1=eth1
+                link2=eth2
+
+Is this information correct? [y,n,q,?] (y) 
+
+                                      Symantec Storage Foundation and High Availability 6.1 Configure Program                                       
+                                                                     ems2a ems2b                                                                    
+
+The following data is required to configure the Virtual IP of the Cluster:
+
+        A public NIC used by each system in the cluster
+        A Virtual IP address and netmask
+
+Do you want to configure the Virtual IP? [y,n,q,?] (n) y
+
+Active NIC devices discovered on ems2a: eth0
+
+Enter the NIC for Virtual IP of the Cluster to use on ems2a: [b,q,?] (eth0) 
+Is eth0 to be the public NIC used by all systems? [y,n,q,b,?] (y) 
+Enter the Virtual IP address for the Cluster: [b,q,?] 10.248.114.243
+Enter the NetMask for IP 10.248.114.243: [b,q,?] (255.255.255.224) 
+
+                                      Symantec Storage Foundation and High Availability 6.1 Configure Program                                       
+                                                                     ems2a ems2b                                                                    
+
+Cluster Virtual IP verification:
+
+        NIC: eth0
+        IP: 10.248.114.243
+        NetMask: 255.255.255.224
+
+Is this information correct? [y,n,q] (y) 
+
+                                      Symantec Storage Foundation and High Availability 6.1 Configure Program                                       
+                                                                     ems2a ems2b                                                                    
+
+Symantec Cluster Server can be configured in secure mode
+
+Running VCS in Secure Mode guarantees that all inter-system communication is encrypted, and users are verified with security credentials.
+
+When running VCS in Secure Mode, NIS and system usernames and passwords are used to verify identity. VCS usernames and passwords are no longer 
+utilized when a cluster is running in Secure Mode.
+
+Would you like to configure the VCS cluster in secure mode? [y,n,q,?] (n) 
+
+                                      Symantec Storage Foundation and High Availability 6.1 Configure Program                                       
+                                                                     ems2a ems2b                                                                    
+
+The following information is required to add VCS users:
+
+        A user name
+        A password for the user
+        User privileges (Administrator, Operator, or Guest)
+
+Do you wish to accept the default cluster credentials of 'admin/password'? [y,n,q] (y) 
+
+Do you want to add another user to the cluster? [y,n,q] (n) 
+
+                                      Symantec Storage Foundation and High Availability 6.1 Configure Program                                       
+                                                                     ems2a ems2b                                                                    
+
+VCS User verification:
+
+        User: admin     Privilege: Administrators
+
+        Passwords are not displayed
+
+Is this information correct? [y,n,q] (y) n
+
+                                      Symantec Storage Foundation and High Availability 6.1 Configure Program                                       
+                                                                     ems2a ems2b                                                                    
+
+The following information is required to add VCS users:
+
+        A user name
+        A password for the user
+        User privileges (Administrator, Operator, or Guest)
+
+Do you wish to accept the default cluster credentials of 'admin/password'? [y,n,q] (y) 
+
+Do you want to add another user to the cluster? [y,n,q] (n) y
+Enter the user name: [b,q,?] david
+Enter the password: 
+Enter again:
+Enter the privilege for user david (A=Administrator, O=Operator, G=Guest): [b,q,?] A
+Would you like to add another user? [y,n,q] (n) 
+
+
+                                      Symantec Storage Foundation and High Availability 6.1 Configure Program                                       
+                                                                     ems2a ems2b                                                                    
+
+VCS User verification:
+
+        User: admin     Privilege: Administrators
+        User: david     Privilege: Administrators
+
+        Passwords are not displayed
+
+Is this information correct? [y,n,q] (y) 
+
+                                      Symantec Storage Foundation and High Availability 6.1 Configure Program                                       
+                                                                     ems2a ems2b                                                                    
+
+The following information is required to configure SMTP notification:
+
+        The domain-based hostname of the SMTP server
+        The email address of each SMTP recipient
+        A minimum severity level of messages to send to each recipient
+
+Do you want to configure SMTP notification? [y,n,q,?] (n) 
+
+                                      Symantec Storage Foundation and High Availability 6.1 Configure Program                                       
+                                                                     ems2a ems2b                                                                    
+
+The following information is required to configure SNMP notification:
+
+        System names of SNMP consoles to receive VCS trap messages
+        SNMP trap daemon port numbers for each console
+        A minimum severity level of messages to send to each console
+
+Do you want to configure SNMP notification? [y,n,q,?] (n) 
+
+All SFHA processes that are currently running must be stopped
+
+Do you want to stop SFHA processes now? [y,n,q,?] (y) 
+
+
+                                      Symantec Storage Foundation and High Availability 6.1 Configure Program                                       
+                                                                     ems2a ems2b                                                                    
+
+Logs are being written to /var/tmp/installsfha61-201406041444kCN while installsfha61 is in progress
+
+    Stopping SFHA: 100%                                                                                                                          
+
+    Estimated time remaining: (mm:ss) 0:00                                                                                                9 of 9
+
+    Performing SFHA prestop tasks ......................................................................................................... Done
+    Stopping sfmh-discovery ............................................................................................................... Done
+    Stopping vxdclid ...................................................................................................................... Done
+    Stopping had .......................................................................................................................... Done
+    Stopping CmdServer .................................................................................................................... Done
+    Stopping amf .......................................................................................................................... Done
+    Stopping vxfen ........................................................................................................................ Done
+    Stopping gab .......................................................................................................................... Done
+    Stopping llt .......................................................................................................................... Done
+
+Symantec Storage Foundation and High Availability Shutdown completed successfully
+
+
+                                      Symantec Storage Foundation and High Availability 6.1 Configure Program                                       
+                                                                     ems2a ems2b                                                                    
+
+Logs are being written to /var/tmp/installsfha61-201406041444kCN while installsfha61 is in progress
+
+    Starting SFHA: 100%                                                                                                                          
+
+    Estimated time remaining: (mm:ss) 0:00                                                                                              21 of 21
+
+    Performing SFHA configuration ......................................................................................................... Done
+    Starting vxdmp ........................................................................................................................ Done
+    Starting vxio ......................................................................................................................... Done
+    Starting vxspec ....................................................................................................................... Done
+    Starting vxconfigd .................................................................................................................... Done
+    Starting vxesd ........................................................................................................................ Done
+    Starting vxrelocd ..................................................................................................................... Done
+    Starting vxcached ..................................................................................................................... Done
+    Starting vxconfigbackupd .............................................................................................................. Done
+    Starting vxattachd .................................................................................................................... Done
+    Starting vxportal ................................................................................................................... Failed
+    Starting fdd ........................................................................................................................ Failed
+    Starting vxcafs ..................................................................................................................... Failed
+    Starting llt .......................................................................................................................... Done
+    Starting gab .......................................................................................................................... Done
+    Starting amf .......................................................................................................................... Done
+    Starting had .......................................................................................................................... Done
+    Starting CmdServer .................................................................................................................... Done
+    Starting vxdbd ........................................................................................................................ Done
+    Starting vxodm ...................................................................................................................... Failed
+    Performing SFHA poststart tasks ....................................................................................................... Done
+
+Symantec Storage Foundation and High Availability Startup did not complete successfully
+
+vxportal failed to start on ems2a
+fdd failed to start on ems2a
+vxcafs failed to start on ems2a
+vxodm failed to start on ems2a
+vxportal failed to start on ems2b
+fdd failed to start on ems2b
+vxcafs failed to start on ems2b
+vxodm failed to start on ems2b
+
+The updates to VRTSaslapm package are released via the Symantec SORT web page: https://sort.symantec.com/asl. To make sure you have the latest 
+version of VRTSaslapm (for up to date ASLs and APMs), download and install the latest package from the SORT web page.
+
+I/O fencing configuration is not complete. You have two ways to configure I/O fencing:
+    1. Run the command '/opt/VRTS/install/installsfha61 -fencing'.
+    2. Select the I/O fencing configuration task while running the webinstaller.
+
+You are running this virtual machine under a VMware environment. You may access the cluster view for this virtual machine using the vSphere client. 
+To access the cluster view for the virtual machine using the vSphere client, log on to the vCenter Server through the vSphere client, navigate to 
+the virtual machine in the inventory view and click on the 'Symantec High Availability' tab.
+You may also access the cluster view from a browser. To access the cluster view through a browser, open the URL below in a browser:
+
+https://<VM_IP_or_Hostname>:5634/vcs/admin/application_health.html
+
+It is strongly recommended to reboot the following systems:
+        ems2a
+        ems2b
+
+Execute '/sbin/shutdown -r now' to properly restart your systems
+
+It is likely that the startup failure issues will be resolved after rebooting the system. If issues persist after reboot, contact Symantec technical
+support or refer to installation guide for further troubleshooting.
+
+installsfha61 log files, summary file, and response file are saved at:
+
+        /opt/VRTS/install/logs/installsfha61-201406041444kCN
+
+Would you like to view the summary file? [y,n,q] (n) n
+
+[root@ems2a tmp]# 
+
+
+
+
+
+(4) Configure Fencing
+
+
+
+[root@ems2a ~]# /opt/VRTS/install/installsfha61 -fencing
+
+                                       Symantec Storage Foundation and High Availability 6.1 Install Program                                        
+
+Copyright (c) 2013 Symantec Corporation. All rights reserved.  Symantec, the Symantec Logo are trademarks or registered trademarks of Symantec 
+Corporation or its affiliates in the U.S. and other countries. Other names may be trademarks of their respective owners.
+
+The Licensed Software and Documentation are deemed to be "commercial computer software" and "commercial computer software documentation" as defined 
+in FAR Sections 12.212 and DFARS Section 227.7202.
+
+Logs are being written to /var/tmp/installsfha61-201406041458TQA while installsfha61 is in progress.
+
+Enter the name of one system in the VCS cluster for which you would like to configure I/O fencing: ems2a
+
+    Checking communication on ems2a ....................................................................................................... Done
+    Checking release compatibility on ems2a ............................................................................................... Done
+    Checking VCS installation on ems2a ....................................................................................... Version 6.1.0.000
+
+                                      Symantec Storage Foundation and High Availability 6.1 Configure Program                                       
+
+Cluster information verification:
+
+        Cluster Name: ems2cluster
+
+        Cluster ID Number: 6372
+
+        Systems: ems2a ems2b
+
+Would you like to configure I/O fencing on the cluster? [y,n,q] (y) 
+
+    Checking communication on ems2a ....................................................................................................... Done
+    Checking release compatibility on ems2a ............................................................................................... Done
+    Checking VCS installation on ems2a ....................................................................................... Version 6.1.0.000
+    Checking communication on ems2b ....................................................................................................... Done
+    Checking release compatibility on ems2b ............................................................................................... Done
+    Checking VCS installation on ems2b ....................................................................................... Version 6.1.0.000
+
+                                      Symantec Storage Foundation and High Availability 6.1 Configure Program                                       
+
+Fencing configuration
+     1)  Configure Coordination Point client based fencing
+     2)  Configure disk based fencing
+     3)  Configure fencing in disabled mode
+     4)  Replace/Add/Remove coordination points
+     5)  Refresh keys/registrations on the existing coordination points
+     6)  Set the order of existing coordination points
+
+Select the fencing mechanism to be configured in this Application Cluster: [1-6,q,?] 2
+
+This I/O fencing configuration option requires a restart of VCS. Installer will stop VCS at a later stage in this run. Note that the service groups 
+will be online only on the systems that are in the 'AutoStartList' after restarting VCS. Do you want to continue? [y,n,q,b,?] y
+
+Do you have SCSI3 PR enabled disks? [y,n,q,b,?] (y) 
+
+Since you have selected to configure disk based fencing, you need to provide the existing disk group to be used as coordinator or create a new disk 
+group for it.
+
+Select one of the options below for fencing disk group:
+     1)  Create a new disk group
+     b)  Back to previous menu
+
+Enter the choice for a disk group: [1-1,b,q] 1
+
+List of available disks to create a new disk group
+A new disk group cannot be created as the number of available free VxVM CDS disks is 0 which is less than three. If there are disks available which 
+are not under VxVM control, use the command vxdisksetup or use the installer to initialize them as VxVM disks.
+
+Do you want to initialize more disks as VxVM disks? [y,n,q,b] (y) 
+
+List of disks which can be initialized as VxVM disks:
+     1)  vmdk0_0
+     2)  vmdk0_1
+     3)  vmdk0_2
+     b)  Back to previous menu
+
+Enter the disk options, separated by spaces: [1-3,b,q] 1-3
+Invalid input. Please retry.
+Enter the disk options, separated by spaces: [1-3,b,q] 1 2 3
+    Intializing disk vmdk0_0 on ems2a ..................................................................................................... Done
+    Intializing disk vmdk0_1 on ems2a ..................................................................................................... Done
+    Intializing disk vmdk0_2 on ems2a ..................................................................................................... Done
+
+     1)  vmdk0_0
+     2)  vmdk0_1
+     3)  vmdk0_2
+     b)  Back to previous menu
+
+Select odd number of disks and at least three disks to form a disk group. Enter the disk options, separated by spaces: [1-3,b,q] 1 2 3
+
+Enter the new disk group name: [b] iofence_DG
+Created disk group iofence_DG
+
+Before you continue with configuration, Symantec recommends that you run the vxfentsthdw utility (I/O fencing test hardware utility), in a separate 
+console, to test whether the shared storage supports I/O fencing.  You can access the utility at '/opt/VRTSvcs/vxfen/bin/vxfentsthdw'.
+As per the 'vxfentsthdw' run you performed, do you want to continue with this disk group? [y,n,q] (y) 
+
+Using disk group iofence_DG
+
+Enter disk policy for the disk(s) (raw/dmp): [b,q,?] dmp
+
+                                      Symantec Storage Foundation and High Availability 6.1 Configure Program                                       
+
+I/O fencing configuration verification
+
+        Disk Group: iofence_DG
+
+        Fencing disk policy: dmp
+
+Is this information correct? [y,n,q] (y) y
+
+Installer will stop VCS before applying fencing configuration. To make sure VCS shuts down successfully, unfreeze any frozen service group and 
+unmount the mounted file systems in the cluster.
+
+Are you ready to stop VCS and apply fencing configuration on all nodes at this time? [y,n,q] (y) y
+
+    Stopping VCS on ems2a ................................................................................................................. Done
+    Stopping VCS on ems2b ................................................................................................................. Done
+    Starting Fencing on ems2a ............................................................................................................. Done
+    Starting Fencing on ems2b ............................................................................................................. Done
+    Updating main.cf with fencing ......................................................................................................... Done
+    Starting VCS on ems2a ................................................................................................................. Done
+    Starting VCS on ems2b ................................................................................................................. Done
+
+The Coordination Point Agent monitors the registrations on the coordination points.
+Do you want to configure Coordination Point Agent on the client cluster? [y,n,q] (y) 
+Enter a non-existing name for the service group for Coordination Point Agent: [b] (vxfen) 
+
+Additionally the Coordination Point Agent can also monitor changes to the Coordinator Disk Group constitution such as a disk being accidently 
+deleted from the Coordinator Disk Group. The frequency of this detailed monitoring can be tuned with the LevelTwoMonitorFreq attribute. For example,
+if you set this attribute to 5, the agent will monitor the Coordinator Disk Group constitution every five monitor cycles. If LevelTwoMonitorFreq 
+attribute is not set, the agent will not monitor any changes to the Coordinator Disk Group.
+
+Do you want to set LevelTwoMonitorFreq? [y,n,q] (y) 
+Enter the value of the LevelTwoMonitorFreq attribute(0 to 65535): [b,q,?] (5) 
+
+    Adding Coordination Point Agent via ems2a ............................................................................................. Done
+
+    I/O Fencing configuration ............................................................................................................. Done
+
+I/O Fencing configuration completed successfully
+
+You are running this virtual machine under a VMware environment. You may access the cluster view for this virtual machine using the vSphere client. 
+To access the cluster view for the virtual machine using the vSphere client, log on to the vCenter Server through the vSphere client, navigate to 
+the virtual machine in the inventory view and click on the 'Symantec High Availability' tab.
+You may also access the cluster view from a browser. To access the cluster view through a browser, open the URL below in a browser:
+
+https://<VM_IP_or_Hostname>:5634/vcs/admin/application_health.html
+
+
+installsfha61 log files, summary file, and response file are saved at:
+
+        /opt/VRTS/install/logs/installsfha61-201406041458TQA
+
+Would you like to view the summary file? [y,n,q] (n) 
+[root@ems2a ~]# 

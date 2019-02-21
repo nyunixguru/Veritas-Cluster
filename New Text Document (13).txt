@@ -1,0 +1,305 @@
+[root@ems3 ~]# cat /etc/redhat-release 
+Red Hat Enterprise Linux Server release 5.5 (Tikanga)
+[root@ems3 ~]# more /etc/VRTSvcs/conf/config/main.cf
+include "OracleASMTypes.cf"
+include "types.cf"
+include "CFSTypes.cf"
+include "CVMTypes.cf"
+include "Db2udbTypes.cf"
+include "OracleTypes.cf"
+include "SybaseTypes.cf"
+
+cluster ems3_4 (
+        HacliUserLevel = COMMANDROOT
+        )
+
+system ems3 (
+        )
+
+system ems4 (
+        )
+
+group cvm (
+        SystemList = { ems3 = 0, ems4 = 1 }
+        AutoFailOver = 0
+        Parallel = 1
+        AutoStartList = { ems3, ems4 }
+        )
+
+        CFSfsckd vxfsckd (
+                ActivationMode @ems3 = { tibcodg = sw }
+                ActivationMode @ems4 = { tibcodg = sw }
+                )
+
+        CVMCluster cvm_clus (
+                CVMClustName = ems3_4
+                CVMNodeId = { ems3 = 0, ems4 = 1 }
+                CVMTransport = gab
+                CVMTimeout = 200
+                )
+
+        CVMVxconfigd cvm_vxconfigd (
+                Critical = 0
+                CVMVxconfigdArgs = { syslog }
+                )
+
+        cvm_clus requires cvm_vxconfigd
+        vxfsckd requires cvm_clus
+
+
+        // resource dependency tree
+        //
+        //      group cvm
+        //      {
+        //      CFSfsckd vxfsckd
+        //          {
+        //          CVMCluster cvm_clus
+        //              {
+        //              CVMVxconfigd cvm_vxconfigd
+        //              }
+        //          }
+        //      }
+
+
+group vrts_vea_cfs_int_cfsmount1 (
+        SystemList = { ems3 = 0, ems4 = 1 }
+        AutoFailOver = 0
+        Parallel = 1
+        AutoStartList = { ems3, ems4 }
+        )
+
+        CFSMount cfsmount1 (
+                Critical = 0
+                MountPoint = "/tibco"
+                BlockDevice = "/dev/vx/dsk/tibcodg/tibco_VOL"
+                MountOpt @ems3 = "cluster"
+                MountOpt @ems4 = "cluster"
+                NodeList = { ems3, ems4 }
+                )
+
+        CVMVolDg cvmvoldg1 (
+                Critical = 0
+                CVMDiskGroup = tibcodg
+                CVMVolume = { tibco_VOL }
+                CVMActivation @ems3 = sw
+                CVMActivation @ems4 = sw
+                )
+
+        requires group cvm online local firm
+        cfsmount1 requires cvmvoldg1
+
+
+        // resource dependency tree
+        //
+        //      group vrts_vea_cfs_int_cfsmount1
+        //      {
+        //      CFSMount cfsmount1
+        //          {
+        //          CVMVolDg cvmvoldg1
+        //          }
+        //      }
+
+
+[root@ems3 ~]# cd /var/VRTSvcs/log/
+[root@ems3 log]# grep -i fired engine_A.log 
+2011/05/05 12:55:50 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2011/05/05 12:55:50 VCS INFO V-16-1-50135 User root fired command: haclus -modify HacliUserLevel  COMMANDROOT  from localhost
+2011/05/05 12:55:50 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+
+
+2011/05/05 12:55:50 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2011/05/05 12:55:50 VCS INFO V-16-1-50135 User root fired command: hatype -add CVMCluster  from localhost
+2011/05/05 12:55:50 VCS INFO V-16-1-50135 User root fired command: hatype -modify CVMCluster  NumThreads  1  from localhost
+2011/05/05 12:55:50 VCS INFO V-16-1-50135 User root fired command: hatype -modify CVMCluster  OnlineTimeout  400  from localhost
+2011/05/05 12:55:50 VCS INFO V-16-1-50135 User root fired command: hatype -modify CVMCluster  CVMTransport  gab  from localhost
+2011/05/05 12:55:50 VCS INFO V-16-1-50135 User root fired command: hatype -modify CVMCluster  OnlineRetryLimit  2  from localhost
+2011/05/05 12:55:50 VCS INFO V-16-1-50135 User root fired command: hatype -modify CVMCluster  LogLevel  error  from localhost
+2011/05/05 12:55:50 VCS INFO V-16-1-50135 User root fired command: hatype -modify CVMCluster  FaultOnMonitorTimeouts  4  from localhost
+2011/05/05 12:55:50 VCS INFO V-16-1-50135 User root fired command: hatype -modify ... -add CVMCluster  ArgList  CVMTransport  from localhost
+2011/05/05 12:55:50 VCS INFO V-16-1-50135 User root fired command: hatype -modify ... -add CVMCluster  ArgList  CVMClustName  from localhost
+2011/05/05 12:55:50 VCS INFO V-16-1-50135 User root fired command: hatype -modify ... -add CVMCluster  ArgList  CVMNodeAddr  from localhost
+2011/05/05 12:55:50 VCS INFO V-16-1-50135 User root fired command: hatype -modify ... -add CVMCluster  ArgList  CVMNodeId  from localhost
+2011/05/05 12:55:50 VCS INFO V-16-1-50135 User root fired command: hatype -modify ... -add CVMCluster  ArgList  PortConfigd  from localhost
+2011/05/05 12:55:50 VCS INFO V-16-1-50135 User root fired command: hatype -modify ... -add CVMCluster  ArgList  PortKmsgd  from localhost
+2011/05/05 12:55:50 VCS INFO V-16-1-50135 User root fired command: hatype -modify ... -add CVMCluster  ArgList  CVMTimeout  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: haattr -add CVMCluster  CVMClustName  181  162  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: haattr -add CVMCluster  CVMNodeAddr  181  11  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: haattr -add CVMCluster  CVMNodeId  181  11  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: haattr -add CVMCluster  CVMTransport  181  162  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: haattr -add CVMCluster  PortConfigd  89  162  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: haattr -add CVMCluster  PortKmsgd  89  162  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: haattr -add CVMCluster  CVMTimeout  89  162  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: hatype -modify CVMCluster  SourceFile  ./CVMTypes.cf  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: hatype -add CVMVolDg  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: hatype -modify CVMVolDg  OnlineTimeout  400  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: hatype -modify CVMVolDg  OnlineRetryLimit  2  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: hatype -modify CVMVolDg  LogLevel  error  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: hatype -modify CVMVolDg  FaultOnMonitorTimeouts  4  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: haattr -add -static CVMVolDg  RegList  181  91  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: hatype -modify ... -add CVMVolDg  RegList  CVMActivation  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: hatype -modify ... -add CVMVolDg  RegList  CVMVolume  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: hatype -modify ... -add CVMVolDg  ArgList  CVMDiskGroup  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: hatype -modify ... -add CVMVolDg  ArgList  CVMVolume  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: hatype -modify ... -add CVMVolDg  ArgList  CVMActivation  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: hatype -modify ... -add CVMVolDg  ArgList  CVMVolumeIoTest  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: hatype -modify ... -add CVMVolDg  ArgList  CVMDGAction  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: hatype -modify ... -add CVMVolDg  ArgList  CVMDeportOnOffline  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: hatype -modify ... -add CVMVolDg  ArgList  State  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: haattr -add CVMVolDg  CVMDiskGroup  181  162  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: haattr -add CVMVolDg  CVMDGAction  181  162  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: haattr -add CVMVolDg  CVMVolume  181  91  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: haattr -add CVMVolDg  CVMActivation  181  162  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: haattr -add CVMVolDg  CVMVolumeIoTest  181  91  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: haattr -add CVMVolDg  CVMDeportOnOffline  89  162  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: haattr -add -temp CVMVolDg  voldg_stat  89  162  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: hatype -modify CVMVolDg  SourceFile  ./CVMTypes.cf  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: hatype -add CVMVxconfigd  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: hatype -modify CVMVxconfigd  LogLevel  error  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: hatype -modify CVMVxconfigd  FaultOnMonitorTimeouts  2  from localhost
+2011/05/05 12:55:51 VCS INFO V-16-1-50135 User root fired command: hatype -modify CVMVxconfigd  Operations  OnOnly  from localhost
+2011/05/05 12:55:52 VCS INFO V-16-1-50135 User root fired command: haattr -add CVMVxconfigd  CVMVxconfigdArgs  181  91  from localhost
+2011/05/05 12:55:52 VCS INFO V-16-1-50135 User root fired command: hatype -modify ... -add CVMVxconfigd  ArgList  CVMVxconfigdArgs  from localhost
+2011/05/05 12:55:52 VCS INFO V-16-1-50135 User root fired command: hatype -modify CVMVxconfigd  SourceFile  ./CVMTypes.cf  from localhost
+2011/05/05 12:55:52 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2011/05/05 12:55:52 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2011/05/05 12:55:52 VCS INFO V-16-1-50135 User root fired command: hagrp -add cvm  from localhost
+2011/05/05 12:55:52 VCS INFO V-16-1-50135 User root fired command: hagrp -modify cvm  SystemList  ems3  0  ems4  1  from localhost
+2011/05/05 12:55:52 VCS INFO V-16-1-50135 User root fired command: hagrp -modify cvm  AutoStartList  ems3  ems4  from localhost
+2011/05/05 12:55:52 VCS INFO V-16-1-50135 User root fired command: hagrp -modify cvm  Parallel  1  from localhost
+2011/05/05 12:55:52 VCS INFO V-16-1-50135 User root fired command: hagrp -modify cvm  AutoFailOver  0  from localhost
+2011/05/05 12:55:52 VCS INFO V-16-1-50135 User root fired command: hares -add cvm_clus  CVMCluster  cvm  from localhost
+2011/05/05 12:55:52 VCS INFO V-16-1-50135 User root fired command: hares -modify cvm_clus  Enabled  1  from localhost
+2011/05/05 12:55:52 VCS INFO V-16-1-50135 User root fired command: hares -modify cvm_clus  Critical  1  from localhost
+2011/05/05 12:55:52 VCS INFO V-16-1-50135 User root fired command: hares -modify cvm_clus  CVMClustName  ems3_4  from localhost
+2011/05/05 12:55:52 VCS INFO V-16-1-50135 User root fired command: hares -modify ... -add cvm_clus  CVMNodeId  ems3  0  ems4  1  from localhost
+2011/05/05 12:55:52 VCS INFO V-16-1-50135 User root fired command: hares -modify cvm_clus  CVMTransport  gab  from localhost
+2011/05/05 12:55:52 VCS INFO V-16-1-50135 User root fired command: hares -modify cvm_clus  CVMTimeout  200  from localhost
+2011/05/05 12:55:52 VCS INFO V-16-1-50135 User root fired command: hares -add cvm_vxconfigd  CVMVxconfigd  cvm  from localhost
+2011/05/05 12:55:52 VCS INFO V-16-1-50135 User root fired command: hares -modify cvm_vxconfigd  Enabled  1  from localhost
+2011/05/05 12:55:52 VCS INFO V-16-1-50135 User root fired command: hares -modify cvm_vxconfigd  Critical  0  from localhost
+2011/05/05 12:55:52 VCS INFO V-16-1-50135 User root fired command: hares -link cvm_clus  cvm_vxconfigd  0  0  from localhost
+2011/05/05 12:55:52 VCS INFO V-16-1-50135 User root fired command: hares -modify cvm_vxconfigd  CVMVxconfigdArgs  syslog  from localhost
+2011/05/05 12:55:52 VCS INFO V-16-1-50135 User root fired command: hatype -modify CVMVxconfigd  RestartLimit  5  from localhost
+2011/05/05 12:55:56 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2011/05/05 12:55:57 VCS INFO V-16-1-50135 User root fired command: hagrp -autoenable cvm  ems3  from localhost
+2011/05/05 12:55:57 VCS INFO V-16-1-50135 User root fired command: hagrp -online cvm  ems3  from localhost
+2011/05/05 12:55:57 VCS INFO V-16-1-50135 User root fired command: hagrp -autoenable cvm  ems4  from localhost
+2011/05/05 12:55:57 VCS INFO V-16-1-50135 User root fired command: hagrp -online cvm  ems4  from localhost
+2011/05/05 12:55:57 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2011/05/05 12:55:57 VCS INFO V-16-1-50135 User root fired command: hatype -add CFSMount  from localhost
+2011/05/05 12:55:57 VCS INFO V-16-1-50135 User root fired command: hatype -modify CFSMount  NameRule  resource.MountPoint  from localhost
+2011/05/05 12:55:58 VCS INFO V-16-1-50135 User root fired command: hatype -modify CFSMount  NameRule  resource.MountPoint  from localhost
+2011/05/05 12:55:59 VCS INFO V-16-1-50135 User root fired command: hatype -modify CFSMount  NameRule  resource.MountPoint  from localhost
+2011/05/05 12:56:03 VCS INFO V-16-1-50135 User root fired command: hatype -modify CFSMount  NameRule  resource.MountPoint  from localhost
+2011/05/05 12:56:07 VCS INFO V-16-1-50135 User root fired command: hatype -modify CFSMount  NameRule  resource.MountPoint  from localhost
+2011/05/05 12:56:07 VCS INFO V-16-1-50135 User root fired command: hatype -modify CFSMount  NameRule  resource.MountPoint  from localhost
+2011/05/05 12:56:10 VCS INFO V-16-1-50135 User root fired command: hatype -modify CFSMount  NameRule  resource.MountPoint  from localhost
+2011/05/05 12:56:12 VCS INFO V-16-1-50135 User root fired command: hatype -modify CFSMount  NameRule  resource.MountPoint  from localhost
+2011/05/05 12:56:16 VCS INFO V-16-1-50135 User root fired command: hatype -modify CFSMount  NameRule  resource.MountPoint  from localhost
+2011/05/05 12:56:16 VCS INFO V-16-1-50135 User root fired command: hatype -modify CFSMount  NameRule  resource.MountPoint  from localhost
+2011/05/05 12:56:18 VCS INFO V-16-1-50135 User root fired command: hatype -modify CFSMount  NameRule  resource.MountPoint  from localhost
+2011/05/05 12:56:18 VCS INFO V-16-1-50135 User root fired command: hatype -modify ... -add CFSMount  ArgList  MountPoint  from localhost
+2011/05/05 12:56:18 VCS INFO V-16-1-50135 User root fired command: hatype -modify ... -add CFSMount  ArgList  BlockDevice  from localhost
+2011/05/05 12:56:18 VCS INFO V-16-1-50135 User root fired command: hatype -modify ... -add CFSMount  ArgList  MountOpt  from localhost
+2011/05/05 12:56:18 VCS INFO V-16-1-50135 User root fired command: hatype -modify CFSMount  RestartLimit  0  from localhost
+2011/05/05 12:56:18 VCS INFO V-16-1-50135 User root fired command: hatype -modify CFSMount  OnlineRetryLimit  0  from localhost
+2011/05/05 12:56:18 VCS INFO V-16-1-50135 User root fired command: hatype -modify CFSMount  OnlineWaitLimit  1  from localhost
+2011/05/05 12:56:18 VCS INFO V-16-1-50135 User root fired command: hatype -modify CFSMount  FaultOnMonitorTimeouts  1  from localhost
+2011/05/05 12:56:18 VCS INFO V-16-1-50135 User root fired command: hatype -modify ... -add CFSMount  SupportedActions  primary  from localhost
+2011/05/05 12:56:18 VCS INFO V-16-1-50135 User root fired command: haattr -add CFSMount  MountPoint  181  162  from localhost
+2011/05/05 12:56:18 VCS INFO V-16-1-50135 User root fired command: haattr -add CFSMount  MountType  181  162  from localhost
+2011/05/05 12:56:18 VCS INFO V-16-1-50135 User root fired command: haattr -add CFSMount  BlockDevice  181  162  from localhost
+2011/05/05 12:56:18 VCS INFO V-16-1-50135 User root fired command: haattr -add CFSMount  MountOpt  181  162  from localhost
+2011/05/05 12:56:18 VCS INFO V-16-1-50135 User root fired command: haattr -add CFSMount  NodeList  181  91  from localhost
+2011/05/05 12:56:18 VCS INFO V-16-1-50135 User root fired command: haattr -add CFSMount  Policy  181  91  from localhost
+2011/05/05 12:56:18 VCS INFO V-16-1-50135 User root fired command: haattr -add -temp CFSMount  Primary  181  162  from localhost
+2011/05/05 12:56:18 VCS INFO V-16-1-50135 User root fired command: hatype -modify ... -add CFSMount  ArgList  Primary  from localhost
+2011/05/05 12:56:18 VCS INFO V-16-1-50135 User root fired command: haattr -add CFSMount  SetPrimary  181  162  from localhost
+2011/05/05 12:56:18 VCS INFO V-16-1-50135 User root fired command: haattr -add -temp CFSMount  RemountRes  181  162  from localhost
+2011/05/05 12:56:19 VCS INFO V-16-1-50135 User root fired command: haattr -add -temp CFSMount  AMFMountType  181  162  from localhost
+2011/05/05 12:56:19 VCS INFO V-16-1-50135 User root fired command: hatype -modify ... -add CFSMount  ArgList  AMFMountType  from localhost
+2011/05/05 12:56:19 VCS INFO V-16-1-50135 User root fired command: haattr -add CFSMount  ForceOff  181  162  from localhost
+2011/05/05 12:56:19 VCS INFO V-16-1-50135 User root fired command: haattr -add -static CFSMount  RegList  181  91  from localhost
+2011/05/05 12:56:19 VCS INFO V-16-1-50135 User root fired command: hatype -modify ... -add CFSMount  RegList  MountOpt  from localhost
+2011/05/05 12:56:19 VCS INFO V-16-1-50135 User root fired command: hatype -modify ... -add CFSMount  RegList  Policy  from localhost
+2011/05/05 12:56:19 VCS INFO V-16-1-50135 User root fired command: hatype -modify ... -add CFSMount  RegList  NodeList  from localhost
+2011/05/05 12:56:19 VCS INFO V-16-1-50135 User root fired command: hatype -modify ... -add CFSMount  RegList  ForceOff  from localhost
+2011/05/05 12:56:19 VCS INFO V-16-1-50135 User root fired command: hatype -modify ... -add CFSMount  RegList  SetPrimary  from localhost
+2011/05/05 12:56:19 VCS INFO V-16-1-50135 User root fired command: hatype -modify CFSMount  SourceFile  ./CFSTypes.cf  from localhost
+2011/05/05 12:56:19 VCS INFO V-16-1-50135 User root fired command: hatype -add CFSfsckd  from localhost
+2011/05/05 12:56:19 VCS INFO V-16-1-50135 User root fired command: hatype -modify CFSfsckd  RestartLimit  1  from localhost
+2011/05/05 12:56:19 VCS INFO V-16-1-50135 User root fired command: hatype -modify CFSfsckd  SourceFile  ./CFSTypes.cf  from localhost
+2011/05/05 12:56:19 VCS INFO V-16-1-50135 User root fired command: haattr -add CFSfsckd  ActivationMode  181  11  from localhost
+2011/05/05 12:56:19 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2011/05/05 12:56:19 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2011/05/05 12:56:19 VCS INFO V-16-1-50135 User root fired command: hares -add vxfsckd  CFSfsckd  cvm  from localhost
+2011/05/05 12:56:19 VCS INFO V-16-1-50135 User root fired command: hares -modify vxfsckd  Enabled  1  from localhost
+2011/05/05 12:56:19 VCS INFO V-16-1-50135 User root fired command: hares -link vxfsckd  cvm_clus  0  0  from localhost
+2011/05/05 12:56:19 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2011/05/05 12:56:29 VCS INFO V-16-1-50135 User root fired command: hares -online vxfsckd  ems3  from localhost
+2011/05/05 12:56:29 VCS INFO V-16-1-50135 User root fired command: hares -online vxfsckd  ems4  from localhost
+2011/05/05 12:56:31 VCS INFO V-16-1-50135 User root fired command: hagrp -clear cvm  ems3  from localhost
+2011/05/05 12:56:31 VCS INFO V-16-1-50135 User root fired command: hagrp -online cvm  ems3  from localhost
+2011/05/05 13:00:39 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2011/05/05 13:00:39 VCS INFO V-16-1-50135 User root fired command: hares -local vxfsckd  ActivationMode  from localhost
+2011/05/05 13:00:39 VCS INFO V-16-1-50135 User root fired command: hares -modify ... -add vxfsckd  ActivationMode  tibcodg  sw  ems3  from localhost
+2011/05/05 13:00:39 VCS INFO V-16-1-50135 User root fired command: hares -modify ... -add vxfsckd  ActivationMode  tibcodg  sw  ems4  from localhost
+2011/05/05 13:00:39 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2011/05/05 13:05:38 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2011/05/05 13:05:38 VCS INFO V-16-1-50135 User root fired command: hagrp -add vrts_vea_cfs_int_cfsmount1  from localhost
+2011/05/05 13:05:38 VCS INFO V-16-1-50135 User root fired command: hagrp -modify vrts_vea_cfs_int_cfsmount1  SystemList  ems3  0  ems4  1  from localhost
+2011/05/05 13:05:38 VCS INFO V-16-1-50135 User root fired command: hagrp -modify vrts_vea_cfs_int_cfsmount1  AutoStartList  ems3  ems4  from localhost
+2011/05/05 13:05:38 VCS INFO V-16-1-50135 User root fired command: hagrp -modify vrts_vea_cfs_int_cfsmount1  Parallel  1  from localhost
+2011/05/05 13:05:38 VCS INFO V-16-1-50135 User root fired command: hagrp -modify vrts_vea_cfs_int_cfsmount1  AutoFailOver  0  from localhost
+2011/05/05 13:05:38 VCS INFO V-16-1-50135 User root fired command: hagrp -link vrts_vea_cfs_int_cfsmount1  cvm  1  1  from localhost
+2011/05/05 13:05:38 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2011/05/05 13:05:38 VCS INFO V-16-1-50135 User root fired command: hagrp -autoenable vrts_vea_cfs_int_cfsmount1  ems3  from localhost
+2011/05/05 13:05:38 VCS INFO V-16-1-50135 User root fired command: hagrp -online vrts_vea_cfs_int_cfsmount1  ems3  from localhost
+2011/05/05 13:05:38 VCS INFO V-16-1-50135 User root fired command: hagrp -autoenable vrts_vea_cfs_int_cfsmount1  ems4  from localhost
+2011/05/05 13:05:38 VCS INFO V-16-1-50135 User root fired command: hagrp -online vrts_vea_cfs_int_cfsmount1  ems4  from localhost
+2011/05/05 13:05:38 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2011/05/05 13:05:38 VCS INFO V-16-1-50135 User root fired command: hares -add cvmvoldg1  CVMVolDg  vrts_vea_cfs_int_cfsmount1  from localhost
+2011/05/05 13:05:38 VCS INFO V-16-1-50135 User root fired command: hares -modify cvmvoldg1  CVMDiskGroup  tibcodg  from localhost
+2011/05/05 13:05:38 VCS INFO V-16-1-50135 User root fired command: hares -modify ... -add cvmvoldg1  CVMVolume  tibco_VOL  from localhost
+2011/05/05 13:05:38 VCS INFO V-16-1-50135 User root fired command: hares -local vxfsckd  ActivationMode  from localhost
+2011/05/05 13:05:38 VCS INFO V-16-1-50135 User root fired command: hares -local cvmvoldg1  CVMActivation  from localhost
+2011/05/05 13:05:38 VCS INFO V-16-1-50135 User root fired command: hares -modify cvmvoldg1  CVMActivation  sw  ems3  from localhost
+2011/05/05 13:05:38 VCS INFO V-16-1-50135 User root fired command: hares -modify cvmvoldg1  CVMActivation  sw  ems4  from localhost
+2011/05/05 13:05:38 VCS INFO V-16-1-50135 User root fired command: hares -modify cvmvoldg1  Critical  0  from localhost
+2011/05/05 13:05:38 VCS INFO V-16-1-50135 User root fired command: hares -modify cvmvoldg1  Enabled  1  from localhost
+2011/05/05 13:05:38 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2011/05/05 13:05:39 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2011/05/05 13:05:39 VCS INFO V-16-1-50135 User root fired command: hares -add cfsmount1  CFSMount  vrts_vea_cfs_int_cfsmount1  from localhost
+2011/05/05 13:05:39 VCS INFO V-16-1-50135 User root fired command: hares -modify cfsmount1  MountPoint  /tibco  from localhost
+2011/05/05 13:05:39 VCS INFO V-16-1-50135 User root fired command: hares -modify cfsmount1  BlockDevice  /dev/vx/dsk/tibcodg/tibco_VOL  from localhost
+2011/05/05 13:05:39 VCS INFO V-16-1-50135 User root fired command: hares -local cfsmount1  MountOpt  from localhost
+2011/05/05 13:05:39 VCS INFO V-16-1-50135 User root fired command: hares -local cfsmount1  RemountRes  from localhost
+2011/05/05 13:05:39 VCS INFO V-16-1-50135 User root fired command: hares -local cfsmount1  ForceOff  from localhost
+2011/05/05 13:05:39 VCS INFO V-16-1-50135 User root fired command: hares -local cfsmount1  SetPrimary  from localhost
+2011/05/05 13:05:39 VCS INFO V-16-1-50135 User root fired command: hares -modify cfsmount1  MountOpt  cluster  ems3  from localhost
+2011/05/05 13:05:39 VCS INFO V-16-1-50135 User root fired command: hares -modify cfsmount1  NodeList  ems3  from localhost
+2011/05/05 13:05:39 VCS INFO V-16-1-50135 User root fired command: hares -modify cfsmount1  Critical  0  from localhost
+2011/05/05 13:05:39 VCS INFO V-16-1-50135 User root fired command: hares -link cfsmount1  cvmvoldg1  0  0  from localhost
+2011/05/05 13:05:39 VCS INFO V-16-1-50135 User root fired command: hares -modify cfsmount1  AMFMountType  vxfs  from localhost
+2011/05/05 13:05:39 VCS INFO V-16-1-50135 User root fired command: hares -modify cfsmount1  Enabled  1  from localhost
+2011/05/05 13:05:39 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2011/05/05 13:05:39 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2011/05/05 13:05:39 VCS INFO V-16-1-50135 User root fired command: hares -local cfsmount1  MountOpt  from localhost
+2011/05/05 13:05:39 VCS INFO V-16-1-50135 User root fired command: hares -modify cfsmount1  MountOpt  cluster  ems4  from localhost
+2011/05/05 13:05:39 VCS INFO V-16-1-50135 User root fired command: hares -modify ... -add cfsmount1  NodeList  ems4  from localhost
+2011/05/05 13:05:39 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2011/05/05 13:05:40 VCS INFO V-16-1-50135 User root fired command: haconf -makerw from localhost
+2011/05/05 13:05:40 VCS INFO V-16-1-50135 User root fired command: hagrp -modify vrts_vea_cfs_int_cfsmount1  AutoStartList  ems3  ems4  from localhost
+2011/05/05 13:05:40 VCS INFO V-16-1-50135 User root fired command: haconf -dump -makero from localhost
+2011/05/05 13:05:40 VCS INFO V-16-1-50135 User root fired command: hares -local cfsmount1  RemountRes  from localhost
+2011/05/05 13:05:40 VCS INFO V-16-1-50135 User root fired command: hares -modify cfsmount1  RemountRes  DONE  ems3  from localhost
+2011/05/05 13:10:35 VCS INFO V-16-1-50135 User root fired command: MSG_RES_PROBE cfsmount1  ems3  from localhost
+2011/05/05 13:10:35 VCS INFO V-16-1-50135 User root fired command: MSG_RES_PROBE cfsmount1  ems4  from localhost
+2011/05/05 13:10:36 VCS INFO V-16-1-50135 User root fired command: hares -clear cfsmount1  ems3  from localhost
+2011/05/05 13:10:36 VCS INFO V-16-1-50135 User root fired command: hares -online cfsmount1  ems3  from localhost
+2011/05/05 13:10:36 VCS INFO V-16-1-50135 User root fired command: hares -clear cfsmount1  ems4  from localhost
+2011/05/05 13:10:36 VCS INFO V-16-1-50135 User root fired command: hares -online cfsmount1  ems4  from localhost
+2011/05/05 13:10:40 VCS INFO V-16-1-50135 User root fired command: hares -clear cvmvoldg1  ems3  from localhost
+2011/05/05 13:11:11 VCS INFO V-16-1-50135 User root fired command: hares -modify cfsmount1  Primary  ems3  from localhost
+2011/05/05 13:11:11 VCS INFO V-16-1-50135 User root fired command: hares -modify cfsmount1  Primary  ems3  from localhost
+[root@ems3 log]# 

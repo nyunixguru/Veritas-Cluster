@@ -1,0 +1,42 @@
+123  vxdg -g ora_DG adddisk ora01=emcpowera
+  124  vxdisk -o alldgs list
+  125  vxassist -g ora_DG make u01 maxsize ora01
+  126  vxprint -th
+  127  ls /dev/vx/dsk/ora_DG/
+  128  vxdisk -o alldgs list
+  129  vxdg -g ora_DG rmdisk u01_oradata
+  130  vxdg -g ora_DG adddisk ora02=emcpowere
+  131  vxassist -g ora_DG make oradata maxsize ora02
+  132  vxdg -g ora_DG rmdisk cvjungo.export
+  133  vxdg -g ora_DG adddisk ora03=emcpowerf
+  134  vxassist -g ora_DG make redoctl01 maxsize ora03
+  135  vxdisk list
+  136  vxdg -g ora_DG rmdisk ora03
+  137  vxassist -g ora_DG remove volume oradata
+  138  vxdg -g ora_DG rmdisk ora03
+  139  vxprint -th
+  140  vxassist -g ora_DG remove volume redoctl
+  141  vxassist -g ora_DG remove volume redoctl01
+  142  vxassist -g ora_DG make oradata maxsize ora02
+  143  vxdisk list
+  144  vxassist -g ora_DG make export maxsize ora03
+  145  vxdg -g ora_DG rmdisk cvjungo.redoctl01
+  146  vxdg -g ora_DG adddisk ora04=emcpowerg
+  147  vxassist -g ora_DG make export maxsize ora04
+  148  vxassist -g ora_DG make redoctl01 maxsize ora04
+  149  vxdisk list
+  150  vxdg -g ora_DG rmdisk cvjungo.redoctl02
+  151  vxdg -g ora_DG adddisk ora05=emcpowerh
+  152  vxdisk list
+  153  vxassist -g ora_DG make redoctl02 maxsize ora05
+  154  vxdisk list
+  155  vxdg -g ora_DG rmdisk cvjungo.redoctl03
+  156  vxdg -g ora_DG adddisk ora06=emcpoweri
+  157  vxassist -g ora_DG make redoctl03 maxsize ora06
+  158  vxdisk list
+  159  vxdg -g ora_DG rmdisk u01_archivelog
+  160  vxdg -g ora_DG adddisk ora07=emcpowerj
+  161  vxassist -g ora_DG make archivelog maxsize ora07
+  162  vxdg -g ora_DG rmdisk cvjungo.redoctl04
+  163  vxdg -g ora_DG adddisk ora08=emcpowerk
+  164  vxassist -g ora_DG make redoctl04 maxsize ora08

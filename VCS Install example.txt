@@ -1,0 +1,715 @@
+
+Linux Tips & Tricks
+
+Wednesday, January 1, 2014
+Install VCS on RHEL 5
+Install VCS on RHEL 5
+
+Host name  :    node1.example.com
+Host name  :    node2.example.com
+OS         :    RHEL 5.6 64 bit
+
+Make sure both the servers time is sync up.
+Make sure host names are resolving. Edit /etc/hosts files on both the servers.
+
+# more /etc/hosts
+127.0.0.1               localhost.localdomain localhost
+::1             localhost6.localdomain6 localhost6
+192.168.80.21   node1.example.com       node1
+192.168.80.22   node2.example.com       node2
+
+Installation package has been copied on node1 /opt folder. Enable execute permission on that folder.
+
+# chmod +x VRTS_SF_HA_Solutions_5.1_SP1_RHEL/ -R
+
+Pre check the pre-requisite on both the servers.
+
+# ./installer -precheck
+
+1)  Veritas Dynamic Multi-Pathing (DMP)
+     2)  Veritas Cluster Server (VCS)
+     3)  Veritas Storage Foundation (SF)
+     4)  Veritas Storage Foundation and High Availability (SFHA)
+     5)  Veritas Storage Foundation Cluster File System (SFCFS)
+     6)  Veritas Storage Foundation Cluster File System/HA (SFCFSHA)
+     7)  Veritas Storage Foundation for Oracle RAC (SFRAC)
+     8)  Veritas Storage Foundation Cluster File System for Oracle RAC (SFCFS RAC)
+     9)  Symantec VirtualStore (SVS)
+    10)  Symantec Product Authentication Services (AT)
+     b)  Back to previous menu
+
+Select a product to perform pre-installation check for: [1-10,b,q] 3
+
+Verifying systems: 100%
+
+    Estimated time remaining: 0:00                                                        8 of 8
+
+    Checking system communication ............................... Done
+    Checking release compatibility .............................. Done
+    Checking installed product .................................. Done
+    Checking prerequisite patches and rpms ...................... Done
+    Checking platform version ................................... Done
+    Checking file space ......................................... Done
+    Performing product license checks ........................... Done
+    Performing product prechecks ................................ Done
+
+Precheck report completed
+
+System verification checks completed successfully
+
+No issues found in prechecks
+
+Would you like to install SF on node1 node2? [y,n,q] (n) n
+
+installer log files, summary file, and response file are saved at:
+
+        /opt/VRTS/install/logs/installer-201401011724IFa
+
+Now we can start the VCS installation
+
+# ./installer node1 node2
+
+Task Menu:
+
+    P) Perform a Pre-Installation Check     I) Install a Product
+    C) Configure an Installed Product       G) Upgrade a Product
+    O) Perform a Post-Installation Check    U) Uninstall a Product
+    L) License a Product                    S) Start a Product
+    D) View Product Descriptions            X) Stop a Product
+    R) View Product Requirements            ?) Help
+
+Enter a Task: [P,I,C,G,O,U,L,S,D,X,R,?] I ß Press “I” and enter
+
+     1)  Veritas Dynamic Multi-Pathing (DMP)
+     2)  Veritas Cluster Server (VCS)
+     3)  Veritas Storage Foundation (SF)
+     4)  Veritas Storage Foundation and High Availability (SFHA)
+     5)  Veritas Storage Foundation Cluster File System (SFCFS)
+     6)  Veritas Storage Foundation Cluster File System/HA (SFCFSHA)
+     7)  Veritas Storage Foundation for Oracle RAC (SFRAC)
+     8)  Veritas Storage Foundation Cluster File System for Oracle RAC (SFCFS RAC)
+     9)  Symantec VirtualStore (SVS)
+    10)  Symantec Product Authentication Services (AT)
+     b)  Back to previous menu
+
+Select a product to install: [1-10,b,q] 4 ß Press “4” and enter
+
+Do you agree with the terms of the End User License Agreement as specified in the
+storage_foundation_high_availability/EULA/en/EULA_SFHA_Ux_5.1SP1.pdf file present on media? [y,n,q,?] y ß Press “y” and enter
+
+1)  Install minimal required Veritas Storage Foundation and High Availability rpms - 378 MB required
+     2)  Install recommended Veritas Storage Foundation and High Availability rpms - 581 MB required
+     3)  Install all Veritas Storage Foundation and High Availability rpms - 618 MB required
+     4)  Display rpms to be installed for each option
+
+Select the rpms to be installed on all systems? [1-4,q,?] (2) ß Use default option
+
+Enter the 64 bit RHEL5 system names separated by spaces: [q,?] node1 node2 ß enter servers hostname
+
+Estimated time remaining: 0:00                                                                                          8 of 8
+
+    Checking system communication ........................................................................................... Done
+    Checking release compatibility .......................................................................................... Done
+    Checking installed product .............................................................................................. Done
+    Checking prerequisite patches and rpms .................................................................................. Done
+    Checking platform version ............................................................................................... Done
+    Checking file space ..................................................................................................... Done
+    Performing product license checks ....................................................................................... Done
+    Performing product prechecks ............................................................................................ Done
+
+System verification checks completed successfully
+
+
+Rpm               Rpm Description
+
+VRTSvlic          Veritas Licensing
+VRTSperl          Veritas Perl 5.10.0 Redistribution
+VRTSspt           Veritas Software Support Tools by Symantec
+VRTSvxvm          Veritas Volume Manager Binaries
+VRTSaslapm        Volume Manager - ASL/APM
+VRTSob            Veritas Enterprise Administrator Service by Symantec
+VRTSsfmh          Veritas Storage Foundation Managed Host by Symantec
+VRTSvxfs          Veritas File System
+VRTSatClient      Symantec Product Authentication Service Client
+VRTSatServer      Symantec Product Authentication Service
+VRTSllt           Veritas Low Latency Transport
+VRTSgab           Veritas Group Membership and Atomic Broadcast
+VRTSvxfen         Veritas I/O Fencing by Symantec
+VRTSamf           Veritas Asynchronous Monitoring Framework by Symantec
+VRTSvcs           Veritas Cluster Server
+VRTSvcsag         Veritas Cluster Server Bundled Agents by Symantec
+VRTSvcsdr         Veritas Cluster Server Disk Reservation Modules
+VRTSvcsea         Veritas Cluster Server Enterprise Agents by Symantec
+VRTSdbed          Veritas Storage Foundation Databases
+VRTSodm           Veritas Oracle Disk Manager
+
+Press [Enter] to continue: ß Enter here
+
+Installing SFHA: 100%
+
+    Estimated time remaining: 0:00                                                                                        23 of 23
+
+    Performing SFHA preinstall tasks ........................................................................................ Done
+    Installing VRTSvlic rpm ................................................................................................. Done
+    Installing VRTSperl rpm ................................................................................................. Done
+    Installing VRTSspt rpm .................................................................................................. Done
+    Installing VRTSvxvm rpm ................................................................................................. Done
+    Installing VRTSaslapm rpm ............................................................................................... Done
+    Installing VRTSob rpm ................................................................................................... Done
+    Installing VRTSvxfs rpm ................................................................................................. Done
+    Installing VRTSatClient rpm ............................................................................................. Done
+    Installing VRTSatServer rpm ............................................................................................. Done
+    Installing VRTSllt rpm .................................................................................................. Done
+    Installing VRTSgab rpm .................................................................................................. Done
+    Installing VRTSvxfen rpm ................................................................................................ Done
+    Installing VRTSamf rpm .................................................................................................. Done
+    Installing VRTSvcs rpm .................................................................................................. Done
+    Installing VRTSvcsag rpm ................................................................................................ Done
+    Installing VRTSvcsdr rpm ................................................................................................ Done
+    Installing VRTSvcsea rpm ................................................................................................ Done
+    Installing VRTSdbed rpm ................................................................................................. Done
+    Installing VRTSodm rpm .................................................................................................. Done
+    Installing VRTSsfmh rpm ................................................................................................. Done
+    Performing SFHA postinstall tasks ....................................................................................... Done
+    Copying installer libraries and scripts ................................................................................. Done
+
+Veritas Storage Foundation and High Availability Install completed successfully
+
+1)  Enter a valid license key
+     2)  Enable keyless licensing and complete system licensing later
+
+How would you like to license the systems? [1-2,q] (2) ß choose the default and press enter
+
+1)  SF Standard HA
+     2)  SF Enterprise HA
+     b)  Back to previous menu
+
+Select product mode to license: [1-2,b,q,?] (1) ß choose the default and press enter
+
+Would you like to enable the Veritas Volume Replicator? [y,n,q] (n) ß press “n” and enter
+
+Registering SFHA license
+
+Would you like to configure SFHA on node1 node2? [y,n,q] (n) y ß type “y” and enter
+
+I/O Fencing
+
+It needs to be determined at this time if you plan to configure I/O Fencing in enabled or disabled mode, as well as help in
+determining the number of network interconnects (NICS) required on your systems. If you configure I/O Fencing in enabled mode,
+only a single NIC is required, though at least two are recommended.
+
+A split brain can occur if servers within the cluster become unable to communicate for any number of reasons. If I/O Fencing is
+not enabled, you run the risk of data corruption should a split brain occur. Therefore, to avoid data corruption due to split
+brain in CFS environments, I/O Fencing has to be enabled.
+
+If you do not enable I/O Fencing, you do so at your own risk
+
+See the Administrator's Guide for more information on I/O Fencing
+
+Do you want to configure I/O Fencing in enabled mode? [y,n,q,?] (y) n ß type “n” and press enter
+
+To configure VCS, answer the set of questions on the next screen.
+
+When [b] is presented after a question, 'b' may be entered to go back to the first question of the configuration set.
+
+When [?] is presented after a question, '?' may be entered for help or additional information about the question.
+
+Following each set of questions, the information you have entered will be presented for confirmation.  To repeat the set of
+questions and correct any previous errors, enter 'n' at the confirmation prompt.
+
+No configuration changes are made to the systems until all configuration questions are completed and confirmed.
+
+Press [Enter] to continue:
+
+A unique cluster name
+        A unique cluster ID number between 0-65535
+        Two or more NICs per system used for heartbeat links
+
+        One or more heartbeat links are configured as private links
+        You can configure one heartbeat link as a low-priority link
+
+All systems are being configured to create one cluster.
+
+Enter the unique cluster name: [q,?] mycluster ß type the cluster name and press enter
+Enter a unique cluster ID number between 0-65535: [b,q,?] 1 ß type the cluster ID and press enter
+
+1)  Configure heartbeat links using LLT over Ethernet
+     2)  Configure heartbeat links using LLT over UDP
+     3)  Automatically detect configuration for LLT over Ethernet
+     b)  Back to previous menu
+
+How would you like to configure heartbeat links? [1-3,b,q,?] (1) ß press “1” and enter
+
+Discovering NICs on node1 ................................................................ Discovered eth0 eth1 eth2 eth3 sit0
+
+Enter the NIC for the first private heartbeat link on node1: [b,q,?] (sit0) eth1
+eth1 has an IP address configured on it. It could be a public NIC on node1.
+Are you sure you want to use eth1 for the first private heartbeat link? [y,n,q,b,?] (n) y
+Would you like to configure a second private heartbeat link? [y,n,q,b,?] (y) y
+Enter the NIC for the second private heartbeat link on node1: [b,q,?] (sit0) eth2
+eth2 has an IP address configured on it. It could be a public NIC on node1.
+Are you sure you want to use eth2 for the second private heartbeat link? [y,n,q,b,?] (n) y
+Would you like to configure a third private heartbeat link? [y,n,q,b,?] (n)
+Do you want to configure an additional low-priority heartbeat link? [y,n,q,b,?] (n) y
+Enter the NIC for the low-priority heartbeat link on node1: [b,q,?] (eth0)
+Are you using the same NICs for private heartbeat links on all systems? [y,n,q,b,?] (y) y
+
+Cluster information verification:
+
+        Cluster Name:      mycluster
+        Cluster ID Number: 1
+        Private Heartbeat NICs for node1:
+                link1=eth1
+                link2=eth2
+        Low-Priority Heartbeat NIC for node1:
+                link-lowpri1=eth0
+        Private Heartbeat NICs for node2:
+                link1=eth1
+                link2=eth2
+        Low-Priority Heartbeat NIC for node2:
+                link-lowpri1=eth0
+
+Is this information correct? [y,n,q,b,?] (y) ß type “y” and press enter
+
+Virtual IP can be specified in RemoteGroup resource, and can be used to connect to the cluster using Java GUI
+The following data is required to configure the Virtual IP of the Cluster:
+
+        A public NIC used by each system in the cluster
+        A Virtual IP address and netmask
+
+Do you want to configure the Virtual IP? [y,n,q,?] (n) y
+Active NIC devices discovered on node1: eth0 eth1 eth2 eth3
+Enter the NIC for Virtual IP of the Cluster to use on node1: [b,q,?] (eth0)
+Is eth0 to be the public NIC used by all systems? [y,n,q,b,?] (y) y
+Enter the Virtual IP address for the Cluster: [b,q,?] 192.168.80.100
+Enter the NetMask for IP 192.168.80.100: [b,q,?] (255.255.255.0)
+
+Cluster Virtual IP verification:
+
+        NIC: eth0
+        IP: 192.168.80.100
+        NetMask: 255.255.255.0
+
+Is this information correct? [y,n,q] (y) ß type “y” and press enter
+
+Would you like to configure VCS to use Symantec Security Services? [y,n,q] (n)
+
+The following information is required to add VCS users:
+
+        A user name
+        A password for the user
+        User privileges (Administrator, Operator, or Guest)
+
+Do you want to set the username and/or password for the Admin user
+(default username = 'admin', password='password')? [y,n,q] (n) ß type “n” and press enter
+
+VCS User verification:
+
+        User: admin     Privilege: Administrators
+
+        Passwords are not displayed
+
+Is this information correct? [y,n,q] (y) ß type “y” and press enter
+
+The following information is required to configure SMTP notification:
+
+        The domain-based hostname of the SMTP server
+        The email address of each SMTP recipient
+        A minimum severity level of messages to send to each recipient
+
+Do you want to configure SMTP notification? [y,n,q,?] (n) ß type “n” and press enter
+
+
+The following information is required to configure SNMP notification:
+
+        System names of SNMP consoles to receive VCS trap messages
+        SNMP trap daemon port numbers for each console
+        A minimum severity level of messages to send to each console
+
+Do you want to configure SNMP notification? [y,n,q,?] (n) ß type “n” and press enter
+
+
+All SFHA processes that are currently running must be stopped
+
+Do you want to stop SFHA processes now? [y,n,q,?] (y) ß type “y” and press enter
+
+Stopping SFHA: 100%
+
+    Estimated time remaining: 0:00                                                                                          9 of 9
+
+    Performing SFHA prestop tasks ........................................................................................... Done
+    Stopping had ............................................................................................................ Done
+    Stopping hashadow ....................................................................................................... Done
+    Stopping CmdServer ...................................................................................................... Done
+    Stopping amf ............................................................................................................ Done
+    Stopping vxfen .......................................................................................................... Done
+    Stopping gab ............................................................................................................ Done
+    Stopping llt ............................................................................................................ Done
+    Stopping vxatd .......................................................................................................... Done
+
+Veritas Storage Foundation and High Availability Shutdown completed successfully
+
+Starting SFHA: 100%
+
+    Estimated time remaining: 0:00                                                                                        18 of 18
+
+    Performing SFHA configuration ........................................................................................... Done
+    Starting vxdmp .......................................................................................................... Done
+    Starting vxio ........................................................................................................... Done
+    Starting vxspec ......................................................................................................... Done
+    Starting vxconfigd ...................................................................................................... Done
+    Starting vxesd .......................................................................................................... Done
+    Starting vxrelocd ....................................................................................................... Done
+    Starting vxconfigbackupd ................................................................................................ Done
+    Starting vxportal ....................................................................................................... Done
+    Starting fdd ............................................................................................................ Done
+    Starting llt ............................................................................................................ Done
+    Starting gab ............................................................................................................ Done
+    Starting had ............................................................................................................ Done
+    Starting hashadow ....................................................................................................... Done
+    Starting CmdServer ...................................................................................................... Done
+    Starting vxdbd .......................................................................................................... Done
+    Starting vxodm .......................................................................................................... Done
+    Performing SFHA poststart tasks ......................................................................................... Done
+
+Veritas Storage Foundation and High Availability Startup completed successfully
+
+Would you like to send the information about this installation to Symantec to help improve installation in the future? [y,n,q,?]
+(y) n ß type “n” and press enter
+
+installer log files, summary file, and response file are saved at:
+
+        /opt/VRTS/install/logs/installer-201401020035dhA
+
+
+Run the following command to check the veritas cluster status
+
+# /opt/VRTSvcs/bin/hastatus -sum
+
+-- SYSTEM STATE
+-- System               State                Frozen
+
+A  node1                RUNNING              0
+A  node2                RUNNING              0
+
+-- GROUP STATE
+-- Group           System               Probed     AutoDisabled    State
+
+B  ClusterService  node1                Y          N               ONLINE
+B  ClusterService  node2                Y          N               OFFLINE
+
+# ps -ef | grep -i had
+root     10417     1  0 00:45 ?        00:00:00 /opt/VRTSvcs/bin/had
+root     10426     1  0 00:45 ?        00:00:00 /opt/VRTSvcs/bin/hashadow
+
+# ip a | grep -i 192.168.80.100 --color
+    inet 192.168.80.100/24 scope global secondary eth0:0
+
+-----Veritas cluster suite installation completed successfully---
+
+
+
+
+
+
+    # cd /opt/vcs/dvd1-redhatlinux/rhel5_x86_64
+    # ./installer
+
+    Symantec Product                                 Version Installed  Licensed
+    ==============================================================================
+
+    Symantec Licensing Utilities (VRTSvlic) are not installed due to which products and licenses are not discovered
+    Please use the menu below to continue.
+
+    Task Menu:
+
+        I) Install/Upgrade a Product  C) Configure an Installed Product
+        L) License a Product          P) Perform a Pre-Installation Check
+        U) Uninstall a Product        D) View a Product Description
+        Q) Quit                       ?) Help
+
+    Enter a Task: [I,C,L,P,U,D,Q,?] I
+
+
+         1)  Veritas Cluster Server (VCS)
+         2)  Veritas Volume Replicator (VVR)
+         3)  Veritas Storage Foundation (SF)
+         4)  Veritas Storage Foundation for Oracle (SFORA)
+         5)  Veritas Storage Foundation for DB2 (SFDB2)
+         6)  Veritas Storage Foundation Cluster File System (SFCFS)
+         7)  Veritas Storage Foundation Cluster File System for Oracle RAC (SFCFSRAC)
+         8)  Symantec Product Authentication Service (AT)
+         b)  Back to previous menu
+
+    Select a product to install: [1-8,b,q] 1
+    Enter the system names separated by spaces on which to install VCS: vmlinux2 vmlinux3
+    Initial system check:
+
+        Checking ssh communication with vmlinux3 ...................................................................................... Linux 2.6.18-128.el5
+        Checking VCS installation on vmlinux2 ................................................................................................ not installed
+        Checking kernel release on vmlinux2 ............................................................................................................. ok
+        Checking distribution match with vmlinux2 ....................................................................................................... OK
+        Checking architecture on vmlinux2 ............................................................................................................... OK
+        Checking rpm dist match with vmlinux2 ........................................................................................................... OK
+        Checking for SE Linux on vmlinux2 ......................................................................................................... disabled
+        Checking VCS installation on vmlinux3 ................................................................................................ not installed
+        Checking kernel release on vmlinux3 
+    ...
+
+
+    Checking system licensing
+
+    Installing licensing rpms
+    VCS is not licensed on vmlinux2
+
+    Enter a VCS license key for vmlinux2: XXXX-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX
+    XXXX-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX successfully registered on vmlinux2
+    Permanent VCS license registered on vmlinux2
+
+    Do you want to enter another license key for vmlinux2? [y,n,q] (n) n
+    VCS is not licensed on vmlinux3
+
+    Enter a VCS license key for vmlinux3: XXXX-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX
+    XXXX-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX successfully registered on vmlinux3
+    Permanent VCS license registered on vmlinux3
+
+    Do you want to enter another license key for vmlinux3? [y,n,q] (n) n
+
+
+    VCS can be installed without optional rpms to conserve disk space.
+
+    Additional rpms are typically installed to simplify future upgrades.
+
+         1)  Install required Veritas Cluster Server rpms - 330 MB required
+         2)  Install all Veritas Cluster Server rpms - 384 MB required
+         3)  Install Storage Foundation Enterprise HA rpms - 798 MB required
+
+    Select the rpms to be installed on all systems? [1-3,q,?] (3) 3
+
+
+    The following VCS rpms will be installed:
+    VRTSperl          Veritas Perl 5.8.8 Redistribution
+    VRTSvlic          Veritas Licensing
+    VRTSicsco         Symantec Infrastructure Core Services Common
+    VRTSpbx           Symantec Private Branch Exchange
+    VRTSatClient      Symantec Product Authentication Service Client
+    VRTSatServer      Symantec Product Authentication Service
+    VRTSspt           Veritas Software Support Tools
+    VRTSllt           Veritas Low Latency Transport
+    VRTSgab           Veritas Group Membership and Atomic Broadcast
+    VRTSvxfen         Veritas I/O Fencing
+    VRTSvcs           Veritas Cluster Server
+    VRTSvcsmg         Veritas Cluster Server Message Catalogs
+    VRTSacclib        Veritas ACC Library
+    VRTSvcsag         Veritas Cluster Server Bundled Agents
+    VRTSvcsdr         Veritas Cluster Server Disk Reservation Modules and Utilities
+    VRTSvcsmn         Veritas Cluster Server Man Pages
+    VRTSjre15         Veritas Java Runtime Environment Redistribution
+    VRTScscw          Veritas Cluster Server Configuration Wizards
+    VRTScscm          Veritas Cluster Server Cluster Manager
+
+    Press [Enter] to continue: 
+    ...continued:
+    VRTScssim         Veritas Cluster Server Simulator
+    VRTSweb           Veritas Java Web Server
+    VRTScutil         Veritas Cluster Utilities
+    VRTScmcs          Veritas Cluster Management Console for single cluster environments
+    VRTScmccc         Veritas Cluster Management Console cluster connector
+    VRTSobc33         Veritas Enterprise Administrator Core Service
+    VRTSob            Veritas Enterprise Administrator Service
+    VRTSobgui         Veritas Enterprise Administrator
+    VRTSccg           Veritas Enterprise Administrator Central Control Grid
+    VRTSmh            Veritas Storage Foundation Managed Host by Symantec
+    VRTSaa            Veritas Enterprise Administrator Action Agent
+    VRTSvxfscommon    Veritas File System Common package
+    VRTSvxfsplatform  Veritas File System Platform Specific Package
+    VRTSvxvmcommon    Veritas Volume Manager Common Package
+    VRTSvxvmplatform  Veritas Volume Manager Platform Specific Package
+    VRTSdsa           Veritas Datacenter Storage Agent
+    VRTSfspro         Veritas File System Management Services Provider
+    VRTSvmman         Veritas Volume Manager Manual Pages
+    VRTSlvmconv       Veritas Linux LVM to VxVM Converter
+    VRTSvmpro         Veritas Volume Manager Management Services Provider
+
+    Press [Enter] to continue: 
+    ...continued:
+    VRTSdcli          Veritas Distributed Command Line Interface
+    VRTSalloc         Veritas Volume Manager Intelligent Storage Provisioning
+    VRTSvdid          Veritas Device Identification API
+    VRTSddlpr         Veritas Device Discovery Layer Services Provider
+    VRTSvrpro         Veritas Volume Replicator Client Extension and Provider for 
+                  Veritas Enterprise Administrator
+    VRTSvcsvr         Veritas Cluster Server Agents for VVR
+    VRTSvrw           Veritas Volume Replicator Web Console
+    VRTSfsman         Veritas File System Manual Pages
+    VRTSfssdk         Veritas File System Software Developer Kit
+    VRTSfsmnd         Veritas File System Software Developer Kit Manual Pages
+    VRTSvxmsa         Veritas Mapping Service, Application Libraries
+    VRTSmaprocommon   Veritas Storage Foundation GUI for Mapping
+
+    Press [Enter] to continue: 
+    It is possible to install VCS rpms without performing configuration.
+
+    It is optional to configure VCS now. If you choose to configure VCS later, you can either do so manually, or run the installvcs -configure command. The
+    product installation scripts can be found in /opt/VRTS/install directory
+
+    Are you ready to configure VCS? [y,n,q] (y) y
+
+
+    To configure VCS, please answer the sets of questions on the next screen.
+
+    When [b] is presented after a question, 'b' may be entered to go back to the first question of the configuration set.
+
+    When [?] is presented after a question, '?' may be entered for help or additional information about the question.
+
+    Following each set of questions, the information you have entered will be presented for confirmation.  To repeat the set of questions and correct any
+    previous errors, enter 'n' at the confirmation prompt.
+
+    No configuration changes are made to the systems until all configuration questions are completed and VCS is installed successfully.
+
+    Press [Enter] to continue: 
+
+
+    To configure VCS the following information is required:
+
+            A unique Cluster name
+            A unique Cluster ID number between 0-65535
+            Two or more NIC cards per system used for heartbeat links
+
+            One or more heartbeat links are configured as private links
+            One heartbeat link may be configured as a low priority link
+
+    All systems are being configured to create one cluster
+
+    Enter the unique cluster name: [?] vcs_cluster_1
+    Enter the unique Cluster ID number between 0-65535: [b,?] 1
+        Discovering NICs on vmlinux2 ................................................................................... discovered eth0 eth1 eth2 eth3 sit0
+
+    To use aggregated interfaces for private heartbeat, enter the name of the aggregated interface. 
+    To use a NIC for private heartbeat, enter a NIC which is not part of an aggregated interface.
+
+
+    Enter the NIC for the first private heartbeat link on vmlinux2: [b,?] eth2
+    Would you like to configure a second private heartbeat link? [y,n,q,b,?] (y) y
+    Enter the NIC for the second private heartbeat link on vmlinux2: [b,?] eth3
+    Would you like to configure a third private heartbeat link? [y,n,q,b,?] (n) n
+    Do you want to configure an additional low priority heartbeat link? [y,n,q,b,?] (n) y
+    Enter the NIC for the low priority heartbeat link on vmlinux2: [b,?] (eth0) eth0
+    Are you using the same NICs for private heartbeat links on all systems? [y,n,q,b,?] (y) y
+
+
+    Cluster information verification:
+
+            Cluster Name: vcs_cluster_1
+            Cluster ID Number: 1
+            Private Heartbeat NICs for vmlinux2: link1=eth2 link2=eth3
+            Low Priority Heartbeat NIC for vmlinux2: link-lowpri=eth0
+            Private Heartbeat NICs for vmlinux3: link1=eth2 link2=eth3
+            Low Priority Heartbeat NIC for vmlinux3: link-lowpri=eth0
+
+    Is this information correct? [y,n,q] (y) y
+
+
+    Veritas Cluster Server can be configured to utilize Symantec Security Services.
+
+    Running VCS in Secure Mode guarantees that all inter-system communication is encrypted and that users are verified with security credentials.
+
+    When running VCS in Secure Mode, NIS and system usernames and passwords are used to verify identity.  VCS usernames and passwords are no longer utilized
+    when a cluster is running in Secure Mode.
+
+    Before configuring a cluster to operate using Symantec Security Services, another system must already have Symantec Security Services installed and be
+    operating as a Root Broker.  Refer to the Veritas Cluster Server Installation Guide for more information on configuring a Symantec Product Authentication
+    Service Root Broker.
+
+    Would you like to configure VCS to use Symantec Security Services? [y,n,q] (n) n
+
+
+    The following information is required to add VCS users:
+
+            A user name
+            A password for the user
+            User privileges (Administrator, Operator, or Guest)
+
+    Do you want to set the username and/or password for the Admin user
+    (default username = 'admin', password='password')? [y,n,q] (n) y
+
+
+    The following information is required to add VCS users:
+
+            A user name
+            A password for the user
+            User privileges (Administrator, Operator, or Guest)
+
+    Do you want to set the username and/or password for the Admin user
+    (default username = 'admin', password='password')? [y,n,q] (n) y
+    Enter the user name: [b,?] (admin) admin
+    Enter the password:
+    Enter again:
+
+    Do you want to add another user to the cluster? [y,n,q] (y) n
+
+
+    VCS User verification:
+
+            User: admin     Privilege: Administrators
+
+            Passwords are not displayed
+
+    Is this information correct? [y,n,q] (y) y
+
+
+    The following information is required to configure SMTP notification:
+
+            The domain-based hostname of the SMTP server
+            The email address of each SMTP recipient
+            A minimum severity level of messages to send to each recipient
+
+
+    Do you want to configure SMTP notification? [y,n,q,?] (y) n
+
+
+    The following information is required to configure SNMP notification:
+
+            System names of SNMP consoles to receive VCS trap messages
+            SNMP trap daemon port numbers for each console
+            A minimum severity level of messages to send to each console
+
+
+    Do you want to configure SNMP notification? [y,n,q,?] (y) n
+
+
+    The following is required to configure the Global Cluster Option:
+
+            A public NIC used by each system in the cluster
+            A Virtual IP address and netmask
+
+
+
+    Do you want to configure the Global Cluster Option? [y,n,q,?] (y) n
+
+
+    Logs for installer are temporarily being created in /var/tmp/installer-RXqkVZ.
+
+
+        Installing VCS: 0%   _____________________________________________________________________________________________________________________________ \
+
+After this stage comes the configure stage
+
+        Creating Veritas Cluster Server configuration files ........................................................................................... Done
+        Copying configuration files to vmlinux2 ....................................................................................................... Done
+        Copying configuration files to vmlinux3 ....................................................................................................... Done
+    Do you want to start Veritas Cluster Server processes now? [y,n,q] (y) y
+
+    Logs for installvcs are temporarily being created in /var/tmp/installvcs-dUNOcA.
+
+
+        Starting VCS: 0%   _______________________________________________________________________________________________________________________________ |
+        Starting VCS: 100%                                                                                                                                  
+
+    Startup completed successfully on all systems
+
+    Configuration log files, summary file, and response file are saved at:
+
+            /opt/VRTS/install/logs/installvcs-IiyaVI
+
+    The README.1st file has more information about VCS. Read it Now? [y,n,q] (y) n

@@ -1,0 +1,456 @@
+[root@ipew1aprov rhel6_x86_64]# ./cluster_server/installvcs -fencing
+
+                                                   Symantec Cluster Server 6.1 Configure Program                                                    
+
+Copyright (c) 2013 Symantec Corporation. All rights reserved.  Symantec, the Symantec Logo are trademarks or registered trademarks of Symantec 
+Corporation or its affiliates in the U.S. and other countries. Other names may be trademarks of their respective owners.
+
+The Licensed Software and Documentation are deemed to be "commercial computer software" and "commercial computer software documentation" as defined 
+in FAR Sections 12.212 and DFARS Section 227.7202.
+
+Logs are being written to /var/tmp/installvcs-201406031436ibx while installvcs is in progress.
+
+Enter the name of one system in the VCS cluster for which you would like to configure I/O fencing: ipew1aprov
+
+    Checking communication on ipew1aprov .................................................................................................. Done
+    Checking release compatibility on ipew1aprov .......................................................................................... Done
+    Checking VCS installation on ipew1aprov .................................................................................. Version 6.1.0.000
+
+                                                   Symantec Cluster Server 6.1 Configure Program                                                    
+
+Cluster information verification:
+
+        Cluster Name: ipew1provcluster
+
+        Cluster ID Number: 61353
+
+        Systems: ipew1aprov ipew1bprov
+
+Would you like to configure I/O fencing on the cluster? [y,n,q] (y) 
+
+    Checking communication on ipew1aprov .................................................................................................. Done
+    Checking release compatibility on ipew1aprov .......................................................................................... Done
+    Checking VCS installation on ipew1aprov .................................................................................. Version 6.1.0.000
+    Checking communication on ipew1bprov .................................................................................................. Done
+    Checking release compatibility on ipew1bprov .......................................................................................... Done
+    Checking VCS installation on ipew1bprov .................................................................................. Version 6.1.0.000
+
+                                                   Symantec Cluster Server 6.1 Configure Program                                                    
+
+Fencing configuration
+     1)  Configure Coordination Point client based fencing
+     2)  Configure disk based fencing
+     3)  Configure fencing in disabled mode
+     4)  Replace/Add/Remove coordination points
+     5)  Refresh keys/registrations on the existing coordination points
+     6)  Set the order of existing coordination points
+
+Select the fencing mechanism to be configured in this Application Cluster: [1-6,q,?] 2
+
+This I/O fencing configuration option requires a restart of VCS. Installer will stop VCS at a later stage in this run. Note that the service groups 
+will be online only on the systems that are in the 'AutoStartList' after restarting VCS. Do you want to continue? [y,n,q,b,?] y
+
+Do you have SCSI3 PR enabled disks? [y,n,q,b,?] (y) 
+
+Since you have selected to configure disk based fencing, you need to provide the existing disk group to be used as coordinator or create a new disk 
+group for it.
+
+Select one of the options below for fencing disk group:
+     1)  Create a new disk group
+     b)  Back to previous menu
+
+Enter the choice for a disk group: [1-1,b,q] 1
+
+List of available disks to create a new disk group
+A new disk group cannot be created as the number of available free VxVM CDS disks is 0 which is less than three. If there are disks available which 
+are not under VxVM control, use the command vxdisksetup or use the installer to initialize them as VxVM disks.
+
+Do you want to initialize more disks as VxVM disks? [y,n,q,b] (y) y
+
+List of disks which can be initialized as VxVM disks:
+     1)  vmdk0_0
+     2)  vmdk0_1
+     3)  vmdk0_2
+     b)  Back to previous menu
+
+Enter the disk options, separated by spaces: [1-3,b,q] 1 2 3
+    Intializing disk vmdk0_0 on ipew1aprov ................................................................................................ Done
+    Intializing disk vmdk0_1 on ipew1aprov ................................................................................................ Done
+    Intializing disk vmdk0_2 on ipew1aprov ................................................................................................ Done
+
+     1)  vmdk0_0
+     2)  vmdk0_1
+     3)  vmdk0_2
+     b)  Back to previous menu
+
+Select odd number of disks and at least three disks to form a disk group. Enter the disk options, separated by spaces: [1-3,b,q] 3
+The total number of disks should be odd and no less than three. Input again
+     1)  vmdk0_0
+     2)  vmdk0_1
+     3)  vmdk0_2
+     b)  Back to previous menu
+
+Select odd number of disks and at least three disks to form a disk group. Enter the disk options, separated by spaces: [1-3,b,q] 3
+The total number of disks should be odd and no less than three. Input again
+     1)  vmdk0_0
+     2)  vmdk0_1
+     3)  vmdk0_2
+     b)  Back to previous menu
+
+Select odd number of disks and at least three disks to form a disk group. Enter the disk options, separated by spaces: [1-3,b,q] 3 1 2 3
+The total number of disks should be odd and no less than three. Input again
+     1)  vmdk0_0
+     2)  vmdk0_1
+     3)  vmdk0_2
+     b)  Back to previous menu
+
+Select odd number of disks and at least three disks to form a disk group. Enter the disk options, separated by spaces: [1-3,b,q] 1-3
+Invalid input. Please retry.
+Select odd number of disks and at least three disks to form a disk group. Enter the disk options, separated by spaces: [1-3,b,q] 3 1-3
+Invalid input. Please retry.
+Select odd number of disks and at least three disks to form a disk group. Enter the disk options, separated by spaces: [1-3,b,q] 3
+The total number of disks should be odd and no less than three. Input again
+     1)  vmdk0_0
+     2)  vmdk0_1
+     3)  vmdk0_2
+     b)  Back to previous menu
+
+Select odd number of disks and at least three disks to form a disk group. Enter the disk options, separated by spaces: [1-3,b,q] 1 2 3
+
+Enter the new disk group name: [b] iofence_DG
+Created disk group iofence_DG
+
+Before you continue with configuration, Symantec recommends that you run the vxfentsthdw utility (I/O fencing test hardware utility), in a separate 
+console, to test whether the shared storage supports I/O fencing.  You can access the utility at '/opt/VRTSvcs/vxfen/bin/vxfentsthdw'.
+As per the 'vxfentsthdw' run you performed, do you want to continue with this disk group? [y,n,q] (y) 
+
+Using disk group iofence_DG
+
+Enter disk policy for the disk(s) (raw/dmp): [b,q,?] dmp
+
+                                                   Symantec Cluster Server 6.1 Configure Program                                                    
+
+I/O fencing configuration verification
+
+        Disk Group: iofence_DG
+
+        Fencing disk policy: dmp
+
+Is this information correct? [y,n,q] (y) 
+
+Installer will stop VCS before applying fencing configuration. To make sure VCS shuts down successfully, unfreeze any frozen service group and 
+unmount the mounted file systems in the cluster.
+
+Are you ready to stop VCS and apply fencing configuration on all nodes at this time? [y,n,q] (y) 
+
+    Stopping VCS on ipew1aprov ............................................................................................................ Done
+    Stopping VCS on ipew1bprov ............................................................................................................ Done
+    Starting Fencing on ipew1aprov ........................................................................................................ Done
+    Starting Fencing on ipew1bprov ........................................................................................................ Done
+    Updating main.cf with fencing ......................................................................................................... Done
+    Starting VCS on ipew1aprov ............................................................................................................ Done
+    Starting VCS on ipew1bprov ............................................................................................................ Done
+
+The Coordination Point Agent monitors the registrations on the coordination points.
+Do you want to configure Coordination Point Agent on the client cluster? [y,n,q] (y) 
+Enter a non-existing name for the service group for Coordination Point Agent: [b] (vxfen) 
+
+Additionally the Coordination Point Agent can also monitor changes to the Coordinator Disk Group constitution such as a disk being accidently 
+deleted from the Coordinator Disk Group. The frequency of this detailed monitoring can be tuned with the LevelTwoMonitorFreq attribute. For example,
+if you set this attribute to 5, the agent will monitor the Coordinator Disk Group constitution every five monitor cycles. If LevelTwoMonitorFreq 
+attribute is not set, the agent will not monitor any changes to the Coordinator Disk Group.
+
+Do you want to set LevelTwoMonitorFreq? [y,n,q] (y) 
+Enter the value of the LevelTwoMonitorFreq attribute(0 to 65535): [b,q,?] (5) 
+
+    Adding Coordination Point Agent via ipew1aprov ........................................................................................ Done
+
+    I/O Fencing configuration ............................................................................................................. Done
+
+I/O Fencing configuration completed successfully
+
+You are running this virtual machine under a VMware environment. You may access the cluster view for this virtual machine using the vSphere client. 
+To access the cluster view for the virtual machine using the vSphere client, log on to the vCenter Server through the vSphere client, navigate to 
+the virtual machine in the inventory view and click on the 'Symantec High Availability' tab.
+You may also access the cluster view from a browser. To access the cluster view through a browser, open the URL below in a browser:
+
+https://<VM_IP_or_Hostname>:5634/vcs/admin/application_health.html
+
+installvcs log files, summary file, and response file are saved at:
+
+        /opt/VRTS/install/logs/installvcs-201406031436ibx
+
+Would you like to view the summary file? [y,n,q] (n) y
+
+installvcs Summary
+
+The following processes were stopped on ipew1aprov:
+
+        had
+
+
+The following processes were stopped on ipew1bprov:
+
+        had
+
+
+The following processes were started on ipew1aprov:
+
+        vxfen
+        had
+
+
+The following processes were started on ipew1bprov:
+
+        vxfen
+        had
+[root@ipew1aprov rhel6_x86_64]# https://<VM_IP_or_Hostname>:5634/vcs/admin/application_health.html
+-bash: VM_IP_or_Hostname: No such file or directory
+[root@ipew1aprov rhel6_x86_64]# ps -ef | grep vxfen
+root     12853     2  0 15:03 ?        00:00:00 [vxfen]
+root     12854     2  0 15:03 ?        00:00:00 [vxfen]
+root     13346  4403  0 15:13 pts/0    00:00:00 grep vxfen
+[root@ipew1aprov rhel6_x86_64]# vxdisk -o alldgs list
+DEVICE       TYPE            DISK         GROUP        STATUS
+sda          auto:LVM        -            -            online invalid
+vmdk0_0      auto:cdsdisk    -            (iofence_DG) online
+vmdk0_1      auto:cdsdisk    -            (iofence_DG) online
+vmdk0_2      auto:cdsdisk    -            (iofence_DG) online
+[root@ipew1aprov rhel6_x86_64]# cd /tmp
+[root@ipew1aprov tmp]# ls
+err_file.2014-06-03_14.50.22  out.2014-06-03_14.50.22                  VRTSspt.6.1.0b6.linux.tar.gz
+err_file.2014-06-03_14.53.04  out_dd.2014-06-03_14.53.04               yum_save_tx-2014-05-30-16-59uxNaTz.yumtx
+logs.tar.gz                   sfha-rhel6_x86_64-6.1.0.300-rpms.tar.gz  yum_save_tx-2014-05-30-17-00n_pX48.yumtx
+lost+found                    tmp                                      zkB5U6uVcY
+mEs9vWhnNa                    vmware-root
+[root@ipew1aprov tmp]# gunzip VRTSspt.6.1.0b6.linux.tar.gz
+[root@ipew1aprov tmp]# tar xvf VRTSspt.6.1.0b6.linux.tar
+linux/
+linux/pkgs/
+linux/pkgs/VRTSspt-6.1.000.000-GA.noarch.rpm
+[root@ipew1aprov tmp]# cd linux/pkgs
+[root@ipew1aprov pkgs]# ls
+VRTSspt-6.1.000.000-GA.noarch.rpm
+[root@ipew1aprov pkgs]# rpm -ivh VRTSspt-6.1.000.000-GA.noarch.rpm
+Preparing...                ########################################### [100%]
+        file /opt/VRTSspt/DataCollector/sort_linux_i686.sh from install of VRTSspt-6.1.000.000-GA.noarch conflicts with file from package VRTSspt-6.1.0.000-GA.noarch
+        file /opt/VRTSspt/FS/Cfstlist/cfstlist from install of VRTSspt-6.1.000.000-GA.noarch conflicts with file from package VRTSspt-6.1.0.000-GA.noarch
+        file /opt/VRTSspt/FS/MetaSave/metasave_centos5_x86_64 from install of VRTSspt-6.1.000.000-GA.noarch conflicts with file from package VRTSspt-6.1.0.000-GA.noarch
+        file /opt/VRTSspt/FS/MetaSave/metasave_rhel5_x86_64 from install of VRTSspt-6.1.000.000-GA.noarch conflicts with file from package VRTSspt-6.1.0.000-GA.noarch
+        file /opt/VRTSspt/FS/MetaSave/metasave_rhel6_x86_64 from install of VRTSspt-6.1.000.000-GA.noarch conflicts with file from package VRTSspt-6.1.0.000-GA.noarch
+        file /opt/VRTSspt/FS/MetaSave/metasave_sles10_x86_64 from install of VRTSspt-6.1.000.000-GA.noarch conflicts with file from package VRTSspt-6.1.0.000-GA.noarch
+        file /opt/VRTSspt/FS/MetaSave/metasave_sles11_x86_64 from install of VRTSspt-6.1.000.000-GA.noarch conflicts with file from package VRTSspt-6.1.0.000-GA.noarch
+        file /opt/VRTSspt/FS/VxBench/vxbench_rhel5_x86_64 from install of VRTSspt-6.1.000.000-GA.noarch conflicts with file from package VRTSspt-6.1.0.000-GA.noarch
+        file /opt/VRTSspt/FS/VxBench/vxbench_rhel6_x86_64 from install of VRTSspt-6.1.000.000-GA.noarch conflicts with file from package VRTSspt-6.1.0.000-GA.noarch
+        file /opt/VRTSspt/FS/VxBench/vxbench_sles10_x86_64 from install of VRTSspt-6.1.000.000-GA.noarch conflicts with file from package VRTSspt-6.1.0.000-GA.noarch
+        file /opt/VRTSspt/FS/VxBench/vxbench_sles11_x86_64 from install of VRTSspt-6.1.000.000-GA.noarch conflicts with file from package VRTSspt-6.1.0.000-GA.noarch
+        file /opt/VRTSspt/FirstLook/Flook_aix from install of VRTSspt-6.1.000.000-GA.noarch conflicts with file from package VRTSspt-6.1.0.000-GA.noarch
+        file /opt/VRTSspt/FirstLook/Flook_hpux from install of VRTSspt-6.1.000.000-GA.noarch conflicts with file from package VRTSspt-6.1.0.000-GA.noarch
+        file /opt/VRTSspt/FirstLook/Flook_linux from install of VRTSspt-6.1.000.000-GA.noarch conflicts with file from package VRTSspt-6.1.0.000-GA.noarch
+        file /opt/VRTSspt/FirstLook/Flook_sol from install of VRTSspt-6.1.000.000-GA.noarch conflicts with file from package VRTSspt-6.1.0.000-GA.noarch
+        file /opt/VRTSspt/FirstLook/copyright from install of VRTSspt-6.1.000.000-GA.noarch conflicts with file from package VRTSspt-6.1.0.000-GA.noarch
+        file /opt/VRTSspt/FirstLook/snap_look from install of VRTSspt-6.1.000.000-GA.noarch conflicts with file from package VRTSspt-6.1.0.000-GA.noarch
+        file /opt/VRTSspt/FirstLook/start_aix from install of VRTSspt-6.1.000.000-GA.noarch conflicts with file from package VRTSspt-6.1.0.000-GA.noarch
+        file /opt/VRTSspt/FirstLook/start_hpux from install of VRTSspt-6.1.000.000-GA.noarch conflicts with file from package VRTSspt-6.1.0.000-GA.noarch
+        file /opt/VRTSspt/FirstLook/start_linux from install of VRTSspt-6.1.000.000-GA.noarch conflicts with file from package VRTSspt-6.1.0.000-GA.noarch
+        file /opt/VRTSspt/FirstLook/start_look from install of VRTSspt-6.1.000.000-GA.noarch conflicts with file from package VRTSspt-6.1.0.000-GA.noarch
+        file /opt/VRTSspt/FirstLook/start_sol from install of VRTSspt-6.1.000.000-GA.noarch conflicts with file from package VRTSspt-6.1.0.000-GA.noarch
+        file /opt/VRTSspt/FirstLook/stop_look from install of VRTSspt-6.1.000.000-GA.noarch conflicts with file from package VRTSspt-6.1.0.000-GA.noarch
+        file /opt/VRTSspt/FirstLook/tlist.sh from install of VRTSspt-6.1.000.000-GA.noarch conflicts with file from package VRTSspt-6.1.0.000-GA.noarch
+        file /opt/VRTSspt/FirstLook/tlist_linux.sh from install of VRTSspt-6.1.000.000-GA.noarch conflicts with file from package VRTSspt-6.1.0.000-GA.noarch
+        file /opt/VRTSspt/FirstLook/tlist_sol.sh from install of VRTSspt-6.1.000.000-GA.noarch conflicts with file from package VRTSspt-6.1.0.000-GA.noarch
+        file /opt/VRTSspt/FirstLook/vxfsstuff from install of VRTSspt-6.1.000.000-GA.noarch conflicts with file from package VRTSspt-6.1.0.000-GA.noarch
+        file /opt/VRTSspt/FirstLook/vxvmstuff from install of VRTSspt-6.1.000.000-GA.noarch conflicts with file from package VRTSspt-6.1.0.000-GA.noarch
+        file /opt/VRTSspt/FirstLook/vxvmstuff.novvr from install of VRTSspt-6.1.000.000-GA.noarch conflicts with file from package VRTSspt-6.1.0.000-GA.noarch
+        file /opt/VRTSspt/README.VRTSspt from install of VRTSspt-6.1.000.000-GA.noarch conflicts with file from package VRTSspt-6.1.0.000-GA.noarch
+        file /opt/VRTSspt/VRTSexplorer/VRTSexplorer from install of VRTSspt-6.1.000.000-GA.noarch conflicts with file from package VRTSspt-6.1.0.000-GA.noarch
+        file /opt/VRTSspt/VRTSexplorer/README.vxexplorer from install of VRTSspt-6.1.000.000-GA.noarch conflicts with file from package VRTSspt-6.1.0.000-GA.noarch
+[root@ipew1aprov pkgs]# cd /opt
+[root@ipew1aprov opt]# ls
+EMPsysedge  lost+found  ORCLodm  scripts  VRTSagents  VRTSccg   VRTSfsadv  VRTSllt  VRTSodm   VRTSsfmh  VRTSvbs  VRTSvlic   VRTSvxfs
+home        opsware     rh       VRTS     VRTSamf     VRTSdbed  VRTSgab    VRTSob   VRTSperl  VRTSspt   VRTSvcs  VRTSvxfen  VRTSvxms
+[root@ipew1aprov opt]# cd VRTSspt
+[root@ipew1aprov VRTSspt]# /opt/VRTSspt/VRTSexplorer
+-bash: /opt/VRTSspt/VRTSexplorer: is a directory
+[root@ipew1aprov VRTSspt]# cd /opt/VRTSspt/VRTSexplorer
+[root@ipew1aprov VRTSexplorer]# ls
+README.vxexplorer  VRTSexplorer
+[root@ipew1aprov VRTSexplorer]# ./VRTSexplorer
+
+This script will redirect to the SORT Data Collector utility to
+generate a vxexplorer troubleshooting archive (Symantec Operations
+Readiness Tools).  The full featured Data Collector is being used
+to enhance the functionality of the legacy VRTSexplorer tool.  The
+legacy VRTSexplorer tool will be deprecated at a future time (to be
+determined). Please see http://www.symantec.com/docs/HOWTO59475
+for details.
+
+At the end of the Data Collector, you will be prompted to upload
+the archive using ftp to the /incoming directory of the
+Symantec ftp site (ftp.veritas.com).  Please answer 'yes' if connected
+directly to the Internet or transfer the archive file(s) to another
+server or workstation and use ftp to manually upload using the
+credentials:
+
+Login: symsupport
+Password: iS*pp8rT1
+
+After the Data Collector completes, and the upload is performed
+(automatically or manually), please email the name of the
+uploaded archive(s) to the TSE working the case.
+(reply to any email of the current working case)
+
+Press [Enter] to continue
+
+Redirect command:
+
+        /opt/VRTSspt/DataCollector/sort/sortdc -vxexplorer ipew1aprov.vsf4-2.hcvlny.dhg.cv.net
+More information about the Data Collector may also be found
+in the file:
+
+        /opt/VRTSspt/DataCollector/README.data_collector file
+
+Press [Enter] to continue 
+
+SORT Data Collector has not been initialized.
+
+To start collecting troubleshooting information
+the SORT Data Collector needs to be initialized.
+Initialize now? [y/n] (default: y)
+
+SORT Data Collector initializing
+
+Uncompressing SORT data collector: 100% |*********************************************************************************************************|
+
+The Symantec Operations Readiness Tools (SORT) data collector has been extracted to the current directory. To run it, use:
+
+    cd sort
+    ./sortdc
+
+
+===========================================================================
+| Checking available driver (ipew1aprov.vsf4-2.hcvlny.dhg.cv.net) resources
+===========================================================================
+Working directory file system type: ext4
+Open files limit: 8192
+Virtual memory limit: unlimited
+Free swap: 16383 MB
+
+Loading data collector...
+
+                                                                                                                                                    
+
+    Connecting to Symantec to check for the latest data collector version ......................................................... Failed
+
+Skipped getting the latest version of the data collector. To check for the latest version manually, go to: https://sort.symantec.com.
+
+Press [Return] to continue: 
+
+                                                        Symantec Operations Readiness Tools                                                        
+
+Copyright (c) 2013 Symantec Corporation. All rights reserved.  Symantec and the Symantec logo are trademarks or registered trademarks of
+Symantec Corporation or its affiliates in the U.S. and other countries. Other names may be trademarks of their respective owners.
+
+The Licensed Software and Documentation are deemed to be "commercial computer software" and "commercial computer software documentation" as
+defined in FAR Sections 12.212 and DFARS Section 227.7202.
+
+The data collector writes logs to /var/tmp/sortdc-201406031540DRs.
+
+Starting the data collector [Build: 3.9.20130922]...
+
+Press [Return] to indicate your acceptance of the terms and conditions as indicated in the /opt/VRTSspt/DataCollector/sort/advanced/terms.txt
+file, or q to decline: (y) 
+
+                                                        Symantec Operations Readiness Tools                                                        
+
+Generating report for VRTSexplorer:
+
+Do you want to run all VRTSexplorer modules? [y,n,q] (y) 
+
+Specify a directory in which to store the collected data: (/var/vrtsexplorer_reports) 
+
+Directory '/var/vrtsexplorer_reports' does not exist. Do you want to create it? [y,n,q] (y) 
+Directory '/var/vrtsexplorer_reports' created.
+
+Enter the Symantec Technical Support case number, or press enter: 06625007
+
+Specify a working directory in which to store the collected data when VRTSexplorer running: (/var/tmp) 
+Storing the data in '/var/tmp/VRTSexplorer_06625007_ipew1aprov20140603_154144' on ipew1aprov.vsf4-2.hcvlny.dhg.cv.net.
+
+You can run a  set of Risk Assessement checks on your systems, which will analyze your environment and make configuration recommendations. These
+check can uncover potential issues and suggest ways to fix them.
+Do you want to run a Risk Assessement check on ipew1aprov.vsf4-2.hcvlny.dhg.cv.net? [y,n,q] (n) 
+
+Do you want to collect core files in the root directory (/) [y,n,q] (n) 
+Core file collection skipped.
+
+You can collect more detailed information about VRTSaz, including the VRTSaz Access Control Information Store (ACI). The VRTSaz service (vxazd)
+will be stopped and restarted in this process. Do you want to allow collecting detailed security information about VRTSaz? [y,n,q] (n) 
+Detailed collection skipped.
+
+You can collect more detailed security information about VRTSat, including the VRTSat Private Domain Repository and the credential store. Do you
+want to collect it? [y,n,q] (n) 
+Detailed collection skipped.
+
+Set the VxVM Configuration daemon debugging level on ipew1aprov.vsf4-2.hcvlny.dhg.cv.net [y,n,q] (n) 
+Debugging level setting skipped.
+
+                                                        Symantec Operations Readiness Tools                                                        
+
+The data collector writes logs to /var/tmp/sortdc-201406031540DRs
+
+ipew1aprov.vsf4-2.hcvlny.dhg.cv.net: Collecting system configuration information for Linux system.
+ipew1aprov.vsf4-2.hcvlny.dhg.cv.net: Collecting VERITAS package version information.
+ipew1aprov.vsf4-2.hcvlny.dhg.cv.net: Collecting loadable module information.
+ipew1aprov.vsf4-2.hcvlny.dhg.cv.net: Checking VERITAS packages.
+ipew1aprov.vsf4-2.hcvlny.dhg.cv.net: Collecting XMH configuration information.
+ipew1aprov.vsf4-2.hcvlny.dhg.cv.net: Collecting guest logs.
+ipew1aprov.vsf4-2.hcvlny.dhg.cv.net: Determining current VxVM operating mode.
+ipew1aprov.vsf4-2.hcvlny.dhg.cv.net: Collecting VxVM configuration information.
+ipew1aprov.vsf4-2.hcvlny.dhg.cv.net: Collecting VRAS configuration information.
+ipew1aprov.vsf4-2.hcvlny.dhg.cv.net: Collecting VxFS configuration information.
+ipew1aprov.vsf4-2.hcvlny.dhg.cv.net: Collecting vxfen specific data...
+ipew1aprov.vsf4-2.hcvlny.dhg.cv.net: Collecting console logs...
+ipew1aprov.vsf4-2.hcvlny.dhg.cv.net: Collecting related VM data...
+ipew1aprov.vsf4-2.hcvlny.dhg.cv.net: Collecting VxAZ configuration information.
+ipew1aprov.vsf4-2.hcvlny.dhg.cv.net: Collecting VxAT configuration information.
+ipew1aprov.vsf4-2.hcvlny.dhg.cv.net: Collecting VOM configuration information.
+ipew1aprov.vsf4-2.hcvlny.dhg.cv.net: Collecting SIG licensing information.
+ipew1aprov.vsf4-2.hcvlny.dhg.cv.net: Collecting VCS configuration information.
+ipew1aprov.vsf4-2.hcvlny.dhg.cv.net: Collecting VBS information.
+ipew1aprov.vsf4-2.hcvlny.dhg.cv.net: Collecting SLIM information.
+ipew1aprov.vsf4-2.hcvlny.dhg.cv.net: Collecting SLIM Agent installer logs.
+ipew1aprov.vsf4-2.hcvlny.dhg.cv.net: Collecting ELM licensing information.
+ipew1aprov.vsf4-2.hcvlny.dhg.cv.net: Collecting ISIS configuration information.
+ipew1aprov.vsf4-2.hcvlny.dhg.cv.net: Collecting Symantec Enterprise Solution for Hadoop information.
+ipew1aprov.vsf4-2.hcvlny.dhg.cv.net: Collecting DCLI configuration information.
+ipew1aprov.vsf4-2.hcvlny.dhg.cv.net: Collecting Cross Product/Platform Installation (CPI) information.
+ipew1aprov.vsf4-2.hcvlny.dhg.cv.net: Generating the summary report...
+ipew1aprov.vsf4-2.hcvlny.dhg.cv.net: Script finished, creating output tar file...
+    
+Moving ipew1aprov.vsf4-2.hcvlny.dhg.cv.net:/var/tmp/VRTSexplorer_06625007_ipew1aprov20140603_154144.tar.gz to /var/vrtsexplorer_reports. ... done
+
+The output file is /var/vrtsexplorer_reports/VRTSexplorer_06625007_ipew1aprov20140603_154144.tar.gz.
+The checksum for the tarfile is
+2064185788 26795651 /var/vrtsexplorer_reports/VRTSexplorer_06625007_ipew1aprov20140603_154144.tar.gz
+
+Do you want to upload /var/vrtsexplorer_reports/VRTSexplorer_06625007_ipew1aprov20140603_154144.tar.gz to ftp.veritas.com/incoming? [y,n,q] (y) 
+Uploading /var/vrtsexplorer_reports/VRTSexplorer_06625007_ipew1aprov20140603_154144.tar.gz to ftp.veritas.com/incoming...
+
+
+Upload failed. Can't connect: Net::FTP: connect: Connection timed out
+
+SORT data collector current session log files are saved at: /opt/VRTSspt/DataCollector/sort/log/sortdc-201406031540DRs
+
+[root@ipew1aprov VRTSexplorer]# 
+[root@ipew1aprov VRTSexplorer]# ls /tmp
+err_file.2014-06-03_14.50.22  out.2014-06-03_14.50.22                  VRTSexplorer_06625007_ipew1aprov20140603_154144.tar.gz
+err_file.2014-06-03_14.53.04  out_dd.2014-06-03_14.53.04               VRTSspt.6.1.0b6.linux.tar
+linux                         README                                   yum_save_tx-2014-05-30-16-59uxNaTz.yumtx
+logs.tar.gz                   sfha-rhel6_x86_64-6.1.0.300-rpms.tar.gz  yum_save_tx-2014-05-30-17-00n_pX48.yumtx
+lost+found                    tmp                                      zkB5U6uVcY
+mEs9vWhnNa                    vmware-root
+[root@ipew1aprov VRTSexplorer]# cd /tmp
+[root@ipew1aprov tmp]# chmod 777 VRTSexplorer_06625007_ipew1aprov20140603_154144.tar.gz
+[root@ipew1aprov tmp]# chown ddilwort VRTSexplorer_06625007_ipew1aprov20140603_154144.tar.gz
+[root@ipew1aprov tmp]# 

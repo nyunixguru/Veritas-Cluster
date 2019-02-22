@@ -1,4 +1,4 @@
-Shared Disk
+Shared Disks setup
 
 Create shared disks in Vmware
 Verify can see in fdisk
